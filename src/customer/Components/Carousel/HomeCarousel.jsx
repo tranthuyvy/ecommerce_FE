@@ -16,6 +16,7 @@ const HomeCarousel = () => {
       alt=""
       onDragStart={handleDragStart}
       role="presentation"
+      style={{ width: "100%", height: "500px" }}
     />
   ));
   return (
@@ -24,7 +25,7 @@ const HomeCarousel = () => {
       items={item}
       autoPlay
       infinite
-      autoPlayInterval={2000}
+      autoPlayInterval={1500}
       disableButtonsControls
     />
   );
