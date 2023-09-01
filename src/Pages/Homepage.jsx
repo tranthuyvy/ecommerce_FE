@@ -1,37 +1,43 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Link} from "react-router-dom";
 import HomeCarousel from "../customer/Components/Carousel/HomeCarousel";
 import { homeCarouselData } from "../customer/Components/Carousel/HomeCaroselData";
 import HomeProductSection from "../customer/Components/Home/HomeProductSection";
-import { sareePage1 } from "../Data/Saree/page1";
-import { dressPage1 } from "../Data/dress/page1";
-import { gounsPage1 } from "../Data/Gouns/gouns";
-import { kurtaPage1 } from "../Data/Kurta/kurta";
 import { mensShoesPage1 } from "../Data/shoes";
-import { mens_kurta } from "../Data/Men/men_kurta";
-import { lengha_page1 } from "../Data/Women/LenghaCholi";
 import ProductInfoSection from "../customer/Components/Home/ProductInfoSection";
+import { jordan } from "../Data/Men/nike/jordan";
+import LogoCard from "../customer/Components/Home/LogoCard";
+import "../customer/Components/Home/LogoCard.css";
 
 const Homepage = () => {
 
   return (
     <div className="">
+
       <HomeCarousel images={homeCarouselData} />
-      <div>
+
+      <div className="card-container">
+        <Link to="/women/adidas/running">
+          <LogoCard logo="https://inkythuatso.com/uploads/thumbnails/800/2021/09/logo-adidas-vector-inkythuatso-01-29-09-08-58.jpg"/>
+        </Link>
+        <Link to="/women/nike/jordan">
+          <LogoCard logo="https://static.vecteezy.com/system/resources/thumbnails/010/994/412/small/nike-logo-black-with-name-clothes-design-icon-abstract-football-illustration-with-white-background-free-vector.jpg" marginLeft="5px" marginCardTop="30px"/>
+        </Link>
+        <Link to="/women/converse/chuck_70">
+          <LogoCard logo="https://inkythuatso.com/uploads/thumbnails/800/2021/12/logo-converse-inkythuatso-2-01-06-11-09-39.jpg" marginTop="10px"/>
+        </Link>
+      </div>
+
+      <div className="display:flex">
         <ProductInfoSection />
       </div>
 
       <div className="space-y-5 py-20">
-      <HomeProductSection data={mens_kurta} section={"Men's Kurta"} />
+        <HomeProductSection section={"Jordan"} data={jordan}/>
+        
         <HomeProductSection data={mensShoesPage1} section={"Men's Shoes"} />
-        {/* <HomeProductSection data={lengha_page1} section={"Lengha Choli"} /> */}
-        <HomeProductSection data={sareePage1} section={"Saree"} />
-        <HomeProductSection data={dressPage1} section={"Dress"} />
-        <HomeProductSection data={gounsPage1} section={"Women's Gouns"} />
-        <HomeProductSection data={kurtaPage1} section={"Women's Kurtas"} />
-        {/* <HomeProductSection data={mensPantsPage1} section={"Men's Pants"} /> */}
+         
       </div>
-
-      
     </div>
   );
 };

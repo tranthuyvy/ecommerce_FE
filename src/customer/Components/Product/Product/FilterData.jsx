@@ -15,12 +15,14 @@ export const filters = [
     name: "Color",
     options: [
       { value: "white", label: "White" },
+      { value: "black", label: "Black"},
       { value: "beige", label: "Beige" },
       { value: "blue", label: "Blue" },
       { value: "brown", label: "Brown" },
       { value: "green", label: "Green" },
       { value: "purple", label: "Purple" },
-      {value:"yellow",label:"Yellow"}
+      { value: "yellow", label: "Yellow"}
+    
     ],
   },
 

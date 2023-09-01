@@ -16,7 +16,7 @@ const HomeCarousel = () => {
       alt=""
       onDragStart={handleDragStart}
       role="presentation"
-      style={{ width: "100%", height: "500px" }}
+      style={{ width: "100%", height: "550px" }}
     />
   ));
   return (
