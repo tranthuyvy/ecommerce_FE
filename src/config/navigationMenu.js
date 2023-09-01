@@ -7,14 +7,15 @@ export const navigation = {
         {
           name: "New Arrivals",
           href: "/",
-          imageSrc: "https://intphcm.com/data/upload/poster-giay-ben.jpg",
+          imageSrc:
+            "https://s1.dswcdn.com/uploads/Nike_Air_Max_Shoes/Air_Max_2018/Air_Max_2018_Flyknit/Nike_Air_Max_2018_Running_Women_Shoes_Deep_Grey_Red_942843-004_P1.jpg",
           imageAlt: "",
         },
         {
           name: "Basic Sneaker",
           href: "/",
           imageSrc:
-            "https://designercomvn.s3.ap-southeast-1.amazonaws.com/wp-content/uploads/2018/12/17103343/poster-gi%C3%A0y.jpg",
+            "https://www.designsmag.com/wp-content/uploads/2011/02/ADIDAS_ad_by_Phanox.jpg",
           imageAlt: "",
         },
       ],
@@ -63,7 +64,8 @@ export const navigation = {
         {
           name: "New Arrivals",
           id: "#",
-          imageSrc: "https://intphcm.com/data/upload/poster-giay-nike.jpg",
+          imageSrc:
+            "https://anhdep123.com/wp-content/uploads/2021/01/anh-giay-adidas.jpg",
           imageAlt: "",
         },
         {
