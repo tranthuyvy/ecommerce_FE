@@ -20,9 +20,9 @@ const HomeProductCard = ({ product }) => {
 
       <div className="p-4 ">
         <h3 className="text-lg font-medium text-gray-900">
-          {product?.brand || product?.title}
+              {product?.title}
         </h3>
-        <p className="mt-2 text-sm text-gray-500">{product?.title}</p>
+        <p className="mt-2 text-sm text-gray-500">{product?.brand || product?.title}</p>
       </div>
     </div>
   );

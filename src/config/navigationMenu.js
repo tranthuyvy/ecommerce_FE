@@ -43,7 +43,7 @@ export const navigation = {
             { name: "Hiking", id: "hiking" },
             { name: "Basketball", id: "basketball" },
             { name: "Golf", id: "golf" },
-            { name: "Mountain Biking", id: "mountain_biking" },
+            { name: "Gym", id: "gym" },
           ],
         },
         {
@@ -100,7 +100,7 @@ export const navigation = {
             { name: "Hiking", id: "hiking" },
             { name: "Basketball", id: "basketball" },
             { name: "Golf", id: "golf" },
-            { name: "Mountain Biking", id: "mountain_biking" },
+            { name: "Gym", id: "gym" },
           ],
         },
         {

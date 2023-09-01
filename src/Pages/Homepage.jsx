@@ -4,6 +4,7 @@ import { homeCarouselData } from "../customer/Components/Carousel/HomeCaroselDat
 import HomeProductSection from "../customer/Components/Home/HomeProductSection";
 import ProductInfoSection from "../customer/Components/Home/ProductInfoSection";
 import AdidasProductSection from "../customer/Components/Home/AdidasProductSection";
+import Topics from "../customer/Components/Home/Topics";
 import { jordan } from "../Data/Men/nike/jordan";
 import LogoCard from "../customer/Components/Home/LogoCard";
 import "../customer/Components/Home/LogoCard.css";
@@ -43,6 +44,10 @@ const Homepage = () => {
       <div className="space-y-5 py-20">
         <HomeProductSection section={"Jordan"} data={jordan}/>
          
+      </div>
+
+      <div>
+        <Topics/>
       </div>
     </div>
   );

@@ -93,7 +93,7 @@ export const jordan = [
     imageUrl:
       "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/fe4b4ab7-3fb6-44a7-95be-7a49f7fb3e9a/air-jordan-xxxviii-fundamental-basketball-shoes-7qLMW4.png",
     brand: "Nike",
-    title: "Air Jordan XXXVIII Fundamental",
+    title: "XXXVIII Fundamental",
     color: "Black",
     discountedPrice: 180,
     price: 200,
