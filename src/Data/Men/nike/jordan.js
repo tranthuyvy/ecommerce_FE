@@ -2,271 +2,331 @@ export const jordan = [
   {
     imageUrl:
       "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/82d26c28-58a2-464f-881e-b20d2b5eafa8/air-jordan-1-mid-shoes-SQf7DM.png",
-    brand: "Majestic Man",
-    title: "Men Printed Pure Cotton Straight Kurta",
-    color: "Green",
-    discountedPrice: 499,
-    price: 1499,
-    discountPersent: 66,
-    size: [
-      {
-        name: "S",
-        quantity: 20,
-      },
-      {
-        name: "M",
-        quantity: 30,
-      },
-      {
-        name: "L",
-        quantity: 50,
-      },
-    ],
-    quantity: 100,
-    topLavelCategory: "Men",
-    secondLavelCategory: "Clothing",
-    thirdLavelCategory: "mens_kurta",
-    description:
-      "A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style.",
-  },
-  {
-    imageUrl:
-      "https://rukminim1.flixcart.com/image/612/612/xif0q/kurta/l/f/r/xl-k-spl668-yellow-sg-leman-original-imagznqcrahgq9rf.jpeg?q=70",
-    brand: "SG LEMAN",
-    title: "Men Embroidered Jacquard Straight Kurta",
-    color: "Yellow",
-    discountedPrice: 799,
-    price: 2499,
-    discountPersent: 68,
-    size: [
-      {
-        name: "S",
-        quantity: 20,
-      },
-      {
-        name: "M",
-        quantity: 30,
-      },
-      {
-        name: "L",
-        quantity: 50,
-      },
-    ],
-    quantity: 100,
-    topLavelCategory: "Men",
-    secondLavelCategory: "Clothing",
-    thirdLavelCategory: "mens_kurta",
-    description:
-      "A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style.",
-  },
-  {
-    imageUrl:
-      "https://rukminim1.flixcart.com/image/612/612/xif0q/kurta/g/6/k/m-sksh-dt1105-pcbl-fubar-original-imafux247zhqym2z-bb.jpeg?q=70",
-    brand: "FUBAR",
-    title: "Men Printed Cotton Blend Straight Kurta",
-    color: "Blue",
-    discountedPrice: 399,
-    price: 1499,
-    discountPersent: 73,
-    size: [
-      {
-        name: "S",
-        quantity: 20,
-      },
-      {
-        name: "M",
-        quantity: 30,
-      },
-      {
-        name: "L",
-        quantity: 50,
-      },
-    ],
-    quantity: 100,
-    topLavelCategory: "Men",
-    secondLavelCategory: "Clothing",
-    thirdLavelCategory: "mens_kurta",
-    description:
-      "A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style.",
-  },
-  {
-    imageUrl:
-      "https://rukminim1.flixcart.com/image/612/612/xif0q/kurta/i/v/x/xxl-br-ad-kt-105-adwyn-peter-original-imagj4zyd2q7t6cg.jpeg?q=70",
-    brand: "ALY JOHN",
-    title: "Men Solid Pure Cotton Straight Kurta",
-    color: "White",
-    discountedPrice: 474,
-    price: 1999,
-    discountPersent: 76,
-    size: [
-      {
-        name: "S",
-        quantity: 20,
-      },
-      {
-        name: "M",
-        quantity: 30,
-      },
-      {
-        name: "L",
-        quantity: 50,
-      },
-    ],
-    quantity: 100,
-    topLavelCategory: "Men",
-    secondLavelCategory: "Clothing",
-    thirdLavelCategory: "mens_kurta",
-    description:
-      "A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style.",
-  },
-  {
-    imageUrl:
-      "https://rukminim1.flixcart.com/image/612/612/xif0q/kurta/j/a/r/l-poch521835-peter-england-original-imag7jg47g7cxhg3-bb.jpeg?q=70",
-    brand: "PETER ENGLAND",
-    title: "Men Woven Design Pure Cotton Straight Kurta",
-    color: "Grey",
-    discountedPrice: 524,
-    price: 1049,
-    discountPersent: 50,
-    size: [
-      {
-        name: "S",
-        quantity: 20,
-      },
-      {
-        name: "M",
-        quantity: 30,
-      },
-      {
-        name: "L",
-        quantity: 50,
-      },
-    ],
-    quantity: 100,
-    topLavelCategory: "Men",
-    secondLavelCategory: "Clothing",
-    thirdLavelCategory: "mens_kurta",
-    description:
-      "A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style.",
-  },
-  {
-    imageUrl:
-      "https://rukminim1.flixcart.com/image/612/612/xif0q/kurta/y/c/x/xl-kast107hp-majestic-man-original-imafw49u5uty4agx-bb.jpeg?q=70",
-    brand: "Majestic Man",
-    title: "Men Solid Pure Cotton Straight Kurta",
-    color: "Pink",
-    discountedPrice: 499,
-    price: 1499,
-    discountPersent: 66,
-    size: [
-      {
-        name: "S",
-        quantity: 20,
-      },
-      {
-        name: "M",
-        quantity: 30,
-      },
-      {
-        name: "L",
-        quantity: 50,
-      },
-    ],
-    quantity: 100,
-    topLavelCategory: "Men",
-    secondLavelCategory: "Clothing",
-    thirdLavelCategory: "mens_kurta",
-    description:
-      "A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style.",
-  },
-  {
-    imageUrl:
-      "https://rukminim1.flixcart.com/image/612/612/kpodocw0/t-shirt/x/o/4/xl-wr-64-wrodss-original-imag3upwgq9n9fbv.jpeg?q=70",
-    brand: "WRODSS",
-    title: "Men Solid Cotton Blend Straight Kurta",
+    brand: "Nike",
+    title: "Air Jordan 1 Mid",
     color: "Black",
-    discountedPrice: 277,
-    price: 999,
-    discountPersent: 72,
+    discountedPrice: 180,
+    price: 200,
+    discountPersent: 10,
     size: [
       {
-        name: "S",
+        name: "6",
         quantity: 20,
       },
       {
-        name: "M",
+        name: "7",
         quantity: 30,
       },
       {
-        name: "L",
+        name: "8",
         quantity: 50,
       },
     ],
     quantity: 100,
     topLavelCategory: "Men",
-    secondLavelCategory: "Clothing",
-    thirdLavelCategory: "mens_kurta",
+    secondLavelCategory: "Nike",
+    thirdLavelCategory: "jordan",
     description:
-      "A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style.",
+      "Inspired by the original AJ1, this mid-top edition maintains the iconic look you love while choice colours and crisp leather give it a distinct identity.",
   },
   {
     imageUrl:
-      "https://rukminim1.flixcart.com/image/612/612/l4zxn680/kurta/i/g/u/s-mtml0039-341-manthan-original-imagfrz3gwgdtczm.jpeg?q=70",
-    brand: "Manthan",
-    title: "Men Printed Cotton Blend Straight Kurta",
-    color: "Blue",
-    discountedPrice: 765,
-    price: 1049,
-    discountPersent: 27,
+      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/28e7df40-2bf6-4a18-a8d2-1f8d00502a15/air-jordan-1-mid-shoes-SQf7DM.png",
+    brand: "Nike",
+    title: "Air Jordan 1 Mid",
+    color: "Black",
+    discountedPrice: 180,
+    price: 200,
+    discountPersent: 10,
     size: [
       {
-        name: "S",
+        name: "6",
         quantity: 20,
       },
       {
-        name: "M",
+        name: "7",
         quantity: 30,
       },
       {
-        name: "L",
+        name: "8",
         quantity: 50,
       },
     ],
     quantity: 100,
     topLavelCategory: "Men",
-    secondLavelCategory: "Clothing",
-    thirdLavelCategory: "mens_kurta",
+    secondLavelCategory: "Nike",
+    thirdLavelCategory: "jordan",
     description:
-      "A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style.",
+      "Inspired by the original AJ1, this mid-top edition maintains the iconic look you love while choice colours and crisp leather give it a distinct identity.",
   },
   {
     imageUrl:
-      "https://rukminim1.flixcart.com/image/612/612/xif0q/kurta/m/e/e/s-kurta-rahul-look-original-imaga2g6qmhbywdf-bb.jpeg?q=70",
-    brand: "RAHUL LOOK",
-    title: "Men Solid Pure Cotton Straight Kurta",
-    color: "Green",
-    discountedPrice: 499,
-    price: 1599,
-    discountPersent: 68,
+      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/c2284190-8249-448a-a115-bf8bf349dadd/jordan-retro-6-g-golf-shoes-TQq6kw.png",
+    brand: "Nike",
+    title: "Jordan Retro 6 G",
+    color: "White",
+    discountedPrice: 180,
+    price: 200,
+    discountPersent: 10,
     size: [
       {
-        name: "S",
+        name: "6",
         quantity: 20,
       },
       {
-        name: "M",
+        name: "7",
         quantity: 30,
       },
       {
-        name: "L",
+        name: "8",
         quantity: 50,
       },
     ],
     quantity: 100,
     topLavelCategory: "Men",
-    secondLavelCategory: "Clothing",
-    thirdLavelCategory: "mens_kurta",
+    secondLavelCategory: "Nike",
+    thirdLavelCategory: "jordan",
     description:
-      "A traditional garment embodying elegance and grace. Crafted from fine fabrics, it features intricate embroidery and a relaxed fit, providing comfort and style.",
+      "Inspired by the original AJ1, this mid-top edition maintains the iconic look you love while choice colours and crisp leather give it a distinct identity.",
+  },
+  {
+    imageUrl:
+      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/fe4b4ab7-3fb6-44a7-95be-7a49f7fb3e9a/air-jordan-xxxviii-fundamental-basketball-shoes-7qLMW4.png",
+    brand: "Nike",
+    title: "Air Jordan XXXVIII Fundamental",
+    color: "Black",
+    discountedPrice: 180,
+    price: 200,
+    discountPersent: 10,
+    size: [
+      {
+        name: "6",
+        quantity: 20,
+      },
+      {
+        name: "7",
+        quantity: 30,
+      },
+      {
+        name: "8",
+        quantity: 50,
+      },
+    ],
+    quantity: 100,
+    topLavelCategory: "Men",
+    secondLavelCategory: "Nike",
+    thirdLavelCategory: "jordan",
+    description:
+      "Inspired by the original AJ1, this mid-top edition maintains the iconic look you love while choice colours and crisp leather give it a distinct identity.",
+  },
+  {
+    imageUrl:
+      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/156e79df-2bf1-4295-82d4-ea439b1ce904/air-jordan-7-retro-mens-shoes-7Zr804.png",
+    brand: "Nike",
+    title: "Air Jordan 7 Retro",
+    color: "Black",
+    discountedPrice: 180,
+    price: 200,
+    discountPersent: 10,
+    size: [
+      {
+        name: "6",
+        quantity: 20,
+      },
+      {
+        name: "7",
+        quantity: 30,
+      },
+      {
+        name: "8",
+        quantity: 50,
+      },
+    ],
+    quantity: 100,
+    topLavelCategory: "Men",
+    secondLavelCategory: "Nike",
+    thirdLavelCategory: "jordan",
+    description:
+      "Inspired by the original AJ1, this mid-top edition maintains the iconic look you love while choice colours and crisp leather give it a distinct identity.",
+  },
+  {
+    imageUrl:
+      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/02219be8-e51d-4ac0-8efd-03810c0600f6/air-jordan-13-retro-shoe-77XC9C.png",
+    brand: "Nike",
+    title: "Air Jordan 13 Retro",
+    color: "White",
+    discountedPrice: 180,
+    price: 200,
+    discountPersent: 10,
+    size: [
+      {
+        name: "6",
+        quantity: 20,
+      },
+      {
+        name: "7",
+        quantity: 30,
+      },
+      {
+        name: "8",
+        quantity: 50,
+      },
+    ],
+    quantity: 100,
+    topLavelCategory: "Men",
+    secondLavelCategory: "Nike",
+    thirdLavelCategory: "jordan",
+    description:
+      "Inspired by the original AJ1, this mid-top edition maintains the iconic look you love while choice colours and crisp leather give it a distinct identity.",
+  },
+  {
+    imageUrl:
+      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/c389ba83-2ceb-4652-ac5e-e47c3a7e9e7a/jumpman-mvp-mens-shoes-gzmjDz.png",
+    brand: "Nike",
+    title: "Jumpman MVP",
+    color: "Black",
+    discountedPrice: 180,
+    price: 200,
+    discountPersent: 10,
+    size: [
+      {
+        name: "6",
+        quantity: 20,
+      },
+      {
+        name: "7",
+        quantity: 30,
+      },
+      {
+        name: "8",
+        quantity: 50,
+      },
+    ],
+    quantity: 100,
+    topLavelCategory: "Men",
+    secondLavelCategory: "Nike",
+    thirdLavelCategory: "jordan",
+    description:
+      "Inspired by the original AJ1, this mid-top edition maintains the iconic look you love while choice colours and crisp leather give it a distinct identity.",
+  },
+  {
+    imageUrl:
+      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/7fef1b98-d0d3-48d8-9e9e-3bcc844ee24f/air-jordan-11-cmft-low-mens-shoes-Chz8HV.png",
+    brand: "Nike",
+    title: "Air Jordan 11 CMFT Low",
+    color: "White",
+    discountedPrice: 180,
+    price: 200,
+    discountPersent: 10,
+    size: [
+      {
+        name: "6",
+        quantity: 20,
+      },
+      {
+        name: "7",
+        quantity: 30,
+      },
+      {
+        name: "8",
+        quantity: 50,
+      },
+    ],
+    quantity: 100,
+    topLavelCategory: "Men",
+    secondLavelCategory: "Nike",
+    thirdLavelCategory: "jordan",
+    description:
+      "Inspired by the original AJ1, this mid-top edition maintains the iconic look you love while choice colours and crisp leather give it a distinct identity.",
+  },
+  {
+    imageUrl:
+      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/8dc5431c-9981-4b4d-adf9-4979e8a4cccc/air-jordan-xxxvii-low-basketball-shoes-00ZHpg.png",
+    brand: "Nike",
+    title: "Air Jordan XXXVII Low",
+    color: "Black",
+    discountedPrice: 180,
+    price: 200,
+    discountPersent: 10,
+    size: [
+      {
+        name: "6",
+        quantity: 20,
+      },
+      {
+        name: "7",
+        quantity: 30,
+      },
+      {
+        name: "8",
+        quantity: 50,
+      },
+    ],
+    quantity: 100,
+    topLavelCategory: "Men",
+    secondLavelCategory: "Nike",
+    thirdLavelCategory: "jordan",
+    description:
+      "Inspired by the original AJ1, this mid-top edition maintains the iconic look you love while choice colours and crisp leather give it a distinct identity.",
+  },
+  {
+    imageUrl:
+      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/2918a5b5-5c16-4a14-bdcf-bd9314eb4ddd/air-jordan-xxxvii-low-basketball-shoes-00ZHpg.png",
+    brand: "Nike",
+    title: "Air Jordan XXXVII Low",
+    color: "White",
+    discountedPrice: 180,
+    price: 200,
+    discountPersent: 10,
+    size: [
+      {
+        name: "6",
+        quantity: 20,
+      },
+      {
+        name: "7",
+        quantity: 30,
+      },
+      {
+        name: "8",
+        quantity: 50,
+      },
+    ],
+    quantity: 100,
+    topLavelCategory: "Men",
+    secondLavelCategory: "Nike",
+    thirdLavelCategory: "jordan",
+    description:
+      "Inspired by the original AJ1, this mid-top edition maintains the iconic look you love while choice colours and crisp leather give it a distinct identity.",
+  },
+  {
+    imageUrl:
+      "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco,u_126ab356-44d8-4a06-89b4-fcdcc8df0245,c_scale,fl_relative,w_1.0,h_1.0,fl_layer_apply/03a8d2fc-8413-49e9-a3a6-989ccf9346f7/air-jordan-7-retro-mens-shoes-B7QhMr.png",
+    brand: "Nike",
+    title: "Air Jordan 7 Retro",
+    color: "White",
+    discountedPrice: 180,
+    price: 200,
+    discountPersent: 10,
+    size: [
+      {
+        name: "6",
+        quantity: 20,
+      },
+      {
+        name: "7",
+        quantity: 30,
+      },
+      {
+        name: "8",
+        quantity: 50,
+      },
+    ],
+    quantity: 100,
+    topLavelCategory: "Men",
+    secondLavelCategory: "Nike",
+    thirdLavelCategory: "jordan",
+    description:
+      "Inspired by the original AJ1, this mid-top edition maintains the iconic look you love while choice colours and crisp leather give it a distinct identity.",
   },
 ];

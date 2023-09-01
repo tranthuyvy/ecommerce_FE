@@ -32,10 +32,16 @@ const Homepage = () => {
         <ProductInfoSection />
       </div>
 
+      <div className="display:flex">
+        <ProductInfoSection />
+      </div>
+
+      <div className="display:flex">
+        <ProductInfoSection />
+      </div>
+
       <div className="space-y-5 py-20">
         <HomeProductSection section={"Jordan"} data={jordan}/>
-        
-        <HomeProductSection data={mensShoesPage1} section={"Men's Shoes"} />
          
       </div>
     </div>
