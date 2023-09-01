@@ -9,14 +9,18 @@ import { kurtaPage1 } from "../Data/Kurta/kurta";
 import { mensShoesPage1 } from "../Data/shoes";
 import { mens_kurta } from "../Data/Men/men_kurta";
 import { lengha_page1 } from "../Data/Women/LenghaCholi";
+import ProductInfoSection from "../customer/Components/Home/ProductInfoSection";
 
 const Homepage = () => {
 
   return (
     <div className="">
       <HomeCarousel images={homeCarouselData} />
+      <div>
+        <ProductInfoSection />
+      </div>
 
-      <div className="space-y-10 py-20">
+      <div className="space-y-5 py-20">
       <HomeProductSection data={mens_kurta} section={"Men's Kurta"} />
         <HomeProductSection data={mensShoesPage1} section={"Men's Shoes"} />
         {/* <HomeProductSection data={lengha_page1} section={"Lengha Choli"} /> */}
