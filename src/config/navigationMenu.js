@@ -37,8 +37,8 @@ export const navigation = {
           id: "adidas",
           name: "Adidas",
           items: [
-            { name: "Running", id: "#" },
-            { name: "Soccer", id: "#" },
+            { name: "Running", id: "running" },
+            { name: "Soccer", id: "soccer" },
             { name: "Lifestyle", id: "life_style" },
             { name: "Hiking", id: "hiking" },
             { name: "Basketball", id: "basketball" },
@@ -94,8 +94,8 @@ export const navigation = {
           id: "adidas",
           name: "Adidas",
           items: [
-            { name: "Running", id: "#" },
-            { name: "Soccer", id: "#" },
+            { name: "Running", id: "running" },
+            { name: "Soccer", id: "soccer" },
             { name: "Lifestyle", id: "life_style" },
             { name: "Hiking", id: "hiking" },
             { name: "Basketball", id: "basketball" },
