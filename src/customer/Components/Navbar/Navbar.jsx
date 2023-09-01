@@ -17,7 +17,7 @@ function Navbar() {
             {/* Logo */}
             <Link to="/" className="flex items-center py-6">
               <img
-                src="https://res.cloudinary.com/ddkso1wxi/image/upload/v1675919455/Logo/Copy_of_Zosh_Academy_nblljp.png"
+                src="https://cdn.printgo.vn/uploads/media/774255/logo-giay-1_1586510617.jpg"
                 alt="Ecommerce"
                 className="h-8 w-8 mr-2"
               />

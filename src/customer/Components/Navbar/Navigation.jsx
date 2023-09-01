@@ -265,9 +265,9 @@ export default function Navigation() {
                 <Link to="/">
                   <span className="sr-only">Your Company</span>
                   <img
-                    src="https://res.cloudinary.com/ddkso1wxi/image/upload/v1675919455/Logo/Copy_of_Zosh_Academy_nblljp.png"
+                    src="https://cdn.printgo.vn/uploads/media/774255/logo-giay-1_1586510617.jpg"
                     alt="Ecommerce"
-                    className="h-8 w-8 mr-2"
+                    className="mr-2 h-16 w-16"
                   />
                 </Link>
               </div>
