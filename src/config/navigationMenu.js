@@ -50,8 +50,8 @@ export const navigation = {
           id: "converse",
           name: "Converse",
           items: [
-            { name: "Chuck 70", id: "#" },
-            { name: "Classic Chuck", id: "#" },
+            { name: "Chuck 70", id: "chuck_70" },
+            { name: "Classic Chuck", id: "classic_chuck" },
             { name: "Basketball", id: "basketball" },
           ],
         },
@@ -107,8 +107,8 @@ export const navigation = {
           id: "converse",
           name: "Converse",
           items: [
-            { name: "Chuck 70", id: "#" },
-            { name: "Classic Chuck", id: "#" },
+            { name: "Chuck 70", id: "chuck_70" },
+            { name: "Classic Chuck", id: "classic_chuck" },
             { name: "Basketball", id: "basketball" },
           ],
         },

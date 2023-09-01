@@ -7,6 +7,7 @@ import AdidasProductSection from "../customer/Components/Home/AdidasProductSecti
 import { jordan } from "../Data/Men/nike/jordan";
 import LogoCard from "../customer/Components/Home/LogoCard";
 import "../customer/Components/Home/LogoCard.css";
+import ConverseProductSection from "../customer/Components/Home/ConverseProductSection";
 
 const Homepage = () => {
 
@@ -31,12 +32,12 @@ const Homepage = () => {
         <ProductInfoSection />
       </div>
 
-      <div className="display:flex">
+      <div className="display:flex mt-10">
         <AdidasProductSection/>
       </div>
 
-      <div className="display:flex">
-        <ProductInfoSection />
+      <div className="display:flex mt-10">
+        <ConverseProductSection />
       </div>
 
       <div className="space-y-5 py-20">

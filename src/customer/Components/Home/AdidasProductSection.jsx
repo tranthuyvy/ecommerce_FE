@@ -2,7 +2,7 @@ import React from "react";
 import "./AdidasProductSection.css";
 import { Link } from "react-router-dom";
 
-const ProductInfoSection = () => {
+const AdidasProductSection = () => {
   return (
     <div className="product-card">
       <div className="product-info-section">
@@ -33,4 +33,4 @@ const ProductInfoSection = () => {
   );
 };
 
-export default ProductInfoSection;
+export default AdidasProductSection;
