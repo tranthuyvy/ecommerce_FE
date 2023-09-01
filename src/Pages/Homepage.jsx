@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Link} from "react-router-dom";
 import HomeCarousel from "../customer/Components/Carousel/HomeCarousel";
 import { homeCarouselData } from "../customer/Components/Carousel/HomeCaroselData";
 import HomeProductSection from "../customer/Components/Home/HomeProductSection";
-import { mensShoesPage1 } from "../Data/shoes";
 import ProductInfoSection from "../customer/Components/Home/ProductInfoSection";
+import AdidasProductSection from "../customer/Components/Home/AdidasProductSection";
 import { jordan } from "../Data/Men/nike/jordan";
 import LogoCard from "../customer/Components/Home/LogoCard";
 import "../customer/Components/Home/LogoCard.css";
@@ -33,7 +32,7 @@ const Homepage = () => {
       </div>
 
       <div className="display:flex">
-        <ProductInfoSection />
+        <AdidasProductSection/>
       </div>
 
       <div className="display:flex">
