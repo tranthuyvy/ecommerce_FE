@@ -17,9 +17,12 @@ import { createProduct } from "../../../Redux/Customers/Product/Action";
 
 
 const initialSizes = [
-  { name: "S", quantity: 0 },
-  { name: "M", quantity: 0 },
-  { name: "L", quantity: 0 },
+  { name: "6", quantity: 0 },
+  { name: "7", quantity: 0 },
+  { name: "8", quantity: 0 },
+  { name: "9", quantity: 0 },
+  { name: "10", quantity: 0 },
+  { name: "11", quantity: 0 },
 ];
 
 const CreateProductForm = () => {
@@ -103,7 +106,7 @@ const jwt=localStorage.getItem("jwt")
         sx={{ textAlign: "center" }}
         className="py-10 text-center "
       >
-        Add New Product
+        Product
       </Typography>
       <form
         onSubmit={handleSubmit}
@@ -199,7 +202,6 @@ const jwt=localStorage.getItem("jwt")
               >
                 <MenuItem value="men">Men</MenuItem>
                 <MenuItem value="women">Women</MenuItem>
-                <MenuItem value="kids">Kids</MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -212,9 +214,9 @@ const jwt=localStorage.getItem("jwt")
                 onChange={handleChange}
                 label="Second Level Category"
               >
-                <MenuItem value="clothing">Clothing</MenuItem>
-                <MenuItem value="accessories">Accessories</MenuItem>
-                <MenuItem value="brands">Brands</MenuItem>
+                <MenuItem value="clothing">Adidas</MenuItem>
+                <MenuItem value="accessories">Converse</MenuItem>
+                <MenuItem value="brands">Nike</MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -227,11 +229,11 @@ const jwt=localStorage.getItem("jwt")
                 onChange={handleChange}
                 label="Third Level Category"
               >
-                <MenuItem value="top">Tops</MenuItem>
-                <MenuItem value="women_dress">Dresses</MenuItem>
-                <MenuItem value="t-shirts">T-Shirts</MenuItem>
-                <MenuItem value="saree">Saree</MenuItem>
-                <MenuItem value="lengha_choli">Lengha Choli</MenuItem>
+                <MenuItem value="gym">Gym</MenuItem>
+                <MenuItem value="running">Running</MenuItem>
+                <MenuItem value="air_force_1">Air Force 1</MenuItem>
+                <MenuItem value="chuck_70">Chuck 70</MenuItem>
+                <MenuItem value="hiking">Hiking</MenuItem>
               </Select>
             </FormControl>
           </Grid>
