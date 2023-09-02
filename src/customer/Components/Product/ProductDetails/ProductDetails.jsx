@@ -21,20 +21,12 @@ const product = {
   ],
   images: [
     {
-      src: "https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg",
-      alt: "Two each of gray, white, and black shirts laying flat.",
+      src: "https://wheyshop.cdn.vccloud.vn/wp-content/uploads/2021/09/bang-size-chan-chuan-nhat-va-cach-do-size-chan-1.png",
+      alt: "",
     },
     {
-      src: "https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-01.jpg",
-      alt: "Model wearing plain black basic tee.",
-    },
-    {
-      src: "https://tailwindui.com/img/ecommerce-images/product-page-02-tertiary-product-shot-02.jpg",
-      alt: "Model wearing plain gray basic tee.",
-    },
-    {
-      src: "https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg",
-      alt: "Model wearing plain white basic tee.",
+      src: "https://authentic-shoes.com/wp-content/uploads/2023/05/untitled_design__13__011956e84cbd49fb9ff24fbca6c10bcd_2048x2048.png",
+      alt: "",
     },
   ],
   // colors: [
@@ -67,7 +59,7 @@ function classNames(...classes) {
 
 export default function ProductDetails() {
   const [selectedSize, setSelectedSize] = useState();
-  const [activeImage, setActiveImage] = useState(null);
+  
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { customersProduct } = useSelector((store) => store);
@@ -75,7 +67,14 @@ export default function ProductDetails() {
   const jwt = localStorage.getItem("jwt");
   // console.log("param",productId,customersProduct.product)
 
+  const [activeImage, setActiveImage] = useState(customersProduct.product?.imageUrl);
+  const [fixedImage, setFixedImage] = useState(
+    customersProduct.product?.imageUrl
+  );
+
   const handleSetActiveImage = (image) => {
+    setFixedImage(image.src);
+
     setActiveImage(image);
   };
 
@@ -136,28 +135,29 @@ export default function ProductDetails() {
         <section className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-2 px-4 pt-10">
           {/* Image gallery */}
           <div className="flex flex-col items-center ">
-            <div className=" overflow-hidden rounded-lg max-w-[30rem] max-h-[35rem]">
-              <img
-                src={activeImage?.src || customersProduct.product?.imageUrl}
-                alt={product.images[0].alt}
-                className="h-full w-full object-cover object-center"
-              />
-            </div>
-            <div className="flex flex-wrap space-x-5 justify-center">
-              {product.images.map((image) => (
-                <div
-                  onClick={() => handleSetActiveImage(image)}
-                  className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg max-w-[5rem] max-h-[5rem] mt-4"
-                >
-                  <img
-                    src={image.src}
-                    alt={product.images[1].alt}
-                    className="h-full w-full object-cover object-center"
-                  />
-                </div>
-              ))}
-            </div>
+          <div className="overflow-hidden rounded-lg max-w-[30rem] max-h-[35rem]">
+            <img
+              src={activeImage?.src || customersProduct.product?.imageUrl} // Sử dụng activeImage thay vì fixedImage
+              alt={product.images[0].alt}
+              className="h-full w-full object-cover object-center"
+            />
           </div>
+          <div className="flex flex-wrap space-x-5 justify-center">
+            {product.images.map((image, index) => (
+              <div
+                key={index}
+                onClick={() => handleSetActiveImage(image)}
+                className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg max-w-[5rem] max-h-[5rem] mt-4"
+              >
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="h-full w-full object-cover object-center"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
 
           {/* Product info */}
           <div className="lg:col-span-1 mx-auto max-w-2xl px-4 pb-16 sm:px-6  lg:max-w-7xl  lg:px-8 lg:pb-24">
