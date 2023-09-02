@@ -9,11 +9,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { findProductById } from "../../../../Redux/Customers/Product/Action";
 import { addItemToCart } from "../../../../Redux/Customers/Cart/Action";
 import { getAllReviews } from "../../../../Redux/Customers/Review/Action";
-import { lengha_page1 } from "../../../../Data/Women/LenghaCholi";
-import { gounsPage1 } from "../../../../Data/Gouns/gouns";
+import { jordan } from "../../../../Data/Men/nike/jordan";
 
 const product = {
-  name: "Basic Tee 6-Pack",
+  name: "Nike",
   price: "₹996",
   href: "#",
   breadcrumbs: [
@@ -38,11 +37,11 @@ const product = {
       alt: "Model wearing plain white basic tee.",
     },
   ],
-  colors: [
-    { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
-    { name: "Gray", class: "bg-gray-200", selectedClass: "ring-gray-400" },
-    { name: "Black", class: "bg-gray-900", selectedClass: "ring-gray-900" },
-  ],
+  // colors: [
+  //   { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
+  //   { name: "Gray", class: "bg-gray-200", selectedClass: "ring-gray-400" },
+  //   { name: "Black", class: "bg-gray-900", selectedClass: "ring-gray-900" },
+  // ],
   sizes: [
     { name: "6", inStock: true },
     { name: "7", inStock: true },
@@ -51,16 +50,14 @@ const product = {
     { name: "10", inStock: true },
     { name: "11", inStock: true },
   ],
-  description:
-    'The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: "Black". Need to add an extra pop of color to your outfit? Our white tee has you covered.',
+  
   highlights: [
-    "Hand cut and sewn locally",
-    "Dyed with our proprietary colors",
-    "Pre-washed & pre-shrunk",
-    "Ultra-soft 100% cotton",
+    "Commitment to 100% genuine products",
+    "Bringing comfort to your feet",
+    "Delivering an excellent experience",
+    "Get free delivery on orders over $100",
   ],
-  details:
-    'The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming "Charcoal Gray" limited release.',
+
 };
 const reviews = { href: "#", average: 4, totalCount: 117 };
 
@@ -102,14 +99,13 @@ export default function ProductDetails() {
             role="list"
             className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8"
           >
-            {product.breadcrumbs.map((breadcrumb) => (
-              <li key={breadcrumb.id}>
+              <li>
                 <div className="flex items-center">
                   <a
                     href={"/"}
                     className="mr-2 text-sm font-medium text-gray-900"
                   >
-                    {breadcrumb.name}
+                    {customersProduct.product?.brand}
                   </a>
                   <svg
                     width={16}
@@ -123,14 +119,14 @@ export default function ProductDetails() {
                   </svg>
                 </div>
               </li>
-            ))}
+
             <li className="text-sm">
               <a
                 href={product.href}
                 aria-current="page"
                 className="font-medium text-gray-500 hover:text-gray-600"
               >
-                {product.name}
+                {customersProduct.product?.title}
               </a>
             </li>
           </ol>
@@ -167,10 +163,10 @@ export default function ProductDetails() {
           <div className="lg:col-span-1 mx-auto max-w-2xl px-4 pb-16 sm:px-6  lg:max-w-7xl  lg:px-8 lg:pb-24">
             <div className="lg:col-span-2">
               <h1 className="text-lg lg:text-xl font-semibold tracking-tight text-gray-900  ">
-                {customersProduct.product?.brand}
+                  {customersProduct.product?.title}
               </h1>
-              <h1 className="text-lg lg:text-xl tracking-tight text-gray-900 opacity-60 pt-1">
-                {customersProduct.product?.title}
+              <h1 className="text-sm tracking-tight text-gray-900 opacity-60 pt-1">
+                  {customersProduct.product?.brand}
               </h1>
             </div>
 
@@ -295,7 +291,7 @@ export default function ProductDetails() {
             </div>
 
             <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
-              {/* Description and details */}
+              {/* Description and details
               <div>
                 <h3 className="sr-only">Description</h3>
 
@@ -304,7 +300,7 @@ export default function ProductDetails() {
                     {customersProduct.product?.description}
                   </p>
                 </div>
-              </div>
+              </div> */}
 
               <div className="mt-10">
                 <h3 className="text-sm font-medium text-gray-900">
@@ -326,7 +322,7 @@ export default function ProductDetails() {
                 <h2 className="text-sm font-medium text-gray-900">Details</h2>
 
                 <div className="mt-4 space-y-6">
-                  <p className="text-sm text-gray-600">{product.details}</p>
+                  <p className="text-sm text-gray-600">{customersProduct.product?.description}</p>
                 </div>
               </div>
             </div>
@@ -497,7 +493,7 @@ export default function ProductDetails() {
         <section className=" pt-10">
           <h1 className="py-5 text-xl font-bold">Similer Products</h1>
           <div className="flex flex-wrap space-y-5">
-            {gounsPage1.map((item) => (
+            {jordan.map((item) => (
               <HomeProductCard product={item} />
             ))}
           </div>
