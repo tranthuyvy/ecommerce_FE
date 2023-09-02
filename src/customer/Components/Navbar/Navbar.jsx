@@ -79,7 +79,7 @@ function Navbar() {
             </ul>
 
             {/* Search bar */}
-            <form className="hidden md:block flex-grow max-w-sm">
+            {/* <form className="hidden md:block flex-grow max-w-sm">
               <div className="relative w-full">
                 <input
                   type="search"
@@ -100,7 +100,7 @@ function Navbar() {
                   </svg>
                 </div>
               </div>
-            </form>
+            </form> */}
 
             <div className="flex">
               <span className="px-2">User</span>
