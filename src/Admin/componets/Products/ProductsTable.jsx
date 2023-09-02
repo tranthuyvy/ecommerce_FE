@@ -20,7 +20,6 @@ import {
 } from "@mui/material";
 
 import React from "react";
-import { dressPage1 } from "../../../Data/dress/page1";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -104,10 +103,10 @@ const ProductsTable = () => {
                 label="Category"
                 onChange={(e) => handleFilterChange(e, "category")}
               >
-                <MenuItem value={"pant"}>Men's Pants</MenuItem>
-                <MenuItem value={"mens_kurta"}>Men's Kurta</MenuItem>
-                <MenuItem value={"saree"}>Saree</MenuItem>
-                <MenuItem value={"lengha_choli"}>Lengha Choli</MenuItem>
+                <MenuItem value={"air_force_1"}>Nike Air Force 1</MenuItem>
+                <MenuItem value={"jordan"}>Jordan</MenuItem>
+                <MenuItem value={"running"}>Running</MenuItem>
+                <MenuItem value={"gym"}>Gym</MenuItem>
               </Select>
             </FormControl>
           </Grid>

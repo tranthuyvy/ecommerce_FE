@@ -20,7 +20,7 @@ const AdidasProductSection = () => {
             outsole round out this sneaker’s design.
           </p>
         </div>
-        <div className="product-image ml-10">
+        <div className="product-image ml-10 -mr-10">
           <Link to="/product/102">
             <img
               src="https://2app.kicksonfire.com/kofapp/upload/events_images/ipad_adidas-wmns-ultra-boost-4-0-cloud-white-non-dyed-6.jpg"
