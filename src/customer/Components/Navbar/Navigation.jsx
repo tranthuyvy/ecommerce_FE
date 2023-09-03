@@ -15,7 +15,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { deepPurple } from "@mui/material/colors";
 import { getUser, logout } from "../../../Redux/Auth/Action";
 import { getCart } from "../../../Redux/Customers/Cart/Action";
-import Search from "./Search";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -466,7 +465,6 @@ export default function Navigation() {
                 <div className="flex lg:ml-6">
                   <p className="p-2 text-gray-400 hover:text-gray-500">
                     <span className="sr-only">Search</span>
-                    <Search />
                   </p>
                 </div>
 
