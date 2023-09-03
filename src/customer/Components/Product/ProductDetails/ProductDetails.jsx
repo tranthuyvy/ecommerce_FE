@@ -69,6 +69,9 @@ export default function ProductDetails() {
   const jwt = localStorage.getItem("jwt");
   // console.log("param",productId,customersProduct.product)
 
+  const [productsFromAPI, setProductsFromAPI] = useState([]);
+  const [loading, setLoading] = useState(true); 
+
   const [activeImage, setActiveImage] = useState(customersProduct.product?.imageUrl);
   const [fixedImage, setFixedImage] = useState(
     customersProduct.product?.imageUrl
@@ -92,8 +95,6 @@ export default function ProductDetails() {
     dispatch(getAllReviews(productId));
   }, [productId]);
 
-  const [productsFromAPI, setProductsFromAPI] = useState([]);
-  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const fetchDataFromAPI = async () => {
@@ -114,10 +115,7 @@ export default function ProductDetails() {
     fetchDataFromAPI();
   }, [customersProduct.product]);
 
-  const currentProduct = customersProduct.product;
-
-// Lọc danh sách productsFromAPI để loại bỏ sản phẩm hiện tại
-  const similarProducts = productsFromAPI.filter((item) => item.id !== currentProduct.id);
+  const similarProducts = productsFromAPI.filter((item) => item.id !== customersProduct.product.id);
   
 
   return (
@@ -521,7 +519,6 @@ export default function ProductDetails() {
 
         {/* similer product */}
 
-        
           <section className=" pt-10">
             <h1 className="py-5 text-xl font-bold">Similer Products</h1>
             <div className="flex flex-wrap space-y-5">
