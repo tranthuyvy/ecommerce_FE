@@ -10,6 +10,8 @@ import { findProductById } from "../../../../Redux/Customers/Product/Action";
 import { addItemToCart } from "../../../../Redux/Customers/Cart/Action";
 import { getAllReviews } from "../../../../Redux/Customers/Review/Action";
 import { jordan } from "../../../../Data/Men/nike/jordan";
+import axios from "axios";
+import api from "../../../../config/api";
 
 const product = {
   name: "Nike",
@@ -90,6 +92,34 @@ export default function ProductDetails() {
     dispatch(getAllReviews(productId));
   }, [productId]);
 
+  const [productsFromAPI, setProductsFromAPI] = useState([]);
+  const [loading, setLoading] = useState(true); 
+
+  useEffect(() => {
+    const fetchDataFromAPI = async () => {
+      try {
+        const brand = customersProduct.product?.brand;
+        if (brand) {
+          const response = await api.get(`/api/products/brand/${brand}`);
+          const dataFromAPI = response.data;
+          setProductsFromAPI(dataFromAPI);
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error("Lỗi khi gọi API:", error);
+        setLoading(false);
+      }
+    };
+  
+    fetchDataFromAPI();
+  }, [customersProduct.product]);
+
+  const currentProduct = customersProduct.product;
+
+// Lọc danh sách productsFromAPI để loại bỏ sản phẩm hiện tại
+  const similarProducts = productsFromAPI.filter((item) => item.id !== currentProduct.id);
+  
+
   return (
     <div className="bg-white lg:px-20">
       <div className="pt-6">
@@ -162,7 +192,7 @@ export default function ProductDetails() {
           {/* Product info */}
           <div className="lg:col-span-1 mx-auto max-w-2xl px-4 pb-16 sm:px-6  lg:max-w-7xl  lg:px-8 lg:pb-24">
             <div className="lg:col-span-2">
-              <h1 className="text-lg lg:text-xl font-semibold tracking-tight text-gray-900  ">
+              <h1 className="text-lg lg:text-xl font-semibold tracking-tight text-indigo-600  ">
                   {customersProduct.product?.title}
               </h1>
               <h1 className="text-sm tracking-tight text-gray-900 opacity-60 pt-1">
@@ -174,11 +204,11 @@ export default function ProductDetails() {
             <div className="mt-4 lg:row-span-3 lg:mt-0">
               <h2 className="sr-only">Product information</h2>
               <div className="flex space-x-5 items-center text-lg lg:text-xl tracking-tight text-gray-900 mt-6">
-                <p className="font-semibold">
-                  ₹{customersProduct.product?.discountedPrice}
+                <p className="font-semibold text-red-500">
+                  ${customersProduct.product?.discountedPrice}
                 </p>
                 <p className="opacity-50 line-through">
-                  ₹{customersProduct.product?.price}
+                  ${customersProduct.product?.price}
                 </p>
                 <p className="text-green-600 font-semibold">
                   {customersProduct.product?.discountPersent}% Off
@@ -490,14 +520,16 @@ export default function ProductDetails() {
         </section>
 
         {/* similer product */}
-        <section className=" pt-10">
-          <h1 className="py-5 text-xl font-bold">Similer Products</h1>
-          <div className="flex flex-wrap space-y-5">
-            {jordan.map((item) => (
-              <HomeProductCard product={item} />
-            ))}
-          </div>
-        </section>
+
+        
+          <section className=" pt-10">
+            <h1 className="py-5 text-xl font-bold">Similer Products</h1>
+            <div className="flex flex-wrap space-y-5">
+              {similarProducts.map((item) => (
+                <HomeProductCard product={item} />
+              ))}
+            </div>
+          </section>
       </div>
     </div>
   );
