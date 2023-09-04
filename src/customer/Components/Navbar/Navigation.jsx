@@ -71,9 +71,15 @@ export default function Navigation() {
     handleCloseUserMenu();
     dispatch(logout());
   };
+
   const handleMyOrderClick=()=>{
     handleCloseUserMenu()
     navigate("/account/order")
+  }
+
+  const handleProfileClick=()=>{
+    handleCloseUserMenu()
+    navigate("/account/profile")
   }
 
   return (
@@ -441,7 +447,7 @@ export default function Navigation() {
                           "aria-labelledby": "basic-button",
                         }}
                       >
-                        <MenuItem onClick={handleCloseUserMenu}>
+                        <MenuItem onClick={handleProfileClick}>
                           Profile
                         </MenuItem>
                         
