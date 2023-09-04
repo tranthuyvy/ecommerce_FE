@@ -11,9 +11,12 @@ import {
   MenuItem,
 } from "@mui/material";
 import { Fragment } from "react";
+import "./UserProfile.css";
 
 const UserProfile = () => {
   const [user, setUser] = useState(null);
+  const [editedUser, setEditedUser] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
   const jwt = localStorage.getItem("jwt");
 
   useEffect(() => {
@@ -26,12 +29,47 @@ const UserProfile = () => {
         })
         .then((response) => {
           setUser(response.data);
+
+          setEditedUser(response.data);
         })
         .catch((error) => {
           console.error("Lỗi khi gọi API:", error);
         });
     }
   }, [jwt]);
+
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditing(false);
+
+    setEditedUser(user);
+  };
+
+  const handleSaveEdit = () => {
+    axios.put("http://localhost:5454/api/users/profile", editedUser, {
+        headers: {
+            Authorization: `Bearer ${jwt}`,
+        },
+    })
+    .then((response) => {
+        setUser(response.data);
+        setIsEditing(false);
+    })
+    .catch((error) => {
+        console.error("Error: ", error);
+    });
+  };
+
+  const handleChange = (event) => {
+    const {name, value} = event.target;
+        setEditedUser((prevData) => ({
+            ...prevData,
+            [name]: value,
+        }));
+  };
 
   if (user === null) {
     return <div>Loading ...</div>;
@@ -41,7 +79,7 @@ const UserProfile = () => {
     user.addresses && user.addresses.length > 0 ? user.addresses[0] : null;
 
   return (
-    <Fragment className="createProductContainer ">
+    <Fragment className="updateProfileContainer ">
       <Typography
         variant="h3"
         sx={{ textAlign: "center" }}
@@ -51,7 +89,7 @@ const UserProfile = () => {
       </Typography>
       <form
         // onSubmit={handleSubmit}
-        className="createProductContainer min-h-screen"
+        className="updateProfileContainer min-h-screen"
       >
         <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -60,80 +98,108 @@ const UserProfile = () => {
             //   label="Email"
               name="email"
               value={user.email}
-            //   onChange={handleChange}
+              onChange={handleChange}
+              disabled={!isEditing}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
-            //   label="Brand"
               name="firstName"
-              value={user.firstName}
-            //   onChange={handleChange}
+              value={editedUser.firstName}
+              onChange={handleChange}
             />
           </Grid>
 
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
-            //   label="Title"
               name="lastName"
-              value={user.lastName}
-            //   onChange={handleChange}
+              value={editedUser.lastName}
+              onChange={handleChange}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
-            //   label="Color"
               name="street"
-              value={address.streetAddress}
-            //   onChange={handleChange}
+              value={editedUser.streetAddress}
+              onChange={handleChange}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
-            //   label="Quantity"
               name="state"
-              value={address.state}
-            //   onChange={handleChange}
+              value={editedUser.state}
+              onChange={handleChange}
               
             />
           </Grid>
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
-            //   label="Price"
               name="city"
-              value={address.city}
-            //   onChange={handleChange}
+              value={editedUser.city}
+              onChange={handleChange}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
-            //   label="Discounted Price"
               name="zipCode"
-              value={address.zipCode}
-            //   onChange={handleChange}
-            //   type="number"
+              value={editedUser.zipCode}
+              onChange={handleChange}
+              type="number"
             />
           </Grid>
 
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
-            //   label="Discount Percentage"
               name="mobile"
-              value={address.mobile}
-            //   onChange={handleChange}
+              value={editedUser.mobile}
+              onChange={handleChange}
               type="number"
             />
           </Grid>
     
           <Grid item xs={12}>
-            <Button
+          {isEditing ? (
+              // Hiển thị nút chỉnh sửa và lưu khi trong trạng thái chỉnh sửa
+              <>
+                <Button
+                  variant="contained"
+                  sx={{ p: 1.8 }}
+                  className="py-20"
+                  size="large"
+                  onClick={handleSaveEdit}
+                >
+                  Save Changes
+                </Button>
+                <Button
+                  variant="contained"
+                  sx={{ p: 1.8, ml: 2 }}
+                  className="py-20"
+                  size="large"
+                  onClick={handleCancelEdit}
+                >
+                  Cancel
+                </Button>
+              </>
+            ) : (
+              // Hiển thị nút chỉnh sửa khi không trong trạng thái chỉnh sửa
+              <Button
+                variant="contained"
+                sx={{ p: 1.8 }}
+                className="py-20"
+                size="large"
+                onClick={handleEdit}
+              >
+                Update Profile
+              </Button>
+            )}
+            {/* <Button
               variant="contained"
               sx={{ p: 1.8 }}
               className="py-20"
@@ -141,7 +207,7 @@ const UserProfile = () => {
               type="submit"
             >
               Update Profile
-            </Button>
+            </Button> */}
           </Grid>
         </Grid>
       </form>
