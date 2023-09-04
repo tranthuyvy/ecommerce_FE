@@ -5,19 +5,18 @@ import {
   Grid,
   TextField,
   Button,
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import { Fragment } from "react";
 import "./UserProfile.css";
 
-const UserProfile = () => {
-  const [user, setUser] = useState(null);
-  const [editedUser, setEditedUser] = useState(null);
-  const [isEditing, setIsEditing] = useState(false);
-  const jwt = localStorage.getItem("jwt");
+    const UserProfile = () => {
+    const [user, setUser] = useState(null);
+    const [editedUser, setEditedUser] = useState(null);
+    const [isEditing, setIsEditing] = useState(false);
+    const [updateSuccess, setUpdateSuccess] = useState(false);
+    const jwt = localStorage.getItem("jwt");
 
   useEffect(() => {
     if (jwt) {
@@ -31,6 +30,9 @@ const UserProfile = () => {
           setUser(response.data);
 
           setEditedUser(response.data);
+
+          setIsEditing(false);
+            setUpdateSuccess(true);
         })
         .catch((error) => {
           console.error("Lỗi khi gọi API:", error);
@@ -57,6 +59,7 @@ const UserProfile = () => {
     .then((response) => {
         setUser(response.data);
         setIsEditing(false);
+        setUpdateSuccess(true);
     })
     .catch((error) => {
         console.error("Error: ", error);
@@ -97,8 +100,8 @@ const UserProfile = () => {
               fullWidth
             //   label="Email"
               name="email"
-              value={user.email}
-              onChange={handleChange}
+              value={editedUser.email}
+            //   onChange={handleChange}
               disabled={!isEditing}
             />
           </Grid>
@@ -123,7 +126,7 @@ const UserProfile = () => {
             <TextField
               fullWidth
               name="street"
-              value={editedUser.streetAddress}
+              value={address.streetAddress}
               onChange={handleChange}
             />
           </Grid>
@@ -131,7 +134,7 @@ const UserProfile = () => {
             <TextField
               fullWidth
               name="state"
-              value={editedUser.state}
+              value={address.state}
               onChange={handleChange}
               
             />
@@ -140,7 +143,7 @@ const UserProfile = () => {
             <TextField
               fullWidth
               name="city"
-              value={editedUser.city}
+              value={address.city}
               onChange={handleChange}
             />
           </Grid>
@@ -148,7 +151,7 @@ const UserProfile = () => {
             <TextField
               fullWidth
               name="zipCode"
-              value={editedUser.zipCode}
+              value={address.zipCode}
               onChange={handleChange}
               type="number"
             />
@@ -211,6 +214,19 @@ const UserProfile = () => {
           </Grid>
         </Grid>
       </form>
+
+      {updateSuccess && (
+      <Snackbar
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        open={updateSuccess}
+        autoHideDuration={6000}
+        onClose={() => setUpdateSuccess(false)}
+      >
+        <Alert onClose={() => setUpdateSuccess(false)} severity="success">
+          Profile updated successfully!
+        </Alert>
+      </Snackbar>
+    )}
     </Fragment>
   );
 };
