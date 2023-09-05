@@ -7,16 +7,18 @@ import {
   Button,
   Snackbar,
   Alert,
+  Avatar,
 } from "@mui/material";
+import { deepPurple } from "@mui/material/colors";
 import { Fragment } from "react";
 import "./UserProfile.css";
 
-    const UserProfile = () => {
-    const [user, setUser] = useState(null);
-    const [editedUser, setEditedUser] = useState(null);
-    const [isEditing, setIsEditing] = useState(false);
-    const [updateSuccess, setUpdateSuccess] = useState(false);
-    const jwt = localStorage.getItem("jwt");
+const UserProfile = () => {
+  const [user, setUser] = useState(null);
+  const [editedUser, setEditedUser] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [updateSuccess, setUpdateSuccess] = useState(false);
+  const jwt = localStorage.getItem("jwt");
 
   useEffect(() => {
     if (jwt) {
@@ -27,15 +29,25 @@ import "./UserProfile.css";
           },
         })
         .then((response) => {
-          setUser(response.data);
+          const userData = response.data;
+          setUser(userData);
 
-          setEditedUser(response.data);
+          setEditedUser({
+            ...userData,
+            street: userData.streetAddress,
+            state: userData.state,
+            city: userData.city,
+            zipCode: userData.zipCode,
+          });
 
           setIsEditing(false);
-            setUpdateSuccess(true);
+          setUpdateSuccess(true);
         })
         .catch((error) => {
-          console.error("Lỗi khi gọi API:", error);
+          console.error(
+            "Error Call API:",
+            error.response?.data || error.message
+          );
         });
     }
   }, [jwt]);
@@ -51,35 +63,50 @@ import "./UserProfile.css";
   };
 
   const handleSaveEdit = () => {
-    axios.put("http://localhost:5454/api/users/profile", editedUser, {
+    const updatedAddress = {
+      streetAddress: editedUser.streetAddress,
+      city: editedUser.city,
+      state: editedUser.state,
+      zipCode: editedUser.zipCode,
+    };
+
+    if (editedUser.addresses && editedUser.addresses.length > 0) {
+      editedUser.addresses[0] = updatedAddress;
+    } else {
+      // Nếu người dùng chưa có địa chỉ, tạo một đối tượng địa chỉ mới
+      editedUser.addresses = [updatedAddress];
+    }
+
+    axios
+      .put("http://localhost:5454/api/users/profile", editedUser, {
         headers: {
-            Authorization: `Bearer ${jwt}`,
+          Authorization: `Bearer ${jwt}`,
         },
-    })
-    .then((response) => {
+      })
+      .then((response) => {
         setUser(response.data);
         setIsEditing(false);
         setUpdateSuccess(true);
-    })
-    .catch((error) => {
-        console.error("Error: ", error);
-    });
+      })
+      .catch((error) => {
+        console.error("Error: ", error.response?.data || error.message);
+      });
   };
 
   const handleChange = (event) => {
-    const {name, value} = event.target;
-        setEditedUser((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
+    const { name, value } = event.target;
+    setEditedUser((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   if (user === null) {
     return <div>Loading ...</div>;
   }
 
-  const address =
-    user.addresses && user.addresses.length > 0 ? user.addresses[0] : null;
+  //   const address =
+  //     user.addresses && user.addresses.length > 0 ? user.addresses[0] : null;
 
   return (
     <Fragment className="updateProfileContainer ">
@@ -89,6 +116,15 @@ import "./UserProfile.css";
         className="py-10 text-center "
       >
         Profile
+        <Avatar
+          className="text-white"
+          aria-haspopup="true"
+          sx={{
+            bgcolor: deepPurple[500],
+            color: "white",
+            cursor: "pointer",
+          }}
+        ></Avatar>
       </Typography>
       <form
         // onSubmit={handleSubmit}
@@ -98,77 +134,91 @@ import "./UserProfile.css";
           <Grid item xs={12}>
             <TextField
               fullWidth
-            //   label="Email"
+              label="Email"
               name="email"
               value={editedUser.email}
-            //   onChange={handleChange}
+              //   onChange={handleChange}
+              disabled={!isEditing}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              label="First Name"
+              name="firstName"
+              value={editedUser.firstName}
+              onChange={handleChange}
+              disabled={!isEditing}
+            />
+          </Grid>
+
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              label="Last Name"
+              name="lastName"
+              value={editedUser.lastName}
+              onChange={handleChange}
+              disabled={!isEditing}
+            />
+          </Grid>
+          {/* <Grid item xs={12} sm={6}>
+            <TextField
+              fullWidth
+              label="Street"
+              name="street"
+              value={editedUser.street}
+              onChange={handleChange}
               disabled={!isEditing}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
-              name="firstName"
-              value={editedUser.firstName}
-              onChange={handleChange}
-            />
-          </Grid>
-
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              name="lastName"
-              value={editedUser.lastName}
-              onChange={handleChange}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              name="street"
-              value={address.streetAddress}
-              onChange={handleChange}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
+              label="State"
               name="state"
-              value={address.state}
+              value={editedUser.state}
               onChange={handleChange}
+              disabled={!isEditing}
               
             />
           </Grid>
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
+              label="City"
               name="city"
-              value={address.city}
+              value={editedUser.city}
               onChange={handleChange}
+              disabled={!isEditing}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
+              label="Zip Code"
               name="zipCode"
-              value={address.zipCode}
+              value={editedUser.zipCode}
               onChange={handleChange}
               type="number"
+              disabled={!isEditing}
             />
-          </Grid>
+          </Grid> */}
 
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
+              label="Mobile"
               name="mobile"
               value={editedUser.mobile}
               onChange={handleChange}
               type="number"
+              disabled={!isEditing}
             />
           </Grid>
-    
+
           <Grid item xs={12}>
-          {isEditing ? (
+            {isEditing ? (
               // Hiển thị nút chỉnh sửa và lưu khi trong trạng thái chỉnh sửa
               <>
                 <Button
@@ -216,17 +266,17 @@ import "./UserProfile.css";
       </form>
 
       {updateSuccess && (
-      <Snackbar
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        open={updateSuccess}
-        autoHideDuration={6000}
-        onClose={() => setUpdateSuccess(false)}
-      >
-        <Alert onClose={() => setUpdateSuccess(false)} severity="success">
-          Profile updated successfully!
-        </Alert>
-      </Snackbar>
-    )}
+        <Snackbar
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          open={updateSuccess}
+          autoHideDuration={6000}
+          onClose={() => setUpdateSuccess(false)}
+        >
+          <Alert onClose={() => setUpdateSuccess(false)} severity="success">
+            Profile updated successfully!
+          </Alert>
+        </Snackbar>
+      )}
     </Fragment>
   );
 };
