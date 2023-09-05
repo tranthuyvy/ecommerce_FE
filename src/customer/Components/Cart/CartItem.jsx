@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { removeCartItem, updateCartItem } from "../../../Redux/Customers/Cart/Action";
 import { IconButton } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import DeleteIcon from "@mui/icons-material/Delete";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 
 const CartItem = ({ item,showButton }) => {
@@ -30,12 +31,12 @@ const CartItem = ({ item,showButton }) => {
         </div>
         <div className="ml-5 space-y-1">
           <p className="font-semibold">{item?.product?.title}</p>
-          <p className="opacity-70">Size: {item?.size},White</p>
+          <p className="opacity-70">Size: {item?.size}, White</p>
           <p className="opacity-70 mt-2">Seller: {item?.product?.brand}</p>
           <div className="flex space-x-2 items-center pt-3">
-            <p className="opacity-50 line-through">₹{item?.product.price}</p>
+            <p className="opacity-50 line-through">${item?.product.price}</p>
             <p className="font-semibold text-lg">
-              ₹{item?.product.discountedPrice}
+              ${item?.product.discountedPrice}
             </p>
             <p className="text-green-600 font-semibold">
               {item?.product.discountPersent}% off
@@ -57,7 +58,7 @@ const CartItem = ({ item,showButton }) => {
         <div className="flex text-sm lg:text-base mt-5 lg:mt-0">
           
           <Button onClick={handleRemoveItemFromCart} variant="text">
-            Remove{" "}
+            <DeleteIcon />
           </Button>
           
         </div>
