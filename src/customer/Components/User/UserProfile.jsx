@@ -116,15 +116,24 @@ const UserProfile = () => {
         className="py-10 text-center "
       >
         Profile
-        <Avatar
+        <div className="flex justify-center m-10">
+          <Avatar
           className="text-white"
           aria-haspopup="true"
           sx={{
             bgcolor: deepPurple[500],
             color: "white",
             cursor: "pointer",
+            width: "100px",
+            height: "100px",
+            fontSize: "30px",
+            
           }}
-        ></Avatar>
+        >
+          {editedUser.firstName.charAt(0)}
+        </Avatar>
+        </div>
+        
       </Typography>
       <form
         // onSubmit={handleSubmit}
