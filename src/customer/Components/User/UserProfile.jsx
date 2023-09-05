@@ -105,9 +105,6 @@ const UserProfile = () => {
     return <div>Loading ...</div>;
   }
 
-  //   const address =
-  //     user.addresses && user.addresses.length > 0 ? user.addresses[0] : null;
-
   return (
     <Fragment className="updateProfileContainer ">
       <Typography
@@ -136,7 +133,6 @@ const UserProfile = () => {
         
       </Typography>
       <form
-        // onSubmit={handleSubmit}
         className="updateProfileContainer min-h-screen"
       >
         <Grid container spacing={2}>
@@ -147,7 +143,8 @@ const UserProfile = () => {
               name="email"
               value={editedUser.email}
               //   onChange={handleChange}
-              disabled={!isEditing}
+              disabled={true}
+              inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -250,7 +247,7 @@ const UserProfile = () => {
                 </Button>
               </>
             ) : (
-              // Hiển thị nút chỉnh sửa khi không trong trạng thái chỉnh sửa
+
               <Button
                 variant="contained"
                 sx={{ p: 1.8 }}
@@ -261,15 +258,6 @@ const UserProfile = () => {
                 Update Profile
               </Button>
             )}
-            {/* <Button
-              variant="contained"
-              sx={{ p: 1.8 }}
-              className="py-20"
-              size="large"
-              type="submit"
-            >
-              Update Profile
-            </Button> */}
           </Grid>
         </Grid>
       </form>
@@ -278,7 +266,7 @@ const UserProfile = () => {
         <Snackbar
           anchorOrigin={{ vertical: "top", horizontal: "center" }}
           open={updateSuccess}
-          autoHideDuration={6000}
+          autoHideDuration={5000}
           onClose={() => setUpdateSuccess(false)}
         >
           <Alert onClose={() => setUpdateSuccess(false)} severity="success">
