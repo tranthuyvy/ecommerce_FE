@@ -1,12 +1,13 @@
 .square-button {
     margin-top: 0.75rem;
-    margin-right: 0.5rem;
-    width: 10rem;
+    margin-right: 0.75rem;
+    width: 14rem;
     height: 3rem; 
     border: none; 
     cursor: pointer;
     border: 2px solid #c1c1c1; 
     border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
 .btn-submit {
@@ -21,3 +22,14 @@
 .btn-contact:hover {
     background-color: #eeeeee;
 }
+
+.centered-text {
+    text-align: justify;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-right: 2rem;
+    margin-left: 1rem;
+    opacity: 50%;
+  }
