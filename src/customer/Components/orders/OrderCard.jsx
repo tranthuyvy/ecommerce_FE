@@ -56,10 +56,12 @@ const OrderCard = ({ item, order }) => {
         </Grid>
 
         <Grid item xs={2} container alignItems="center">
+        
           <p style={{ color: "black", opacity: "50%", marginRight: "4px" }}>
             Total:{" "}
           </p>
-          <p className="font-semibold" style={{ color: "red" }}> ${totalPrice}</p>
+          <p className="font-semibold mr-2 ml-1" style={{ color: "gray", textDecoration: "line-through" }}> ${totalPrice}</p>
+          <p className="font-semibold" style={{ color: "red" }}> ${order?.totalDiscountedPrice}</p>  
         </Grid>
 
         <Grid item xs={4}>

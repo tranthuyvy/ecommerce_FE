@@ -15,7 +15,7 @@ const Cart = () => {
 
   useEffect(() => {
     dispatch(getCart(jwt));
-  }, [jwt, cart.cartItems]);
+  }, [jwt]);
   
   return (
     <div className="">

@@ -15,7 +15,7 @@ import api from "../../../../config/api";
 
 const product = {
   name: "Nike",
-  price: "₹996",
+  price: "$",
   href: "#",
   breadcrumbs: [
     { id: 1, name: "Men", href: "#" },
@@ -84,9 +84,19 @@ export default function ProductDetails() {
   };
 
   const handleSubmit = () => {
-    const data = { productId, size: selectedSize.name };
-    dispatch(addItemToCart({ data, jwt }));
-    navigate("/cart");
+    if (!jwt) {
+      alert("Please log in");
+      navigate("/login");
+      return;
+    }
+
+    if (selectedSize) {
+      const data = { productId, size: selectedSize.name };
+      dispatch(addItemToCart({ data, jwt }));
+      navigate("/cart");
+    } else {
+      alert("Please select size");
+    }
   };
 
   useEffect(() => {
