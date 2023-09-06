@@ -13,12 +13,13 @@ const OrderCard = ({ item, order }) => {
   order.orderItems.forEach((orderItem) => {
     totalPrice += orderItem.price;
   });
+
   console.log("items ", item,order,order.orderStatus);
   
   return (
     <Box className="p-5 shadow-lg hover:shadow-2xl border ">
       <Grid spacing={2} container sx={{ justifyContent: "space-between" }}>
-        <Grid item xs={6}>
+        <Grid item xs={4}>
           <div
             onClick={() => navigate(`/account/order/${order?.id}`)}
             className="flex cursor-pointer"
@@ -36,11 +37,18 @@ const OrderCard = ({ item, order }) => {
             </div>
           </div>
         </Grid>
-
-        <Grid item xs={2}>
-          <p style={{color:'red'}}>${totalPrice}</p>
-          {/* <p>${item?.price}</p> */}
+        <Grid item xs={2} container alignItems="center">
+        <p className="opacity-50 text-sm mr-1">Total Items:</p>
+        <p className="text-sm">{order?.totalItem}</p>
+          
         </Grid>
+
+        <Grid item xs={2} container alignItems="center">
+          <p style={{color:'black', opacity:"50%", marginRight:'4px'}}>Total: </p>
+          <p style={{color:'red'}}> ${totalPrice}</p>
+          
+        </Grid>
+        
         <Grid item xs={4}>
           <p className="space-y-2 font-semibold">
             {order?.orderStatus === "DELIVERED"? (
