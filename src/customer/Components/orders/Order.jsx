@@ -1,4 +1,4 @@
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Avatar, AvatarGroup } from "@mui/material";
 import React, { useEffect, useSyncExternalStore } from "react";
 import OrderCard from "./OrderCard";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
@@ -15,11 +15,13 @@ const orderStatus = [
 const Order = () => {
   const dispatch = useDispatch();
   const jwt = localStorage.getItem("jwt");
-  const {order}=useSelector(store=>store);
+  const { order } = useSelector((store) => store);
 
   useEffect(() => {
     dispatch(getOrderHistory({ jwt }));
   }, [jwt]);
+
+
   return (
     <Box className="px-10">
       <Grid container spacing={0} sx={{ justifyContent: "space-between" }}>
@@ -50,11 +52,28 @@ const Order = () => {
           </div>
         </Grid>
         <Grid item xs={9}>
-          <Box className="space-y-5 ">
+          <Box className="space-y-5">
+            {order.orders?.length > 0 &&
+              order.orders?.map((order) => (
+                <div key={order.id}>
+                  <OrderCard item={order.orderItems[0]} order={order} />
+                  <AvatarGroup max={4} sx={{ justifyContent: "start" }}>
+                    {order.orderItems.map((orderItem) => (
+                      <Avatar
+                        key={orderItem.product.id}
+                        alt={orderItem.product.title}
+                        src={orderItem.product.imageUrl}
+                      />
+                    ))}
+                  </AvatarGroup>  
+                </div>
+              ))}
+          </Box>
+          {/* <Box className="space-y-5 ">
             {order.orders?.length>0 && order.orders?.map((order )=> {
               return order?.orderItems?.map((item,index)=> <OrderCard item={item} order={order} />)
             })}
-          </Box>
+          </Box> */}
         </Grid>
       </Grid>
     </Box>
