@@ -4,6 +4,8 @@ import AdjustIcon from "@mui/icons-material/Adjust";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import StarIcon from "@mui/icons-material/Star";
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import "./OrderCard.css";
 
 const OrderCard = ({ item, order }) => {
   const navigate = useNavigate();
@@ -19,7 +21,7 @@ const OrderCard = ({ item, order }) => {
   return (
     <Box className="p-5 shadow-lg hover:shadow-2xl border ">
       <Grid spacing={2} container sx={{ justifyContent: "space-between" }}>
-        <Grid item xs={4}>
+        <Grid item xs={5}>
           <div
             onClick={() => navigate(`/account/order/${order?.id}`)}
             className="flex cursor-pointer"
@@ -55,24 +57,26 @@ const OrderCard = ({ item, order }) => {
           <p className="text-sm font-semibold">{order?.totalItem}</p>
         </Grid>
 
-        <Grid item xs={2} container alignItems="center">
+        <Grid item xs={3} container alignItems="center">
         
           <p style={{ color: "black", opacity: "50%", marginRight: "4px" }}>
-            Total:{" "}
+            Item Price:{" "}
           </p>
-          <p className="font-semibold mr-2 ml-1" style={{ color: "gray", textDecoration: "line-through" }}> ${totalPrice}</p>
-          <p className="font-semibold" style={{ color: "red" }}> ${order?.totalDiscountedPrice}</p>  
+          <p className="font-semibold mr-2 ml-1" style={{ color: "gray", textDecoration: "line-through" }}> ${item?.product.price}</p>
+          <p className="font-semibold" style={{ color: "red" }}> ${item?.product.discountedPrice}</p>  
         </Grid>
 
-        <Grid item xs={4}>
+        <Grid item xs={2} container alignItems="center">
           <p className="space-y-2 font-semibold">
+            <div style={{ display: "flex", alignItems: "center" }}>
+              
             {order?.orderStatus === "DELIVERED" ? (
               <>
                 <FiberManualRecordIcon
                   sx={{ width: "15px", height: "15px" }}
                   className="text-green-600 p-0 mr-2 text-sm"
                 />
-                <span>Delivered On Mar 03</span>
+                <span></span>
               </>
             ) : (
               <>
@@ -80,11 +84,17 @@ const OrderCard = ({ item, order }) => {
                   sx={{ width: "15px", height: "15px" }}
                   className="text-green-600 p-0 mr-2 text-sm"
                 />
-                <span>Expected Delivery On Mar 03</span>
+                <span></span>
               </>
             )}
+              <p className="mr-2" style={{color:"green"}}><LocalShippingIcon/> </p>
+              <p className="font-semibold">{order?.orderStatus}</p>
+              
+            </div>
+            
+            
           </p>
-          <p className="text-xs">Your Item Has Been Delivered</p>
+          <p className="text-xs"></p>
           {item.orderStatus === "DELIVERED" && (
             <div
               onClick={() => navigate(`/account/rate/{id}`)}
@@ -96,6 +106,22 @@ const OrderCard = ({ item, order }) => {
           )}
         </Grid>
       </Grid>
+      <hr className="mt-5"/>
+      <div className="flex justify-end items-center mt-5">
+        <img
+          className="w-14 h-14 mr-2"
+          src="https://cdn.printgo.vn/uploads/media/774255/logo-giay-1_1586510617.jpg"
+        />
+          <p style={{ color: "black", opacity: "50%", marginRight: "4px" }}>
+            Total:{" "}
+          </p>
+          <p className="font-semibold mr-2 ml-1" style={{ color: "gray", textDecoration: "line-through" }}> ${totalPrice}</p>
+          <p className="font-semibold" style={{ color: "red" }}> ${order?.totalDiscountedPrice}</p>  
+      </div>
+      <div className="flex justify-end items-center">
+        <button className="square-button btn-submit" >ĐÃ NHẬN HÀNG</button>
+        <button className="square-button btn-contact" >LIÊN HỆ NGƯỜI BÁN</button>
+      </div>
     </Box>
   );
 };

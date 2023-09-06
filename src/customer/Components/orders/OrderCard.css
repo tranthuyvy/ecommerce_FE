@@ -1,0 +1,23 @@
+.square-button {
+    margin-top: 0.75rem;
+    margin-right: 0.5rem;
+    width: 10rem;
+    height: 3rem; 
+    border: none; 
+    cursor: pointer;
+    border: 2px solid #c1c1c1; 
+    border-radius: 5px;
+}
+
+.btn-submit {
+    background-color: #ac07e3;
+    color: #fff;
+}
+
+.btn-submit:hover {
+    background-color: #9c00c8;
+}
+
+.btn-contact:hover {
+    background-color: #eeeeee;
+}
