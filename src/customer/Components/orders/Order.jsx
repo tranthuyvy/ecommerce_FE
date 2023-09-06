@@ -52,20 +52,11 @@ const Order = () => {
           </div>
         </Grid>
         <Grid item xs={9}>
-          <Box className="space-y-5">
-            {order.orders?.length > 0 &&
-              order.orders?.map((order) => (
-                <div key={order.id}>
-                  <OrderCard item={order.orderItems[0]} order={order} />
-                  
-                </div>
-              ))}
-          </Box>
-          {/* <Box className="space-y-5 ">
+          <Box className="space-y-5 ">
             {order.orders?.length>0 && order.orders?.map((order )=> {
               return order?.orderItems?.map((item,index)=> <OrderCard item={item} order={order} />)
             })}
-          </Box> */}
+          </Box>
         </Grid>
       </Grid>
     </Box>

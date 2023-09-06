@@ -30,7 +30,7 @@ const OrderCard = ({ item, order }) => {
               alt=""
             />
             <div className="ml-5">
-              <p className="mb-2">{item?.product.title}</p>
+              <p className="mb-2 font-semibold">{item?.product.title}</p>
               <p className="opacity-50 text-xs font-semibold space-x-5">
                 <span>
                   {item?.product.color}, {item?.size}
@@ -52,14 +52,14 @@ const OrderCard = ({ item, order }) => {
         </Grid>
         <Grid item xs={2} container alignItems="center">
           <p className="opacity-50 text-sm mr-1">Total Items:</p>
-          <p className="text-sm">{order?.totalItem}</p>
+          <p className="text-sm font-semibold">{order?.totalItem}</p>
         </Grid>
 
         <Grid item xs={2} container alignItems="center">
           <p style={{ color: "black", opacity: "50%", marginRight: "4px" }}>
             Total:{" "}
           </p>
-          <p style={{ color: "red" }}> ${totalPrice}</p>
+          <p className="font-semibold" style={{ color: "red" }}> ${totalPrice}</p>
         </Grid>
 
         <Grid item xs={4}>

@@ -111,5 +111,5 @@ const OrderDetails = () => {
     </div>
   );
 };
-// sx={{width:"10px",height:"10px"}}
+
 export default OrderDetails;
