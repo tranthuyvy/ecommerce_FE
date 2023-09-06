@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CartItem from "./CartItem";
 import { Badge, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -10,13 +10,13 @@ const Cart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const jwt = localStorage.getItem("jwt");
-  const {cart}=useSelector(store=>store);
+  const {cart}=useSelector((store)=>store);
   console.log("cart ",cart)
 
   useEffect(() => {
     dispatch(getCart(jwt));
-  }, [jwt,cart.cartItems]);
-
+  }, [jwt, cart.cartItems]);
+  
   return (
     <div className="">
       {cart.cartItems.length>0 && <div className="lg:grid grid-cols-3 lg:px-16 relative">
@@ -24,7 +24,7 @@ const Cart = () => {
         <div className=" space-y-3">
           {cart.cartItems.map((item) => (
             <>
-              <CartItem item={item} showButton={true}/>
+              <CartItem key={item.id} item={item} showButton={true}/>
             </>
           ))}
         </div>

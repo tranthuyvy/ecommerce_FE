@@ -91,6 +91,7 @@ export const removeCartItem = (reqData) => async (dispatch) => {
       type: REMOVE_CART_ITEM_SUCCESS,
       payload: reqData.cartItemId,
     });
+    dispatch(updateTotal());
   } catch (error) {
     dispatch({
       type: REMOVE_CART_ITEM_FAILURE,
@@ -116,11 +117,12 @@ export const updateCartItem = (reqData) => async (dispatch) => {
       reqData.data,
       config
     );
-    console.log("udated cartitem ", data);
+    console.log("updated cartitem ", data);
     dispatch({
       type: UPDATE_CART_ITEM_SUCCESS,
       payload: data,
     });
+    dispatch(updateTotal());
   } catch (error) {
     dispatch({
       type: UPDATE_CART_ITEM_FAILURE,
@@ -134,12 +136,12 @@ export const updateCartItem = (reqData) => async (dispatch) => {
 
 export const updateTotal = () => (dispatch, getState) => {
   const { cartItems } = getState().cart;
-  const totalAmount = cartItems.reduce((total, item) => {
+  const totalPrice = cartItems.reduce((total, item) => {
     return total + item.product.discountedPrice * item.quantity;
   }, 0);
 
   dispatch({
     type: UPDATE_TOTAL,
-    payload: totalAmount,
+    payload: totalPrice,
   });
 };

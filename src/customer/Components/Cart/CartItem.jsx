@@ -23,7 +23,7 @@ const CartItem = ({ item,showButton }) => {
     dispatch(updateTotal());
     // window.location.reload();
   };
-
+    // ai lo vé diu
   return (
     <div className="p-5 shadow-lg border rounded-md">
       <div className="flex items-center">
@@ -43,6 +43,7 @@ const CartItem = ({ item,showButton }) => {
             <p className="font-semibold text-lg">
               ${item?.product.discountedPrice}
             </p>
+            
             <p className="text-green-600 font-semibold">
               {item?.product.discountPersent}% off
             </p>
