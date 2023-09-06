@@ -57,15 +57,7 @@ const Order = () => {
               order.orders?.map((order) => (
                 <div key={order.id}>
                   <OrderCard item={order.orderItems[0]} order={order} />
-                  <AvatarGroup max={4} sx={{ justifyContent: "start" }}>
-                    {order.orderItems.map((orderItem) => (
-                      <Avatar
-                        key={orderItem.product.id}
-                        alt={orderItem.product.title}
-                        src={orderItem.product.imageUrl}
-                      />
-                    ))}
-                  </AvatarGroup>  
+                  
                 </div>
               ))}
           </Box>
