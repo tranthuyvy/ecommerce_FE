@@ -50,9 +50,9 @@ const OrderDetails = () => {
               }
             />
           </Grid>
-          <Grid item>
+          <Grid item justifyContent="center">
            {order.order?.orderStatus==="DELIVERED" && <Button sx={{ color: ""}} color="error" variant="text" >
-              RETURN
+              
             </Button>}
 
             {order.order?.orderStatus!=="DELIVERED" && <Button sx={{ color: deepPurple[500] }} variant="text">
