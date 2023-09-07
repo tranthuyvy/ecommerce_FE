@@ -9,6 +9,9 @@ import {
   GET_ORDER_HISTORY_FAILURE,
   GET_ORDER_HISTORY_REQUEST,
   GET_ORDER_HISTORY_SUCCESS,
+  GET_FILTERED_ORDERS_FAILURE,
+  GET_FILTERED_ORDERS_REQUEST,
+  GET_FILTERED_ORDERS_SUCCESS,
 } from "./ActionType";
 import api, { API_BASE_URL } from "../../../config/api";
 
@@ -101,3 +104,26 @@ export const getOrderHistory = (reqData) => async (dispatch, getState) => {
     });
   }
 };
+
+export const getFilteredOrders = (filterParams) => async (dispatch, getState) => {
+  try {
+    const {status} = filterParams;
+    const { data } = await api.get(`/api/orders/${status}`, {
+      params: filterParams,
+    });
+    console.log("filtered orders: ", data);
+    dispatch({
+      type: GET_FILTERED_ORDERS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_FILTERED_ORDERS_FAILURE,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+

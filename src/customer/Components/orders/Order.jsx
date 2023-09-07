@@ -1,26 +1,50 @@
 import { Box, Grid, Avatar, AvatarGroup } from "@mui/material";
-import React, { useEffect, useSyncExternalStore } from "react";
+import React, { useEffect, useState, useSyncExternalStore } from "react";
 import OrderCard from "./OrderCard";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrderHistory } from "../../../Redux/Customers/Order/Action";
+import { getOrderHistory, getFilteredOrders } from "../../../Redux/Customers/Order/Action";
 
 const orderStatus = [
-  { label: "On The Way", value: "onTheWay" },
-  { label: "Delivered", value: "delevered" },
-  { label: "Cancelled", value: "cancelled" },
-  { label: "Returned", vlue: "returned" },
+  { label: "PLACED", value: "placed" },
+  { label: "CONFIRMED", value: "confirmed" },
+  { label: "SHIPPED", value: "shipped" },
+  { label: "DELIVERED", value: "delivered" },
+  { label: "CANCELLED", vlue: "cancelled" },
+  { label: "RETURNED", vlue: "returned" },
 ];
 
 const Order = () => {
   const dispatch = useDispatch();
   const jwt = localStorage.getItem("jwt");
   const { order } = useSelector((store) => store);
+  const [filterState, setFilterState] = useState({
+    PLACED: false,
+    CONFIRMED: false,
+    SHIPPED: false,
+    DELIVERED: false,
+    CANCELLED: false,
+    RETURNED: false,
+  });
+
+  const handleFilterChange = (value) => {
+    setFilterState((prevState) => ({
+      ...prevState,
+      [value]: !prevState[value],
+    }));
+  };
 
   useEffect(() => {
-    dispatch(getOrderHistory({ jwt }));
-  }, [jwt]);
+    const filterParams = Object.keys(filterState)
+      .filter((key) => filterState[key])
+      .map((key) => key.toLowerCase());
 
+    if (filterParams.length > 0) {
+      dispatch(getFilteredOrders({ status: filterParams.join(",") }));
+    } else {
+      dispatch(getOrderHistory({ jwt }));
+    }
+  }, [filterState, jwt, dispatch]);
 
   return (
     <Box className="px-10">
@@ -30,14 +54,16 @@ const Order = () => {
             <h1 className="font-bold text-lg">Filters</h1>
             <div className="space-y-4 mt-10">
               <h1 className="font-semibold">ORDER STATUS</h1>
-              {orderStatus.map((option, optionIdx) => (
+              {orderStatus.map((option) => (
                 <div key={option.value} className="flex items-center">
                   <input
                     //   id={`filter-${section.id}-${optionIdx}`}
                     //   name={`${section.id}[]`}
-                    defaultValue={option.value}
+                    // defaultValue={option.value}
                     type="checkbox"
-                    defaultChecked={option.checked}
+                    checked={filterState[option.value]}
+                    onChange={() => handleFilterChange(option.value)}
+                    // defaultChecked={option.checked}
                     className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                   />
                   <label
