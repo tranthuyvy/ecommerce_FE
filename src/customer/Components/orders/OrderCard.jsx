@@ -120,7 +120,16 @@ const OrderCard = ({ item, order }) => {
       </div>
       <div className="flex justify-end items-center">
         <p className="centered-text text-sm">Vui lòng chỉ nhấn "Đã nhận được hàng" khi đơn hàng đã được giao đến bạn và sản phẩm nhận được không có vấn đề nào</p>
-        <button className="square-button btn-submit" >ĐÃ NHẬN HÀNG</button>
+
+        {order?.orderStatus === 'DELIVERED' ? (
+
+        <button className="square-button btn-submit">
+          ĐÃ NHẬN HÀNG
+        
+        </button>
+        ) : (
+          <button className="square-button-unsub" >ĐÃ NHẬN HÀNG</button>
+        )}
         <button className="square-button btn-contact" >LIÊN HỆ NGƯỜI BÁN</button>
       </div>
     </Box>
