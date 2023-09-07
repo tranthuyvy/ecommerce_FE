@@ -1,8 +1,12 @@
-import { Box, Grid} from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import React, { useEffect, useState, useSyncExternalStore } from "react";
 import OrderCard from "./OrderCard";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrderHistory, getFilteredOrders } from "../../../Redux/Customers/Order/Action";
+import {
+  getOrderHistory,
+  getFilteredOrders,
+} from "../../../Redux/Customers/Order/Action";
+import "./Order.css";
 
 const orderStatus = [
   { label: "ALL", value: "" },
@@ -39,25 +43,34 @@ const Order = () => {
             <h1 className="font-bold text-lg">Filters</h1>
             <div className="space-y-4 mt-10">
               <h1 className="font-semibold">ORDER STATUS</h1>
-              {orderStatus.map((option) => (
-            <div
-              key={option.value}
-              className={`flex items-center cursor-pointer ${
-                option.value === activeFilter ? "text-indigo-600" : "text-gray-600"
-              }`}
-              onClick={() => handleFilterChange(option.value)}
-            >
-              {option.label}
-            </div>
-          ))}
+
+              <div className="filter-bar">
+                {orderStatus.map((option) => (
+                  <div
+                    key={option.value}
+                    className={`filter-option ${
+                      option.value === activeFilter ? "active" : ""
+                    }`}
+                    onClick={() => handleFilterChange(option.value)}
+                  >
+                    {option.value === activeFilter && (
+                      <div className="selected-rectangle"></div>
+                    )}
+                    {option.label}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </Grid>
         <Grid item xs={9}>
           <Box className="space-y-5">
-            {order.orders?.length>0 && order.orders?.map((order )=> {
-              return order?.orderItems?.map((item,index)=> <OrderCard item={item} order={order} />)
-            })}
+            {order.orders?.length > 0 &&
+              order.orders?.map((order) => {
+                return order?.orderItems?.map((item, index) => (
+                  <OrderCard item={item} order={order} />
+                ));
+              })}
           </Box>
         </Grid>
       </Grid>
