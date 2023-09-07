@@ -22,16 +22,9 @@ const OrderDetails = () => {
   }, []);
 
   const navigate = useNavigate();
+
   return (
     <div className=" px-2 lg:px-36 space-y-7 ">
-      <Grid container className="p-3 shadow-lg">
-        <Grid xs={12}>
-          <p className="font-bold text-lg py-2">Delivery Address</p>
-        </Grid>
-        <Grid item xs={6}>
-          <AddressCard address={order.order?.shippingAddress} />
-        </Grid>
-      </Grid>
       <Box className="p-5 shadow-lg border rounded-md">
         <Grid
           container
@@ -51,18 +44,25 @@ const OrderDetails = () => {
             />
           </Grid>
           <Grid item justifyContent="center">
-           {order.order?.orderStatus==="DELIVERED" && <Button sx={{ color: ""}} color="error" variant="text" >
-              
-            </Button>}
+            {order.order?.orderStatus === "DELIVERED" && (
+              <Button sx={{ color: "" }} color="error" variant="text"></Button>
+            )}
 
-            {order.order?.orderStatus!=="DELIVERED" && <Button sx={{ color: deepPurple[500] }} variant="text">
-              cancel order
-            </Button>}
+            {order.order?.orderStatus !== "DELIVERED" && (
+              <Button sx={{ color: deepPurple[500] }} variant="text"></Button>
+            )}
           </Grid>
         </Grid>
       </Box>
 
-    
+      <Grid container className="p-5 shadow-lg">
+        <Grid xs={12}>
+          <p className="font-bold text-lg py-2">Delivery Address</p>
+        </Grid>
+        <Grid item xs={6}>
+          <AddressCard address={order.order?.shippingAddress} />
+        </Grid>
+      </Grid>
 
       <Grid container className="space-y-5">
         {order.order?.orderItems.map((item) => (
@@ -74,24 +74,39 @@ const OrderDetails = () => {
           >
             <Grid item xs={6}>
               {" "}
-              <div className="flex  items-center ">
+              <div className="flex items-center ">
                 <img
-                  className="w-[5rem] h-[5rem] object-cover object-top"
+                  className="w-[10rem] h-[10rem] object-cover object-top"
                   src={item?.product.imageUrl}
                   alt=""
                 />
-                <div className="ml-5 space-y-2">
+                <div className="ml-5 space-y-2 font-semibold">
                   <p className="">{item.product.title}</p>
-                  <p className="opacity-50 text-xs font-semibold space-x-5">
-                    <span>Color: pink</span> <span>Size: {item.size}</span>
+                  <p className="opacity-50 text-xs font-semibold space-x-2">
+                    <span>{item.product.brand},</span>
+                    <span>{item?.product.color},</span>
+                    <span>{item.size}</span>
                   </p>
-                  <p>Seller: {item.product.brand}</p>
-                  <p>${item.price} </p>
+                  <p> x{item.quantity}</p>
+                  <p
+                    className=""
+                    style={{
+                      color: "gray",
+                      textDecoration: "line-through",
+                      opacity: "60%",
+                    }}
+                  >
+                    {" "}
+                    ${item?.product.price}
+                  </p>
+                  <p className="text-red-600">
+                    ${item?.product.discountedPrice}{" "}
+                  </p>
                 </div>
               </div>
             </Grid>
             <Grid item>
-              {
+              {order.order?.orderStatus === "DELIVERED" && (
                 <Box
                   sx={{ color: deepPurple[500] }}
                   onClick={() => navigate(`/account/rate/${item.product.id}`)}
@@ -103,11 +118,66 @@ const OrderDetails = () => {
                   />
                   <span>Rate & Review Product</span>
                 </Box>
-              }
+              )}
             </Grid>
           </Grid>
         ))}
       </Grid>
+
+      <div>
+        <Grid container justifyContent="flex-end">
+        {order.order?.orderItems.map((item) => (
+
+          <Grid container>
+          <Grid item xs={8} style={{ border: '1px solid #f2f2f2', borderRadius:"1px",display: 'flex', justifyContent: 'flex-end', padding:"10px"}}>
+            <div>
+              <span className="opacity-50">Total</span>
+            </div>
+          </Grid>
+          <Grid item xs={4} style={{ border: '1px solid #f2f2f2', display: 'flex', justifyContent: 'flex-end', padding:"10px" }}>
+            <div>
+              <span>${item.price}</span>
+            </div>
+          </Grid>
+
+          <Grid item xs={8} style={{ border: '1px solid #f2f2f2', borderRadius:"1px",display: 'flex', justifyContent: 'flex-end', padding:"10px"}}>
+            <div>
+              <span className="opacity-50">Delivery Charges</span>
+            </div>
+          </Grid>
+          <Grid item xs={4} style={{ border: '1px solid #f2f2f2', display: 'flex', justifyContent: 'flex-end', padding:"10px" }}>
+            <div>
+              <span className="text-indigo-600" >Free</span>
+            </div>
+          </Grid>
+
+          <Grid item xs={8} style={{ border: '1px solid #f2f2f2', borderRadius:"1px",display: 'flex', justifyContent: 'flex-end', padding:"10px"}}>
+            <div>
+              <span className="opacity-50">Voucher</span>
+            </div>
+          </Grid>
+          <Grid item xs={4} style={{ border: '1px solid #f2f2f2', display: 'flex', justifyContent: 'flex-end', padding:"10px" }}>
+            <div>
+              <span>- 0$</span>
+            </div>
+          </Grid>
+
+          <Grid item xs={8} style={{ border: '1px solid #f2f2f2', borderRadius:"1px",display: 'flex', justifyContent: 'flex-end', padding:"10px"}}>
+            <div>
+              <span className="opacity-50">Total Payment</span>
+            </div>
+          </Grid>
+          <Grid item xs={4} style={{ border: '1px solid #f2f2f2', display: 'flex', justifyContent: 'flex-end', padding:"10px" }}>
+            <div>
+              <span className="text-red-600 font-semibold text-lg">${item?.product.discountedPrice * item.quantity}</span>
+            </div>
+          </Grid>
+
+        </Grid>
+            
+          ))}
+        </Grid>
+      </div>
     </div>
   );
 };

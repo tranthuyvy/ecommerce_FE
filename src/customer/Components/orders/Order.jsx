@@ -1,5 +1,5 @@
 import { Box, Grid } from "@mui/material";
-import React, { useEffect, useState, useSyncExternalStore } from "react";
+import React, { useEffect, useState } from "react";
 import OrderCard from "./OrderCard";
 import { useDispatch, useSelector } from "react-redux";
 import {
