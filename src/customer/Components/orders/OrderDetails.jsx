@@ -125,8 +125,7 @@ const OrderDetails = () => {
       </Grid>
 
       <div>
-        <Grid container justifyContent="flex-end">
-        {order.order?.orderItems.map((item) => (
+        <Grid container justifyContent="flex-end" className="font-semibold">
 
           <Grid container>
           <Grid item xs={8} style={{ border: '1px solid #f2f2f2', borderRadius:"1px",display: 'flex', justifyContent: 'flex-end', padding:"10px"}}>
@@ -136,7 +135,7 @@ const OrderDetails = () => {
           </Grid>
           <Grid item xs={4} style={{ border: '1px solid #f2f2f2', display: 'flex', justifyContent: 'flex-end', padding:"10px" }}>
             <div>
-              <span>${item.price}</span>
+              <span>${order.order?.totalPrice}</span>
             </div>
           </Grid>
 
@@ -164,18 +163,27 @@ const OrderDetails = () => {
 
           <Grid item xs={8} style={{ border: '1px solid #f2f2f2', borderRadius:"1px",display: 'flex', justifyContent: 'flex-end', padding:"10px"}}>
             <div>
-              <span className="opacity-50">Total Payment</span>
+              <span className="opacity-50">Discount</span>
             </div>
           </Grid>
           <Grid item xs={4} style={{ border: '1px solid #f2f2f2', display: 'flex', justifyContent: 'flex-end', padding:"10px" }}>
             <div>
-              <span className="text-red-600 font-semibold text-lg">${item?.product.discountedPrice * item.quantity}</span>
+              <span>- ${order.order?.discounte}</span>
             </div>
           </Grid>
 
+          <Grid item xs={8} style={{ border: '1px solid #f2f2f2', borderRadius:"1px",display: 'flex', justifyContent: 'flex-end', padding:"10px"}}>
+            <div>
+              <span className="opacity-50">Total Payment ({order.order?.totalItem})</span>
+            </div>
+          </Grid>
+          <Grid item xs={4} style={{ border: '1px solid #f2f2f2', display: 'flex', justifyContent: 'flex-end', padding:"10px" }}>
+            <div>
+              <span className="text-red-600 font-semibold text-lg">${order.order?.totalDiscountedPrice}</span>
+            </div>
+          </Grid>
         </Grid>
             
-          ))}
         </Grid>
       </div>
     </div>
