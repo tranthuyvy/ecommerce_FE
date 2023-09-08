@@ -179,7 +179,7 @@ const OrderDetails = () => {
           </Grid>
           <Grid item xs={4} style={{ border: '1px solid #f2f2f2', display: 'flex', justifyContent: 'flex-end', padding:"10px" }}>
             <div>
-              <span className="text-red-600 font-semibold text-lg">${order.order?.totalDiscountedPrice}</span>
+              <span className="text-red-600 font-semibold text-2xl">${order.order?.totalDiscountedPrice}</span>
             </div>
           </Grid>
         </Grid>
