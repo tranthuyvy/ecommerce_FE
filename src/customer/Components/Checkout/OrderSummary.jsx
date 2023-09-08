@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getOrderById } from "../../../Redux/Customers/Order/Action";
 import AddressCard from "../adreess/AdreessCard";
 import { createPayment } from "../../../Redux/Customers/Payment/Action";
+import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 const OrderSummary = () => {
   const navigate = useNavigate();
@@ -27,8 +28,7 @@ useEffect(()=>{
 const handleCreatePayment=()=>{
   const data={orderId:order.order?.id,jwt}
   dispatch(createPayment(data))
-}
-  
+};
 
   return (
     <div className="space-y-5">
@@ -48,6 +48,7 @@ const handleCreatePayment=()=>{
         <div className="sticky top-0 h-[100vh] mt-5 lg:mt-0 ml-5">
           <div className="border p-5 bg-white shadow-lg rounded-md">
             <p className="font-bold opacity-60 pb-4">PRICE DETAILS</p>
+
             <hr />
 
             <div className="space-y-3 font-semibold">
@@ -69,15 +70,37 @@ const handleCreatePayment=()=>{
                 <span className="text-green-700">₹{order.order?.totalDiscountedPrice}</span>
               </div>
             </div>
-
-            <Button
+            <PayPalScriptProvider
+              options={{
+                clientId: "AY5do5qschROo-fAFJp06oQ91RSPIEPvm9cXKFrxRe9hPaQ8JSHHwppglUwgHU4dujyd5aAZBsISQIB9",
+              }}
+            >
+              <PayPalButtons
+                createOrder={(data, actions) => {
+                  return actions.order.create({
+                    purchase_units: [
+                      {
+                        amount: {
+                          value: order.order?.totalDiscountedPrice.toString(),
+                        },
+                      },
+                    ],
+                  });
+                }}
+                onApprove={(data, actions) => {
+                  
+                }}
+              />
+            </PayPalScriptProvider>
+            
+            {/* <Button
               onClick={handleCreatePayment}
               variant="contained"
               type="submit"
               sx={{ padding: ".8rem 2rem", marginTop: "2rem", width: "100%" }}
             >
-              Payment
-            </Button>
+              PAYMENT HI
+            </Button> */}
           </div>
         </div>
       </div>
