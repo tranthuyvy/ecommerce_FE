@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Badge, Button } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import CartItem from "../Cart/CartItem";
@@ -13,29 +13,25 @@ const OrderSummary = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
-const orderId = searchParams.get("order_id");
-const dispatch=useDispatch();
+  const orderId = searchParams.get("order_id");
+  const dispatch=useDispatch();
   const jwt=localStorage.getItem("jwt");
   const {order}=useSelector(state=>state)
 
-console.log("orderId ", order.order)
+  const [success, setSuccess] = useState(false);
+  const [error, setErrorMessage] = useState('')
 
-useEffect(()=>{
-  
-  dispatch(getOrderById(orderId))
-},[orderId])
+  console.log("orderId ", order.order)
 
-const handleCreatePayment=()=>{
-  const data={orderId:order.order?.id,jwt}
-  dispatch(createPayment(data))
-};
+  useEffect(()=>{
+    
+    dispatch(getOrderById(orderId))
+  },[orderId])
 
-const initialOptions = {
-  "client-id": "AVR129jGmpPplO0U5gNQnlPlfCeRffQ1r6E0GUJkJGyRTUP8Ce16qs3xocDzt7OwphQaRHDB0XdEuzzC",
-  currency: "USD",
-  intent: "capture",
-
-};
+  const handleCreatePayment=()=>{
+    const data={orderId:order.order?.id,jwt}
+    dispatch(createPayment(data))
+  };
 
   return (
     <div className="space-y-5">
@@ -78,23 +74,40 @@ const initialOptions = {
               </div>
             </div>
             <PayPalScriptProvider
-              options={initialOptions}
+              options={{
+                "client-id": "AVR129jGmpPplO0U5gNQnlPlfCeRffQ1r6E0GUJkJGyRTUP8Ce16qs3xocDzt7OwphQaRHDB0XdEuzzC"
+              }}
             >
               <PayPalButtons
                 createOrder={(data, actions) => {
                   return actions.order.create({
                     purchase_units: [
                       {
+                        description: 'Sneaker',
                         amount: {
+                          currency_code: 'USD',
                           value: order.order?.totalDiscountedPrice.toString(),
                         },
                       },
                     ],
-                  });
+                    application_context: {
+                      shipping_preference:'NO_SHIPPING'
+                    }
+                  })
+                  .then((orderId) => {
+                    return orderId
+                  })
                 }}
                 onApprove={(data, actions) => {
+                  return actions.order.capture().then(function (details) {
+                    const {payer} = details
+                    setSuccess(true)
+                  })
                   
                 }}
+              onError = {(data, actions) => {
+                setErrorMessage("Payment Failed")
+              }}
               />
             </PayPalScriptProvider>
             
