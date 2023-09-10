@@ -30,6 +30,13 @@ const handleCreatePayment=()=>{
   dispatch(createPayment(data))
 };
 
+const initialOptions = {
+  "client-id": "AVR129jGmpPplO0U5gNQnlPlfCeRffQ1r6E0GUJkJGyRTUP8Ce16qs3xocDzt7OwphQaRHDB0XdEuzzC",
+  currency: "USD",
+  intent: "capture",
+
+};
+
   return (
     <div className="space-y-5">
         <div className="p-5 shadow-lg rounded-md border ">
@@ -54,11 +61,11 @@ const handleCreatePayment=()=>{
             <div className="space-y-3 font-semibold">
               <div className="flex justify-between pt-3 text-black ">
                 <span>Price ({order.order?.totalItem} item)</span>
-                <span>₹{order.order?.totalPrice}</span>
+                <span>${order.order?.totalPrice}</span>
               </div>
               <div className="flex justify-between">
                 <span>Discount</span>
-                <span className="text-green-700">-₹{order.order?.discounte}</span>
+                <span className="text-green-700">-${order.order?.discounte}</span>
               </div>
               <div className="flex justify-between">
                 <span>Delivery Charges</span>
@@ -67,13 +74,11 @@ const handleCreatePayment=()=>{
               <hr />
               <div className="flex justify-between font-bold text-lg">
                 <span>Total Amount</span>
-                <span className="text-green-700">₹{order.order?.totalDiscountedPrice}</span>
+                <span className="text-green-700">${order.order?.totalDiscountedPrice}</span>
               </div>
             </div>
             <PayPalScriptProvider
-              options={{
-                clientId: "AY5do5qschROo-fAFJp06oQ91RSPIEPvm9cXKFrxRe9hPaQ8JSHHwppglUwgHU4dujyd5aAZBsISQIB9",
-              }}
+              options={initialOptions}
             >
               <PayPalButtons
                 createOrder={(data, actions) => {
