@@ -3,6 +3,7 @@ import { Grid, TextField, Button, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createOrder } from "../../../Redux/Customers/Order/Action";
+import { clearCart } from "../../../Redux/Customers/Cart/Action";
 import userEvent from "@testing-library/user-event";
 import AddressCard from "../adreess/AdreessCard";
 import { useState } from "react";
@@ -31,12 +32,13 @@ export default function AddDeliveryAddressForm({ handleNext }) {
     };
 
     dispatch(createOrder({ address, jwt, navigate }));
-    
+    dispatch(clearCart(jwt));
     handleNext();
   };
 
   const handleCreateOrder = (item) => {
     dispatch(createOrder({ address:item, jwt, navigate }));
+    dispatch(clearCart(jwt));
     handleNext();
   };
 

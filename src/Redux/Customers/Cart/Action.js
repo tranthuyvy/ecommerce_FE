@@ -15,6 +15,8 @@ import {
   UPDATE_CART_ITEM_REQUEST,
   UPDATE_CART_ITEM_SUCCESS,
   UPDATE_TOTAL,
+  CLEAR_CART_FAILURE,
+  CLEAR_CART_SUCCESS,
 } from "./ActionType";
 
 export const addItemToCart = (reqData) => async (dispatch) => {
@@ -144,4 +146,28 @@ export const updateTotal = () => (dispatch, getState) => {
     type: UPDATE_TOTAL,
     payload: totalPrice,
   });
+};
+
+export const clearCart = (jwt) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    };
+
+    // Thực hiện POST request đến endpoint để xóa giỏ hàng
+    await axios.post(`${API_BASE_URL}/api/cart/clear`, {}, config);
+
+    // Sau khi xóa thành công, gửi action để cập nhật state của ứng dụng
+    dispatch({
+      type: CLEAR_CART_SUCCESS,
+    });
+  } catch (error) {
+    // Xử lý lỗi (nếu có)
+    dispatch({
+      type: CLEAR_CART_FAILURE,
+      payload: error.message, // Hoặc thông báo lỗi khác (tuỳ theo cần thiết)
+    });
+  }
 };

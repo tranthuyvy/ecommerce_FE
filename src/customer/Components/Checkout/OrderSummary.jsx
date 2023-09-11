@@ -29,10 +29,10 @@ const OrderSummary = () => {
     dispatch(getOrderById(orderId))
   },[orderId])
 
-  const handleCreatePayment=()=>{
-    const data={orderId:order.order?.id,jwt}
-    dispatch(createPayment(data))
-  };
+  // const handleCreatePayment=()=>{
+  //   const data={orderId:order.order?.id,jwt}
+  //   dispatch(createPayment(data))
+  // };
 
   const handlePaymentSuccess = (details) => {
     const {payer} = details;
@@ -119,7 +119,6 @@ const OrderSummary = () => {
               onError = {(data, actions) => {
                 handlePaymentFailed();
               }}
-
               
               />
               <Modal

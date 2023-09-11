@@ -13,6 +13,11 @@ import {
   UPDATE_CART_ITEM_SUCCESS,
 } from "./ActionType";
 
+const initCart = {
+  cartItems: [],
+  totalPrice: 0,
+};
+
 const initialState = {
   cart: null,
   loading: false,
@@ -41,7 +46,7 @@ const cartReducer = (state = initialState, action) => {
       return {
         ...state,
         cartItems: action.payload.cartItems,
-        cart:action.payload,
+        cart: action.payload,
         loading: false,
       };
     case GET_CART_FAILURE:
@@ -59,9 +64,7 @@ const cartReducer = (state = initialState, action) => {
     case REMOVE_CART_ITEM_SUCCESS:
       return {
         ...state,
-        cartItems: state.cartItems.filter(
-          (item) => item.id !== action.payload
-        ),
+        cartItems: state.cartItems.filter((item) => item.id !== action.payload),
         loading: false,
       };
     case UPDATE_CART_ITEM_SUCCESS:
