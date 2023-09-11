@@ -19,7 +19,6 @@ export default function AddDeliveryAddressForm({ handleNext }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
 
     const address = {
       firstName: data.get("firstName"),
@@ -32,7 +31,7 @@ export default function AddDeliveryAddressForm({ handleNext }) {
     };
 
     dispatch(createOrder({ address, jwt, navigate }));
-    // after perfoming all the opration
+    
     handleNext();
   };
 

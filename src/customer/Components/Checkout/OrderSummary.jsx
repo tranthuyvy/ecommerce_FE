@@ -8,6 +8,7 @@ import { getOrderById } from "../../../Redux/Customers/Order/Action";
 import AddressCard from "../adreess/AdreessCard";
 import { createPayment } from "../../../Redux/Customers/Payment/Action";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
+import Modal from 'react-modal';
 
 const OrderSummary = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const OrderSummary = () => {
   const {order}=useSelector(state=>state)
 
   const [success, setSuccess] = useState(false);
-  const [error, setErrorMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState('')
 
   console.log("orderId ", order.order)
 
@@ -32,6 +33,17 @@ const OrderSummary = () => {
     const data={orderId:order.order?.id,jwt}
     dispatch(createPayment(data))
   };
+
+  const handlePaymentSuccess = (details) => {
+    const {payer} = details;
+    setSuccess(true);
+
+    navigate("/account/order");
+  }
+
+  const handlePaymentFailed = () => {
+    setErrorMessage("Payment Failed");
+  }
 
   return (
     <div className="space-y-5">
@@ -100,15 +112,25 @@ const OrderSummary = () => {
                 }}
                 onApprove={(data, actions) => {
                   return actions.order.capture().then(function (details) {
-                    const {payer} = details
-                    setSuccess(true)
-                  })
-                  
+                    handlePaymentSuccess(details);
+                  });
                 }}
+
               onError = {(data, actions) => {
-                setErrorMessage("Payment Failed")
+                handlePaymentFailed();
               }}
+
+              
               />
+              <Modal
+                isOpen = {success}
+                contentLabel="Payment Successful"
+                onRequestClose={() => setSuccess(false)}
+                shouldCloseOnOverlayClick = {true}
+                closeTimeoutMS={5000}
+              >
+                <h1>Payment Successful</h1>
+              </Modal>
             </PayPalScriptProvider>
             
             {/* <Button
