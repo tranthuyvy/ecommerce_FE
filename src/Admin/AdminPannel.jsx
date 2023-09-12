@@ -35,9 +35,6 @@ const menu = [
   {name:"Products",path:"/admin/products"},
   {name:"Customers",path:"/admin/customers"},
   {name:"Orders",path:"/admin/orders"},
-  {name:"Total Earnings",path:"/admin"},
-  {name:"Weekly Overview",path:"/admin"},
-  {name:"Monthly Overview",path:"/admin"},
   {name:"Add Product",path:"/admin/product/create"},
 ];
 
