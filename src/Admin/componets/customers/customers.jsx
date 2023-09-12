@@ -12,12 +12,12 @@ import {
   Avatar,
   Pagination,
 } from "@mui/material";
+import { deepOrange, deepPurple } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../../../Redux/Admin/Users/Action";
 
 const Customers = () => {
-
   const [page, setPage] = useState(1);
   const [perPage] = useState(10);
   const navigate = useNavigate();
@@ -32,7 +32,9 @@ const Customers = () => {
   const startIndex = (page - 1) * perPage;
   const endIndex = startIndex + perPage;
   // const usersToDisplay = users.slice(startIndex, endIndex);
-  const usersToDisplay = Array.isArray(users) ? users.slice(startIndex, endIndex) : [];
+  const usersToDisplay = Array.isArray(users)
+    ? users.slice(startIndex, endIndex)
+    : [];
 
   function handlePaginationChange(event, value) {
     setPage(value);
@@ -70,7 +72,9 @@ const Customers = () => {
                 >
                   <TableCell>{startIndex + index + 1}</TableCell>
                   <TableCell>
-                    <Avatar alt={user.email} src={user.image} />{" "}
+                    <Avatar sx={{ bgcolor: deepPurple[500] }}>
+                      {user.firstName.charAt(0).toUpperCase()}
+                    </Avatar>
                   </TableCell>
                   <TableCell>{user.firstName}</TableCell>
                   <TableCell>{user.lastName}</TableCell>
