@@ -185,7 +185,7 @@ export default function AdminNavbar({handleSideBarViewInMobile}) {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+            {/* <IconButton size="large" aria-label="show 4 new mails" color="inherit">
               <Badge badgeContent={9} color="error">
                 <MailIcon />
               </Badge>
@@ -198,7 +198,7 @@ export default function AdminNavbar({handleSideBarViewInMobile}) {
               <Badge badgeContent={3} color="error">
                 <NotificationsIcon />
               </Badge>
-            </IconButton>
+            </IconButton> */}
             <IconButton
               size="large"
               edge="end"

@@ -94,7 +94,7 @@ const UpdateProductForm = () => {
         sx={{ textAlign: "center" }}
         className="py-10 text-center "
       >
-        Add New Product
+        Product
       </Typography>
       <form
         onSubmit={handleSubmit}
@@ -188,9 +188,8 @@ const UpdateProductForm = () => {
                 onChange={handleChange}
                 label="Top Level Category"
               >
-                <MenuItem value="Men">Men</MenuItem>
-                <MenuItem value="Women">Women</MenuItem>
-                <MenuItem value="Kids">Kids</MenuItem>
+                <MenuItem value="men">Men</MenuItem>
+                <MenuItem value="women">Women</MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -203,9 +202,9 @@ const UpdateProductForm = () => {
                 onChange={handleChange}
                 label="Second Level Category"
               >
-                <MenuItem value="Clothing">Clothing</MenuItem>
-                <MenuItem value="Accessories">Accessories</MenuItem>
-                <MenuItem value="Brands">Brands</MenuItem>
+                <MenuItem value="clothing">Adidas</MenuItem>
+                <MenuItem value="accessories">Converse</MenuItem>
+                <MenuItem value="brands">Nike</MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -218,12 +217,11 @@ const UpdateProductForm = () => {
                 onChange={handleChange}
                 label="Third Level Category"
               >
-                <MenuItem value="Tops">Tops</MenuItem>
-                <MenuItem value="Dresses">Dresses</MenuItem>
-                <MenuItem value="T-Shirts">T-Shirts</MenuItem>
-                <MenuItem value="Saree">Saree</MenuItem>
-                <MenuItem value="Saree">Saree</MenuItem>
-                <MenuItem value="Lengha Choli">Lengha Choli</MenuItem>
+                <MenuItem value="gym">Gym</MenuItem>
+                <MenuItem value="running">Running</MenuItem>
+                <MenuItem value="air_force_1">Air Force 1</MenuItem>
+                <MenuItem value="chuck_70">Chuck 70</MenuItem>
+                <MenuItem value="hiking">Hiking</MenuItem>
               </Select>
             </FormControl>
           </Grid>
