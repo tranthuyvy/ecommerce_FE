@@ -103,6 +103,7 @@ const ProductsTable = () => {
                 label="Category"
                 onChange={(e) => handleFilterChange(e, "category")}
               >
+                <MenuItem value={""}>All</MenuItem>
                 <MenuItem value={"air_force_1"}>Nike Air Force 1</MenuItem>
                 <MenuItem value={"jordan"}>Jordan</MenuItem>
                 <MenuItem value={"running"}>Running</MenuItem>

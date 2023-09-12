@@ -55,8 +55,8 @@ const Customers = () => {
           <Table sx={{ minWidth: 390 }} aria-label="table in dashboard">
             <TableHead>
               <TableRow>
-                <TableCell>User Id</TableCell>
-                <TableCell>Image</TableCell>
+                <TableCell>STT</TableCell>
+                <TableCell>Avatar</TableCell>
                 <TableCell>FirstName</TableCell>
                 <TableCell>LastName</TableCell>
                 <TableCell>Email</TableCell>
