@@ -62,29 +62,29 @@ import api, { API_BASE_URL } from "../../../config/api";
 //   }
 // };
 
-// export const updateProduct = (product) => async (dispatch) => {
-//   try {
-//     dispatch({ type: UPDATE_PRODUCT_REQUEST });
+export const updateProduct = (product) => async (dispatch) => {
+  try {
+    dispatch({ type: UPDATE_PRODUCT_REQUEST });
 
-//     const { data } = await api.put(
-//       `${API_BASE_URL}/api/admin/products/${product.productId}`,
-//       product
-//     );
+    const { data } = await api.put(
+      `${API_BASE_URL}/api/admin/products/${product.productId}/update`,
+      product
+    );
 
-//     dispatch({
-//       type: UPDATE_PRODUCT_SUCCESS,
-//       payload: data,
-//     });
-//   } catch (error) {
-//     dispatch({
-//       type: UPDATE_PRODUCT_FAILURE,
-//       payload:
-//         error.response && error.response.data.message
-//           ? error.response.data.message
-//           : error.message,
-//     });
-//   }
-// };
+    dispatch({
+      type: UPDATE_PRODUCT_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: UPDATE_PRODUCT_FAILURE,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
 
 // export const deleteProduct = (data) => async (dispatch) => {
 //   try {
