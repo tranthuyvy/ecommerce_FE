@@ -77,7 +77,7 @@ const OrderCard = ({ item, order }) => {
             className="flex cursor-pointer"
           >
             <img
-              className="w-[10rem] h-[10rem] object-cover object-top"
+              className="w-[7rem] h-[7rem] object-cover object-top"
               src={item?.product.imageUrl}
               alt=""
             />

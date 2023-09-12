@@ -83,7 +83,7 @@ const OrdersTable = () => {
   const handleShippedOrder = (orderId,index) => {
     handleUpdateStatusMenuClose(index);
     dispatch(shipOrder(orderId))
-    setOrderStatus("ShIPPED")
+    setOrderStatus("SHIPPED")
   };
 
   const handleDeliveredOrder = (orderId,index) => {
