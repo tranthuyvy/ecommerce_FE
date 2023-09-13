@@ -24,7 +24,6 @@ import React, { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { Grid, Select } from "@mui/material";
-import { dressPage1 } from "../../../Data/dress/page1";
 import { useDispatch, useSelector } from "react-redux";
 import {
   confirmOrder,
@@ -33,7 +32,6 @@ import {
   getOrders,
   shipOrder,
 } from "../../../Redux/Admin/Orders/Action";
-import { configure } from "@testing-library/react";
 
 const OrdersTable = () => {
   const navigate = useNavigate();
@@ -44,13 +42,21 @@ const OrdersTable = () => {
   const { adminsOrder } = useSelector((store) => store);
   const [anchorElArray, setAnchorElArray] = useState([]);
 
+  const [currentOrders, setCurrentOrders] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ordersPerPage = 10;
+
   useEffect(() => {
     dispatch(getOrders({ jwt }));
   }, [jwt,adminsOrder.delivered, adminsOrder.shipped, adminsOrder.confirmed]);
 
-  // useEffect(()=>{
-  //   dispatch(getOrders({jwt}))
-  // },[])
+  useEffect(() => {
+    const startIndex = (currentPage - 1) * ordersPerPage;
+    const endIndex = startIndex + ordersPerPage;
+    const ordersToDisplay =
+      adminsOrder?.orders?.slice(startIndex, endIndex) || [];
+    setCurrentOrders(ordersToDisplay);
+  }, [adminsOrder, currentPage]);
 
   const handleUpdateStatusMenuClick = (event, index) => {
     const newAnchorElArray = [...anchorElArray];
@@ -70,9 +76,10 @@ const OrdersTable = () => {
 
     setFormData({ ...formData, [name]: value });
   };
-  function handlePaginationChange(event, value) {
-    console.log("Current page:", value);
-  }
+  
+  const handlePaginationChange = (event, value) => {
+    setCurrentPage(value);
+  };
 
   const handleConfirmedOrder = (orderId, index) => {
     handleUpdateStatusMenuClose(index);
@@ -96,10 +103,6 @@ const OrdersTable = () => {
     handleUpdateStatusMenuClose();
     dispatch(deleteOrder(orderId));
   };
-
-  //   useEffect(()=>{
-  // setUpdateOrderStatus(item.orderStatus==="PENDING"?"PENDING": item.orderStatus==="PLACED"?"CONFIRMED":item.orderStatus==="CONFIRMED"?"SHIPPED":"DELEVERED")
-  //   },[adminsOrder.orders])
 
   return (
     <Box>
@@ -173,7 +176,7 @@ const OrdersTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {adminsOrder?.orders?.map((item, index) => (
+              {currentOrders.map((item, index) => (
                 <TableRow
                   hover
                   key={item.name}
@@ -290,12 +293,15 @@ const OrdersTable = () => {
           </Table>
         </TableContainer>
       </Card>
-      <Card className="mt-2 felx justify-center items-center">
+      <Card className="mt-2 flex justify-center items-center">
         <Pagination
           className="py-5 w-auto"
           size="large"
-          count={10}
+          count={Math.ceil(
+            (adminsOrder?.orders?.length || 0) / ordersPerPage
+          )}
           color="primary"
+          page={currentPage}
           onChange={handlePaginationChange}
         />
       </Card>
