@@ -11,19 +11,18 @@ import {
 } from "@mui/material";
 
 import { Fragment } from "react";
-// import "./CreateProductForm.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   findProductById,
   updateProduct,
 } from "../../../Redux/Customers/Product/Action";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const initialSizes = [
-  { name: "S", quantity: 0 },
-  { name: "M", quantity: 0 },
-  { name: "L", quantity: 0 },
+  { name: "6", quantity: 0 },
+  { name: "7", quantity: 0 },
+  { name: "8", quantity: 0 },
 ];
 
 const UpdateProductForm = () => {
@@ -41,10 +40,14 @@ const UpdateProductForm = () => {
     secondLavelCategory: "",
     thirdLavelCategory: "",
     description: "",
+    productId: null,
   });
+
+  const [initialProductData, setInitialProductData] = useState({});
   const dispatch = useDispatch();
-  const jwt = localStorage.getItem("jwt");
   const { productId } = useParams();
+  const navigate = useNavigate();
+  const jwt = localStorage.getItem("jwt");
   const { customersProduct } = useSelector((store) => store);
 
   const handleChange = (e) => {
@@ -69,23 +72,31 @@ const UpdateProductForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(updateProduct(productData));
+    dispatch(updateProduct(productData)).then(()=>{
+      navigate("/admin/products");
+    });
     console.log(productData);
   };
 
   useEffect(() => {
-    dispatch(findProductById({productId}));
+    dispatch(findProductById({ productId }));
   }, [productId]);
-
-  useEffect(()=>{
-    if(customersProduct.product){
-        for(let key in productData){
-    setProductData((prev)=>({...prev,[key]:customersProduct.product[key]}))
-    console.log(customersProduct.product[key],"--------",key)
-}
+  
+  useEffect(() => {
+    if (customersProduct.product) {
+      setInitialProductData(customersProduct.product);
     }
+  }, [customersProduct.product]);
 
-  },[customersProduct.product])
+  useEffect(() => {
+    if (initialProductData) {
+      setProductData((prevProductData) => ({
+        ...prevProductData,
+        ...initialProductData,
+        productId: productId,
+      }));
+    }
+  }, [initialProductData, productId]);
 
   return (
     <Fragment className="createProductContainer ">
