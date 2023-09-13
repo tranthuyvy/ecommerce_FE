@@ -39,7 +39,7 @@ const Achivement = () => {
         <Typography variant='body2' >Congratulations 🥳</Typography>
         
         <Typography variant='h5' sx={{ my: 3.1, color: 'primary.main' }}>
-          420.8k
+          154.4k
         </Typography>
         <Button size='small' variant='contained'>
           View Sales

@@ -133,21 +133,6 @@ const OrdersTable = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={4}>
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Sort By</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={formData.sort}
-                label="Sort By"
-                onChange={handleChange}
-              >
-                <MenuItem value={"Newest"}>Newest</MenuItem>
-                <MenuItem value={"Older"}>Older</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
         </Grid>
       </Card>
       <Card className="mt-2">
