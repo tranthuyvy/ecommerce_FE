@@ -48,7 +48,7 @@ const OrdersTable = () => {
 
   useEffect(() => {
     dispatch(getOrders({ jwt }));
-  }, [jwt,adminsOrder.delivered, adminsOrder.shipped, adminsOrder.confirmed]);
+  }, [jwt, adminsOrder.delivered, adminsOrder.shipped, adminsOrder.confirmed]);
 
   useEffect(() => {
     const startIndex = (currentPage - 1) * ordersPerPage;
