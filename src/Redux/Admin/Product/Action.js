@@ -15,26 +15,26 @@ import {
 } from "./ActionType";
 import api, { API_BASE_URL } from "../../../config/api";
 
-// export const getProducts = () => async (dispatch) => {
-//   try {
-//     dispatch({ type: GET_PRODUCTS_REQUEST });
+export const getProducts = () => async (dispatch) => {
+  try {
+    dispatch({ type: GET_PRODUCTS_REQUEST });
 
-//     const { data } = await api.get(`${API_BASE_URL}/api/admin/products/`);
+    const { data } = await api.get(`${API_BASE_URL}/api/admin/products/all`);
 
-//     dispatch({
-//       type: GET_PRODUCTS_SUCCESS,
-//       payload: data,
-//     });
-//   } catch (error) {
-//     dispatch({
-//       type: GET_PRODUCTS_FAILURE,
-//       payload:
-//         error.response && error.response.data.message
-//           ? error.response.data.message
-//           : error.message,
-//     });
-//   }
-// };
+    dispatch({
+      type: GET_PRODUCTS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_PRODUCTS_FAILURE,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
 
 // export const createProduct = (product) => async (dispatch) => {
 //   try {
