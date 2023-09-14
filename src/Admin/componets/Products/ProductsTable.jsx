@@ -20,6 +20,8 @@ import {
 } from "@mui/material";
 
 import React from "react";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -64,7 +66,7 @@ const ProductsTable = () => {
       minDiscount: 0,
       sort: sort || "price_low",
       pageNumber: page || 0,
-      pageSize: 10,
+      pageSize: 5,
       stock: availability,
     };
     dispatch(findProducts(data));
@@ -174,6 +176,7 @@ const ProductsTable = () => {
                 <TableCell>Title</TableCell>
                 <TableCell sx={{ textAlign: "center" }}>Category</TableCell>
                 <TableCell sx={{ textAlign: "center" }}>Price</TableCell>
+                <TableCell sx={{ textAlign: "center" }}>Discounted Price</TableCell>
                 <TableCell sx={{ textAlign: "center" }}>Quantity</TableCell>
                 <TableCell sx={{ textAlign: "center" }}>Update</TableCell>
                 <TableCell sx={{ textAlign: "center" }}>Delete</TableCell>
@@ -210,6 +213,9 @@ const ProductsTable = () => {
                     {item.category.name}
                   </TableCell>
                   <TableCell sx={{ textAlign: "center" }}>
+                    {item.price}
+                  </TableCell>
+                  <TableCell sx={{ textAlign: "center" }}>
                     {item.discountedPrice}
                   </TableCell>
                   <TableCell sx={{ textAlign: "center" }}>
@@ -221,16 +227,18 @@ const ProductsTable = () => {
                         navigate(`/admin/product/update/${item.id}`)
                       }
                       variant="text"
+                      color="warning"
                     >
-                      Update
+                      <EditIcon/>
                     </Button>
                   </TableCell>
                   <TableCell sx={{ textAlign: "center" }}>
                     <Button
                       variant="text"
                       onClick={() => handleDeleteProduct(item.id)}
+                      color="secondary"
                     >
-                      Delete
+                      <DeleteIcon/>
                     </Button>
                   </TableCell>
                 </TableRow>
