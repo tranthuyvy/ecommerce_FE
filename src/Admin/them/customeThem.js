@@ -4,64 +4,69 @@ const customTheme = createTheme({
   palette: {
     mode: "dark", // Set the custom color mode name here
     primary: {
-      main: '#9155FD',
+      main: "#9155FD",
     },
     secondary: {
-      main: '#f48fb1',
+      main: "#ff0000",
     },
-    white:{
-      main:"#fff"
+    white: {
+      main: "#fff",
     },
-    orange:{
-      main:"#ffdb0f"
+    orange: {
+      main: "#ffdb0f",
     },
-    
+    blue: {
+      main: "#178BFF",
+    },
+    success: {
+      main: "#52C742",
+    },
+
     background: {
-      default: '',
+      default: "",
       // paper: '#121019',
-      paper:"rgb(0, 0, 22)"
+      paper: "rgb(0, 0, 22)",
     },
   },
- 
-  
 });
 
 const darkTheme = createTheme({
   palette: {
-    mode: 'dark',
+    mode: "dark",
     primary: {
-      main: '#9155FD',
+      main: "#9155FD",
     },
     secondary: {
-      main: '#f48fb1',
+      main: "#ff0000",
     },
   },
 });
 
 const customerTheme = createTheme({
   palette: {
-    mode: "light", // Set the custom color mode name here
+    mode: "light",
     primary: {
-      main: '#9155FD',
+      main: "#9155FD",
     },
     secondary: {
-      main: '#f48fb1',
+      main: "#ff0000",
     },
-    white:{
-      main:"#fff"
+    white: {
+      main: "#fff",
     },
-    orange:{
-      main:"#ffdb0f"
+    orange: {
+      main: "#ffdb0f",
     },
-    
+    blue: {
+      main: "#000dff",
+    },
+
     background: {
-      default: '',
+      default: "",
       // paper: '#121019',
-      paper:"white"
+      paper: "white",
     },
   },
- 
-  
 });
 
-export {customTheme,darkTheme,customerTheme};
+export { customTheme, darkTheme, customerTheme };

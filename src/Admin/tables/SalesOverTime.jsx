@@ -1,42 +1,78 @@
-// ** MUI Imports
-import Box from '@mui/material/Box'
-import Card from '@mui/material/Card'
-import Button from '@mui/material/Button'
-import { useTheme } from '@mui/material/styles'
-import CardHeader from '@mui/material/CardHeader'
-import IconButton from '@mui/material/IconButton'
-import Typography from '@mui/material/Typography'
-import CardContent from '@mui/material/CardContent'
-
-// ** Icons Imports
-import DotsVertical from 'mdi-material-ui/DotsVertical'
-
-// ** Custom Components Imports
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getOrders } from '../../Redux/Admin/Orders/Action';
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  Button,
+  IconButton,
+  useTheme,
+} from '@mui/material';
+import DotsVertical from 'mdi-material-ui/DotsVertical';
 import ReactApexCharts from 'react-apexcharts';
-
-// import ReactApexcharts from 'src/@core/components/react-apexcharts'
+import { useNavigate } from 'react-router-dom';
 
 const SalesOverTime = () => {
-  // ** Hook
-  const theme = useTheme()
+  const theme = useTheme();
+  const [chartData, setChartData] = useState([]);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const jwt = localStorage.getItem("jwt");
+  const { orders } = useSelector((store) => store.adminsOrder);
+
+  useEffect(() => {
+    dispatch(getOrders({ jwt }));
+  }, [jwt, dispatch]);
+
+  useEffect(() => {
+    const totalsByDay = calculateTotalByDay(orders);
+    setChartData(totalsByDay);
+  }, [orders]);
+
+  const calculateTotalByDay = (orders) => {
+    const totalsByDay = {};
+
+    if (!orders || orders.length === 0) {
+      return [];
+    }
+
+    orders.forEach((order) => {
+      const createdAt = new Date(order?.createdAt);
+      const formattedDate = `${createdAt.getDate()}/${createdAt.getMonth() + 1}/${createdAt.getFullYear()}`;
+
+      if (totalsByDay[formattedDate]) {
+        totalsByDay[formattedDate] += order?.totalPrice;
+      } else {
+        totalsByDay[formattedDate] = order?.totalPrice;
+      }
+    });
+
+    const chartData = Object.keys(totalsByDay).map((day) => ({
+      x: day,
+      y: totalsByDay[day],
+    }));
+
+    return chartData;
+  };
 
   const options = {
     chart: {
       parentHeightOffset: 0,
-      toolbar: { show: false }
+      toolbar: { show: false },
     },
     plotOptions: {
       bar: {
-        borderRadius: 9,
+        borderRadius: 2,
         distributed: true,
         columnWidth: '40%',
         endingShape: 'rounded',
-        startingShape: 'rounded'
-      }
+        startingShape: 'rounded',
+      },
     },
     stroke: {
       width: 2,
-      colors: [theme.palette.background.paper]
+      colors: [theme.palette.background.paper],
     },
     legend: { show: false },
     grid: {
@@ -45,70 +81,80 @@ const SalesOverTime = () => {
         top: -1,
         right: 0,
         left: -12,
-        bottom: 5
-      }
+        bottom: 5,
+      },
     },
     dataLabels: { enabled: false },
-    colors: [
-      theme.palette.background.default,
-      theme.palette.background.default,
-      theme.palette.background.default,
-      theme.palette.primary.main,
-      theme.palette.background.default,
-      theme.palette.background.default
+    colors: 
+    [
+      theme.palette.blue.main, 
+      theme.palette.orange.main, 
+      theme.palette.secondary.main,
+      theme.palette.success.main,
     ],
     states: {
       hover: {
-        filter: { type: 'none' }
+        filter: { type: 'none' },
       },
       active: {
-        filter: { type: 'none' }
-      }
+        filter: { type: 'none' },
+      },
     },
     xaxis: {
-      categories: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+      categories: chartData.map((item) => item.x),
       tickPlacement: 'on',
-      labels: { show: false },
-      axisTicks: { show: false },
-      axisBorder: { show: false }
+      labels: { show: true },
+      axisTicks: { show: true },
+      axisBorder: { show: true },
     },
     yaxis: {
       show: true,
       tickAmount: 4,
       labels: {
         offsetX: -17,
-        formatter: value => `${value > 999 ? `${(value / 1000).toFixed(0)}` : value}k`
-      }
-    }
-  }
+        formatter: (value) => `${value > 99 ? `${(value / 100).toFixed(0)}` : value}k`,
+      },
+    },
+  };
 
   return (
     <Card>
       <CardHeader
-        title='Sales Over Time'
+        title="Sales Over Time"
         titleTypographyProps={{
-          sx: { lineHeight: '0.5rem !important', letterSpacing: '0.15px !important' }
+          sx: { lineHeight: '0.5rem !important', letterSpacing: '0.15px !important' },
         }}
         action={
-          <IconButton size='small' aria-label='settings' className='card-more-options' sx={{ color: 'text.secondary' }}>
+          <IconButton size="small" aria-label="settings" className="card-more-options" sx={{ color: 'text.secondary' }}>
             <DotsVertical />
           </IconButton>
         }
       />
       <CardContent sx={{ '& .apexcharts-xcrosshairs.apexcharts-active': { opacity: 0 } }}>
-        <ReactApexCharts  type='bar' height={274} options={options} series={[{ data: [37, 57, 45, 75, 57, 40, 65] }]} />
-        <Box sx={{ mb: 5, display: 'flex', alignItems: 'center' }}>
-          <Typography variant='h5' sx={{ mr: 4 }}>
-            45%
-          </Typography>
-          <Typography variant='body2'>Your sales performance is 45% 😎 better compared to last month</Typography>
-        </Box>
-        <Button fullWidth variant='contained'>
+          <ReactApexCharts
+            type="bar"
+            height={274}
+            options={{
+              ...options,
+              xaxis: {
+                categories: chartData.map((item) => item.x),
+                tickPlacement: 'on',
+                labels: { show: true },
+                axisTicks: { show: true },
+                axisBorder: { show: true },
+              },
+            }}
+            series={[{ data: chartData.map((item) => item.y) }]}
+          />
+        
+        <Button fullWidth variant="contained"
+          onClick={() => navigate("/admin/orders")}
+        >
           Details
         </Button>
       </CardContent>
     </Card>
-  )
-}
+  );
+};
 
-export default SalesOverTime
+export default SalesOverTime;

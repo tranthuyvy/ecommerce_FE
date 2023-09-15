@@ -3,8 +3,6 @@ import Grid from "@mui/material/Grid";
 import AdminPannel from "../../Styles/AdminPannelWrapper";
 import Achivement from "../tables/Achivement";
 import MonthlyOverview from "../tables/MonthlyOverView";
-import WeeklyOverview from "../tables/WeeklyOverview";
-import TotalEarning from "../tables/TotalEarning";
 import CardStatsVertical from "../../Styles/CardStatsVertical";
 import SalesByCountries from "../tables/SalesByContry";
 import DepositWithdraw from "../tables/DepositeAndWithdraw";
@@ -25,7 +23,7 @@ const darkTheme1 = createTheme({
       main: '#312d4b',
     },
     secondary: {
-      main: '#f48fb1',
+      main: '#ff0000',
     },
   },
 });
@@ -43,11 +41,8 @@ const Dashboard = () => {
             <Grid item xs={12} md={8}>
               <MonthlyOverview />
             </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-              <WeeklyOverview />
-            </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-              <TotalEarning />
+            <Grid item xs={12} md={12} lg={8}>
+              <SalesOverTime/>
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
               <Grid container spacing={2}>
@@ -96,7 +91,7 @@ const Dashboard = () => {
               </Grid>
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
-            <CustomersTable />
+              <CustomersTable />
             </Grid>
             <Grid item xs={12} md={12} lg={8}>
               <RecentOrders />
@@ -105,12 +100,9 @@ const Dashboard = () => {
               <RecentlyAddeddProducts />
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
-              <SalesOverTime/>
+              
             </Grid>
            
-            <Grid item xs={12}>
-              <CustomersTable />
-            </Grid>
           </Grid>
         </AdminPannel>
       </ThemeProvider>

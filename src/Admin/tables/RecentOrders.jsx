@@ -17,6 +17,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrders } from "../../Redux/Admin/Orders/Action";
+import { format } from 'date-fns';
 
 const RecentOrders = () => {
   const navigate = useNavigate();
@@ -61,8 +62,8 @@ const RecentOrders = () => {
               <TableCell>Image</TableCell>
               <TableCell>Title</TableCell>
               <TableCell>Price</TableCell>
-              <TableCell>Order Id</TableCell>
               <TableCell>Status</TableCell>
+              <TableCell>Date</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -89,7 +90,6 @@ const RecentOrders = () => {
                   </Box>
                 </TableCell>
                 <TableCell>${item.totalDiscountedPrice}</TableCell>
-                <TableCell>{item.id}</TableCell>
                 <TableCell>
                   <Chip
                     sx={{ color: "white" }}
@@ -106,6 +106,7 @@ const RecentOrders = () => {
                     }
                   />
                 </TableCell>
+                <TableCell>{format(new Date(item.createdAt), 'dd/MM/yyyy')}</TableCell>
               </TableRow>
             ))}
           </TableBody>
