@@ -90,6 +90,9 @@ const Dashboard = () => {
                 </Grid>
               </Grid>
             </Grid>
+            <Grid item xs={12} md={6} lg={8}>
+              <SalesByCountries/>
+            </Grid>
             <Grid item xs={12} md={6} lg={4}>
               <CustomersTable />
             </Grid>
