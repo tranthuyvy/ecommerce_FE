@@ -42,6 +42,7 @@ const Achivement = () => {
   };
 
   const totalRevenue = calculateTotalRevenue();
+  const revenue = totalRevenue * 60 / 100;
 
   const imageSrc = theme.palette.mode === 'light' ? 'triangle-light.png' : 'triangle-dark.png'
 
@@ -55,7 +56,7 @@ const Achivement = () => {
         <Typography variant='body2' >Congratulations 🥳</Typography>
         
         <Typography variant='h5' sx={{ my: 3.1, color: 'orange.main' }}>
-          {totalRevenue.toLocaleString()} USD
+          {revenue.toLocaleString()} USD
         </Typography>
         <Button size='small' variant='contained'
           onClick={() => navigate("/admin/orders")}
