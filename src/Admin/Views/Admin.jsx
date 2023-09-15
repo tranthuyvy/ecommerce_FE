@@ -45,23 +45,21 @@ const Dashboard = () => {
               <SalesOverTime/>
             </Grid>
             <Grid item xs={12} md={6} lg={4}>
-              
-            </Grid>
-            <Grid item xs={12} md={6} lg={8}>
-              <SalesByCountries/>
-            </Grid>
-            <Grid item xs={12} md={6} lg={4}>
               <CustomersTable />
             </Grid>
-            <Grid item xs={12} md={12} lg={8}>
-              <RecentOrders />
-            </Grid>
-             <Grid item xs={12} md={12} lg={8}>
+            {/* <Grid item xs={12} md={12} lg={8}>
               <RecentlyAddeddProducts />
             </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-              
+            <Grid item xs={12} md={12} lg={4}>
+              <SalesByCountries/>
+            </Grid> */}
+            <Grid item xs={12} md={12} lg={12}>
+              <SalesByCountries/>
             </Grid>
+            <Grid item xs={12} md={12} lg={12}>
+              <RecentOrders />
+            </Grid>
+            
            
           </Grid>
         </AdminPannel>

@@ -47,14 +47,14 @@ const CustomersTable = () => {
         />
       <TableContainer>
         <Table sx={{ minWidth: 390 }} aria-label='table in dashboard'>
-          <TableHead>
+          {/* <TableHead>
             <TableRow>
             <TableCell>Avatar</TableCell>
               <TableCell>Name</TableCell>
               <TableCell>Email</TableCell>
               
             </TableRow>
-          </TableHead>
+          </TableHead> */}
           <TableBody>
             {users.slice(0,5).map(item => (
               <TableRow hover key={item.name} sx={{ '&:last-of-type td, &:last-of-type th': { border: 0 } }}>

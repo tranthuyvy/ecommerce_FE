@@ -149,6 +149,7 @@ const SalesOverTime = () => {
         
         <Button fullWidth variant="contained"
           onClick={() => navigate("/admin/orders")}
+          style={{marginTop:"25px"}}
         >
           Details
         </Button>

@@ -58,7 +58,6 @@ const RecentlyAddeddProducts = () => {
             <TableRow>
               <TableCell>Image</TableCell>
               <TableCell>Title</TableCell>
-              <TableCell>Brand</TableCell>
               <TableCell>Price</TableCell>
               <TableCell>Quantity</TableCell>
             </TableRow>
@@ -84,11 +83,10 @@ const RecentlyAddeddProducts = () => {
                     >
                       {item.title}
                     </Typography>
-                    <Typography variant="caption">{item.color}</Typography>
+                    <Typography variant="caption">{item.brand}</Typography>
                   </Box>
                 </TableCell>
-                <TableCell>{item.brand}</TableCell>
-                <TableCell>{item.discountedPrice}</TableCell>
+                <TableCell>${item.discountedPrice}</TableCell>
                 <TableCell>{item.quantity}</TableCell>
               </TableRow>
             ))}
