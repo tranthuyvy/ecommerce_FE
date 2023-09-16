@@ -168,7 +168,6 @@ const OrdersTable = () => {
                 <TableRow
                   hover
                   key={item.name}
-                  onClick={() => handleOrderClick(item.id)}
                   sx={{ "&:last-of-type td, &:last-of-type th": { border: 0 } }}
                   style={{ cursor: "pointer" }}
                 >
@@ -184,6 +183,7 @@ const OrdersTable = () => {
                   </TableCell>
 
                   <TableCell
+                  onClick={() => handleOrderClick(item.id)}
                     sx={{ py: (theme) => `${theme.spacing(0.5)} !important` }}
                   >
                     <Box sx={{ display: "flex", flexDirection: "column" }}>
