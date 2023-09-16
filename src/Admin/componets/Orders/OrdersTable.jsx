@@ -106,6 +106,10 @@ const OrdersTable = () => {
     dispatch(deleteOrder(orderId));
   };
 
+  const handleOrderClick = (orderId) => {
+    navigate(`/account/order/${orderId}`);
+  };
+
   return (
     <Box>
       <Card className="p-3">
@@ -154,7 +158,6 @@ const OrdersTable = () => {
                 <TableCell>Title</TableCell>
 
                 <TableCell>Price</TableCell>
-                <TableCell>Id</TableCell>
                 <TableCell sx={{ textAlign: "center" }}>Status</TableCell>
                 <TableCell sx={{ textAlign: "center" }}>Update Status</TableCell>
                 <TableCell sx={{ textAlign: "center" }}>Cancel</TableCell>
@@ -165,7 +168,9 @@ const OrdersTable = () => {
                 <TableRow
                   hover
                   key={item.name}
+                  onClick={() => handleOrderClick(item.id)}
                   sx={{ "&:last-of-type td, &:last-of-type th": { border: 0 } }}
+                  style={{ cursor: "pointer" }}
                 >
                   <TableCell sx={{}}>
                     <AvatarGroup max={4} sx={{ justifyContent: "start" }}>
@@ -204,7 +209,6 @@ const OrdersTable = () => {
                   </TableCell>
 
                   <TableCell>{item.totalPrice}</TableCell>
-                  <TableCell>{item.id}</TableCell>
                   <TableCell className="text-white">
                     <Chip
                       sx={{

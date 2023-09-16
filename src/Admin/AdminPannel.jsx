@@ -35,7 +35,6 @@ const menu = [
   {name:"Products",path:"/admin/products"},
   {name:"Customers",path:"/admin/customers"},
   {name:"Orders",path:"/admin/orders"},
-  {name:"Add Product",path:"/admin/product/create"},
 ];
 
 export default function AdminPannel() {
