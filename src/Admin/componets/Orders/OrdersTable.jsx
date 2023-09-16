@@ -22,6 +22,8 @@ import {
 
 import React, { useEffect, useState } from "react";
 
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from "react-router-dom";
 import { Grid, Select } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
@@ -76,7 +78,7 @@ const OrdersTable = () => {
 
     setFormData({ ...formData, [name]: value });
   };
-  
+
   const handlePaginationChange = (event, value) => {
     setCurrentPage(value);
   };
@@ -84,19 +86,19 @@ const OrdersTable = () => {
   const handleConfirmedOrder = (orderId, index) => {
     handleUpdateStatusMenuClose(index);
     dispatch(confirmOrder(orderId));
-    setOrderStatus("CONFIRMED")
+    setOrderStatus("CONFIRMED");
   };
 
-  const handleShippedOrder = (orderId,index) => {
+  const handleShippedOrder = (orderId, index) => {
     handleUpdateStatusMenuClose(index);
-    dispatch(shipOrder(orderId))
-    setOrderStatus("SHIPPED")
+    dispatch(shipOrder(orderId));
+    setOrderStatus("SHIPPED");
   };
 
-  const handleDeliveredOrder = (orderId,index) => {
+  const handleDeliveredOrder = (orderId, index) => {
     handleUpdateStatusMenuClose(index);
-    dispatch(deliveredOrder(orderId))
-    setOrderStatus("DELIVERED")
+    dispatch(deliveredOrder(orderId));
+    setOrderStatus("DELIVERED");
   };
 
   const handleDeleteOrder = (orderId) => {
@@ -143,8 +145,6 @@ const OrdersTable = () => {
             alignItems: "center",
             "& .MuiCardHeader-action": { mt: 0.6 },
           }}
-         
-         
         />
         <TableContainer>
           <Table sx={{ minWidth: 800 }} aria-label="table in dashboard">
@@ -156,8 +156,8 @@ const OrdersTable = () => {
                 <TableCell>Price</TableCell>
                 <TableCell>Id</TableCell>
                 <TableCell sx={{ textAlign: "center" }}>Status</TableCell>
-                <TableCell sx={{ textAlign: "center" }}>Update</TableCell>
-                <TableCell sx={{ textAlign: "center" }}>Delete</TableCell>
+                <TableCell sx={{ textAlign: "center" }}>Update Status</TableCell>
+                <TableCell sx={{ textAlign: "center" }}>Cancel</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -168,10 +168,14 @@ const OrdersTable = () => {
                   sx={{ "&:last-of-type td, &:last-of-type th": { border: 0 } }}
                 >
                   <TableCell sx={{}}>
-                  <AvatarGroup max={4} sx={{justifyContent: 'start'}}>
-      {item.orderItems.map((orderItem)=><Avatar  alt={item.title} src={orderItem.product.imageUrl} /> )}
-    </AvatarGroup>
-                    {" "}
+                    <AvatarGroup max={4} sx={{ justifyContent: "start" }}>
+                      {item.orderItems.map((orderItem) => (
+                        <Avatar
+                          alt={item.title}
+                          src={orderItem.product.imageUrl}
+                        />
+                      ))}
+                    </AvatarGroup>{" "}
                   </TableCell>
 
                   <TableCell
@@ -211,7 +215,15 @@ const OrdersTable = () => {
                       label={item.orderStatus}
                       size="small"
                       color={
-                        item.orderStatus === "PENDING" ? "info" :item.orderStatus==="DELIVERED"? "success":"secondary"
+                        item.orderStatus === "PLACED"
+                          ? "warning"
+                          : item.orderStatus === "DELIVERED"
+                          ? "success"
+                          : item.orderStatus === "CONFIRMED"
+                          ? "info"
+                          : item.orderStatus === "SHIPPED"
+                          ? "primary"
+                          : "secondary"
                       }
                       className="text-white"
                     />
@@ -227,11 +239,15 @@ const OrdersTable = () => {
                         aria-controls={`basic-menu-${item.id}`}
                         aria-haspopup="true"
                         aria-expanded={Boolean(anchorElArray[index])}
+                        disabled = {
+                          item.orderStatus === "CANCELLED" ||
+                          item.orderStatus === "DELIVERED"
+                        }
                         onClick={(event) =>
                           handleUpdateStatusMenuClick(event, index)
                         }
                       >
-                        Status
+                        <EditIcon/>
                       </Button>
                       <Menu
                         id={`basic-menu-${item.id}`}
@@ -244,18 +260,34 @@ const OrdersTable = () => {
                       >
                         <MenuItem
                           onClick={() => handleConfirmedOrder(item.id, index)}
-                          disabled={item.orderStatus==="DELEVERED" || item.orderStatus==="SHIPPED" || item.orderStatus==="CONFIRMED"}
+                          disabled={
+                            item.orderStatus === "DELIVERED" ||
+                            item.orderStatus === "SHIPPED" ||
+                            item.orderStatus === "CANCELLED" ||
+                            item.orderStatus === "CONFIRMED"
+                          }
                         >
                           CONFIRMED ORDER
-                          
                         </MenuItem>
                         <MenuItem
-                        disabled={item.orderStatus==="DELIVERED" || item.orderStatus==="SHIPPED"}
+                          disabled={
+                            item.orderStatus === "DELIVERED" ||
+                            item.orderStatus === "CANCELLED" ||
+                            item.orderStatus === "PLACED" ||
+                            item.orderStatus === "SHIPPED"
+                          }
                           onClick={() => handleShippedOrder(item.id, index)}
                         >
                           SHIPPED ORDER
                         </MenuItem>
-                        <MenuItem onClick={() => handleDeliveredOrder(item.id)}>
+                        <MenuItem 
+                          disabled={
+                            item.orderStatus === "DELIVERED" ||
+                            item.orderStatus === "CANCELLED" ||
+                            item.orderStatus === "PLACED" ||
+                            item.orderStatus === "CONFIRMED"
+                          }
+                          onClick={() => handleDeliveredOrder(item.id)}>
                           DELIVERED ORDER
                         </MenuItem>
                       </Menu>
@@ -266,10 +298,16 @@ const OrdersTable = () => {
                     className="text-white"
                   >
                     <Button
+                      disabled = {
+                        item.orderStatus === "CANCELLED" ||
+                        item.orderStatus === "CONFIRMED" ||
+                        item.orderStatus === "SHIPPED" ||
+                        item.orderStatus === "DELIVERED"
+                      }
                       onClick={() => handleDeleteOrder(item.id)}
                       variant="text"
                     >
-                      delete
+                      <DeleteIcon/>
                     </Button>
                   </TableCell>
                 </TableRow>
@@ -282,9 +320,7 @@ const OrdersTable = () => {
         <Pagination
           className="py-5 w-auto"
           size="large"
-          count={Math.ceil(
-            (adminsOrder?.orders?.length || 0) / ordersPerPage
-          )}
+          count={Math.ceil((adminsOrder?.orders?.length || 0) / ordersPerPage)}
           color="primary"
           page={currentPage}
           onChange={handlePaginationChange}
