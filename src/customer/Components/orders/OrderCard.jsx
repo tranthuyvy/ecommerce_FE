@@ -7,9 +7,29 @@ import StarIcon from "@mui/icons-material/Star";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import "./OrderCard.css";
 import { format } from "date-fns";
+import { useDispatch } from "react-redux";
+import { deleteOrder } from "../../../Redux/Admin/Orders/Action";
+import { useState } from "react";
 
 const OrderCard = ({ item, order }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [isOrderCancelled, setIsOrderCancelled] = useState(false);
+
+  const handleCancelOrder = (orderId) => {
+    if (window.confirm("Bạn có chắc chắn muốn hủy đơn hàng?")) {
+      dispatch(deleteOrder(orderId))
+        .then(() => {
+          setIsOrderCancelled(true);
+          setTimeout(() => {
+            setIsOrderCancelled(false);
+          }, 3000);
+        })
+        .catch((error) => {
+          console.error("Error", error);
+        });
+    }
+  };
 
   let totalPrice = 0;
 
@@ -196,7 +216,21 @@ const OrderCard = ({ item, order }) => {
         ) : (
           <button className="square-button-unsub">ĐÃ NHẬN HÀNG</button>
         )}
-        <button className="square-button btn-contact">LIÊN HỆ NGƯỜI BÁN</button>
+        <div>
+          {order?.orderStatus === "PLACED" ? (
+            <button
+              className="square-button btn-submit"
+              onClick={() => handleCancelOrder(order?.id)}
+            >
+              HỦY ĐƠN HÀNG
+            </button>
+          ) : (
+            <button className="square-button-unsub">HỦY ĐƠN HÀNG</button>
+          )}
+          {isOrderCancelled && (
+            <div style={{ color: "green" }}>Successfully</div>
+          )}
+        </div>
       </div>
     </Box>
   );
