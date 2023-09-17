@@ -1,5 +1,6 @@
 import React from "react";
 import { Avatar } from "@mui/material";
+import { format } from 'date-fns';
 import { Rating, Box, Typography, Grid } from "@mui/material";
 
 const ProductReviewCard = ({item}) => {
@@ -23,13 +24,12 @@ const ProductReviewCard = ({item}) => {
           <div className="space-y-2">
             <div className="">
               <p className="font-semibold text-lg">{item.user.firstName}</p>
-              <p className="opacity-70">April 5, 2023</p>
+              <p className="opacity-70 mt-1">{format(new Date(item.createdAt), 'dd/MM/yyyy')}</p>
             </div>
             <div>
             
-
               <Rating
-                value={value}
+                value={item.star}
                 onChange={(event, newValue) => {
                   setValue(newValue);
                 }}

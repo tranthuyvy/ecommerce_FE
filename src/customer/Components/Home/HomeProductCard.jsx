@@ -18,7 +18,7 @@ const HomeProductCard = ({ product }) => {
         />
       </div>
 
-      <div className="p-4 ">
+      <div className="p-5">
         <h3 className="text-lg font-medium text-gray-900">
               {product?.title}
         </h3>
