@@ -14,6 +14,7 @@ import { Fragment } from "react";
 import "./CreateProductForm.css";
 import { useDispatch } from "react-redux";
 import { createProduct } from "../../../Redux/Customers/Product/Action";
+import { useNavigate } from "react-router-dom";
 
 
 const initialSizes = [
@@ -44,6 +45,7 @@ const CreateProductForm = () => {
   });
 const dispatch=useDispatch();
 const jwt=localStorage.getItem("jwt")
+const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -86,6 +88,7 @@ const jwt=localStorage.getItem("jwt")
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createProduct({data:productData,jwt}))
+    navigate("/admin/products");
     console.log(productData);
   };
 

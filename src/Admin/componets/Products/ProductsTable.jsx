@@ -66,7 +66,7 @@ const ProductsTable = () => {
       minDiscount: 0,
       sort: sort || "price_low",
       pageNumber: page || 0,
-      pageSize: 5,
+      pageSize: 10,
       stock: availability,
     };
     dispatch(findProducts(data));
