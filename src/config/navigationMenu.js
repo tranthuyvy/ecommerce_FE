@@ -26,10 +26,8 @@ export const navigation = {
           items: [
             { name: "Air Force 1", id: "air_force_1" },
             { name: "Jordan", id: "jordan" },
-            { name: "Running", id: "running" },
             { name: "Basketball", id: "basketball" },
             { name: "Air Max", id: "air_max" },
-            { name: "Gym", id: "gym" },
             { name: "Lifestyle", id: "life_style" },
           ],
         },
@@ -39,9 +37,7 @@ export const navigation = {
           items: [
             { name: "Running", id: "running" },
             { name: "Soccer", id: "soccer" },
-            { name: "Lifestyle", id: "life_style" },
             { name: "Hiking", id: "hiking" },
-            { name: "Basketball", id: "basketball" },
             { name: "Golf", id: "golf" },
             { name: "Gym", id: "gym" },
           ],
@@ -52,7 +48,6 @@ export const navigation = {
           items: [
             { name: "Chuck 70", id: "chuck_70" },
             { name: "Classic Chuck", id: "classic_chuck" },
-            { name: "Basketball", id: "basketball" },
           ],
         },
       ],
@@ -83,10 +78,8 @@ export const navigation = {
           items: [
             { name: "Air Force 1", id: "air_force_1" },
             { name: "Jordan", id: "jordan" },
-            { name: "Running", id: "running" },
             { name: "Basketball", id: "basketball" },
             { name: "Air Max", id: "air_max" },
-            { name: "Gym", id: "gym" },
             { name: "Lifestyle", id: "life_style" },
           ],
         },
@@ -96,9 +89,7 @@ export const navigation = {
           items: [
             { name: "Running", id: "running" },
             { name: "Soccer", id: "soccer" },
-            { name: "Lifestyle", id: "life_style" },
             { name: "Hiking", id: "hiking" },
-            { name: "Basketball", id: "basketball" },
             { name: "Golf", id: "golf" },
             { name: "Gym", id: "gym" },
           ],
@@ -109,7 +100,6 @@ export const navigation = {
           items: [
             { name: "Chuck 70", id: "chuck_70" },
             { name: "Classic Chuck", id: "classic_chuck" },
-            { name: "Basketball", id: "basketball" },
           ],
         },
       ],
