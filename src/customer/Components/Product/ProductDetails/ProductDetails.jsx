@@ -44,14 +44,13 @@ const product = {
     { name: "10", inStock: true },
     { name: "11", inStock: true },
   ],
-  
+
   highlights: [
     "Commitment to 100% genuine products",
     "Bringing comfort to your feet",
     "Delivering an excellent experience",
     "Get free delivery on orders over $100",
   ],
-
 };
 const reviews = { href: "#", average: 4, totalCount: 117 };
 
@@ -61,7 +60,7 @@ function classNames(...classes) {
 
 export default function ProductDetails() {
   const [selectedSize, setSelectedSize] = useState();
-  
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { customersProduct } = useSelector((store) => store);
@@ -70,9 +69,11 @@ export default function ProductDetails() {
   // console.log("param",productId,customersProduct.product)
 
   const [productsFromAPI, setProductsFromAPI] = useState([]);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
 
-  const [activeImage, setActiveImage] = useState(customersProduct.product?.imageUrl);
+  const [activeImage, setActiveImage] = useState(
+    customersProduct.product?.imageUrl
+  );
   const [fixedImage, setFixedImage] = useState(
     customersProduct.product?.imageUrl
   );
@@ -92,7 +93,7 @@ export default function ProductDetails() {
 
     if (selectedSize) {
       const data = { productId, size: selectedSize.name };
-      if (!data || !data.productId || !data.size){
+      if (!data || !data.productId || !data.size) {
         alert("Invalid data");
         return;
       }
@@ -109,7 +110,6 @@ export default function ProductDetails() {
     dispatch(getAllReviews(productId));
   }, [productId]);
 
-
   useEffect(() => {
     const fetchDataFromAPI = async () => {
       try {
@@ -125,12 +125,13 @@ export default function ProductDetails() {
         setLoading(false);
       }
     };
-  
+
     fetchDataFromAPI();
   }, [customersProduct.product]);
 
-  const similarProducts = productsFromAPI.filter((item) => item.id !== customersProduct.product.id);
-  
+  const similarProducts = productsFromAPI.filter(
+    (item) => item.id !== customersProduct.product.id
+  );
 
   return (
     <div className="bg-white lg:px-20">
@@ -140,26 +141,26 @@ export default function ProductDetails() {
             role="list"
             className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8"
           >
-              <li>
-                <div className="flex items-center">
-                  <a
-                    href={"/"}
-                    className="mr-2 text-sm font-medium text-gray-900"
-                  >
-                    {customersProduct.product?.brand}
-                  </a>
-                  <svg
-                    width={16}
-                    height={20}
-                    viewBox="0 0 16 20"
-                    fill="currentColor"
-                    aria-hidden="true"
-                    className="h-5 w-4 text-gray-300"
-                  >
-                    <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
-                  </svg>
-                </div>
-              </li>
+            <li>
+              <div className="flex items-center">
+                <a
+                  href={"/"}
+                  className="mr-2 text-sm font-medium text-gray-900"
+                >
+                  {customersProduct.product?.brand}
+                </a>
+                <svg
+                  width={16}
+                  height={20}
+                  viewBox="0 0 16 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                  className="h-5 w-4 text-gray-300"
+                >
+                  <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
+                </svg>
+              </div>
+            </li>
 
             <li className="text-sm">
               <a
@@ -177,38 +178,38 @@ export default function ProductDetails() {
         <section className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-2 px-4 pt-10">
           {/* Image gallery */}
           <div className="flex flex-col items-center ">
-          <div className="overflow-hidden rounded-lg max-w-[30rem] max-h-[35rem]">
-            <img
-              src={activeImage?.src || customersProduct.product?.imageUrl} // Sử dụng activeImage thay vì fixedImage
-              alt={product.images[0].alt}
-              className="h-full w-full object-cover object-center"
-            />
+            <div className="overflow-hidden rounded-lg max-w-[30rem] max-h-[35rem]">
+              <img
+                src={activeImage?.src || customersProduct.product?.imageUrl}
+                alt={product.images[0].alt}
+                className="h-full w-full object-cover object-center"
+              />
+            </div>
+            <div className="flex flex-wrap space-x-5 justify-center">
+              {product.images.map((image, index) => (
+                <div
+                  key={index}
+                  onClick={() => handleSetActiveImage(image)}
+                  className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg max-w-[5rem] max-h-[5rem] mt-4"
+                >
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="h-full w-full object-cover object-center"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="flex flex-wrap space-x-5 justify-center">
-            {product.images.map((image, index) => (
-              <div
-                key={index}
-                onClick={() => handleSetActiveImage(image)}
-                className="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg max-w-[5rem] max-h-[5rem] mt-4"
-              >
-                <img
-                  src={image.src}
-                  alt={image.alt}
-                  className="h-full w-full object-cover object-center"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
 
           {/* Product info */}
           <div className="lg:col-span-1 mx-auto max-w-2xl px-4 pb-16 sm:px-6  lg:max-w-7xl  lg:px-8 lg:pb-24">
             <div className="lg:col-span-2">
-              <h1 className="text-lg lg:text-xl font-semibold tracking-tight text-indigo-600  ">
-                  {customersProduct.product?.title}
+              <h1 className="text-lg lg:text-xl font-semibold tracking-tight text-black-700">
+                {customersProduct.product?.title}
               </h1>
               <h1 className="text-sm tracking-tight text-gray-900 opacity-60 pt-1">
-                  {customersProduct.product?.brand}
+                {customersProduct.product?.brand}
               </h1>
             </div>
 
@@ -219,12 +220,19 @@ export default function ProductDetails() {
                 <p className="font-semibold text-red-500">
                   ${customersProduct.product?.discountedPrice}
                 </p>
-                <p className="opacity-50 line-through">
-                  ${customersProduct.product?.price}
-                </p>
-                <p className="text-green-600 font-semibold">
-                  {customersProduct.product?.discountPersent}% Off
-                </p>
+                {customersProduct.product?.price !== 0 &&
+                  customersProduct.product?.price !==
+                    customersProduct.product?.discountedPrice && (
+                    <p className="opacity-50 line-through">
+                      ${customersProduct.product?.price}
+                    </p>
+                  )}
+
+                {customersProduct.product?.discountPersent !== 0 && (
+                  <p className="text-green-600 font-semibold">
+                    {customersProduct.product?.discountPersent}% Off
+                  </p>
+                )}
               </div>
 
               {/* Reviews */}
@@ -364,7 +372,9 @@ export default function ProductDetails() {
                 <h2 className="text-sm font-medium text-gray-900">Details</h2>
 
                 <div className="mt-4 space-y-6">
-                  <p className="text-sm text-gray-600">{customersProduct.product?.description}</p>
+                  <p className="text-sm text-gray-600">
+                    {customersProduct.product?.description}
+                  </p>
                 </div>
               </div>
             </div>
@@ -533,14 +543,14 @@ export default function ProductDetails() {
 
         {/* similer product */}
 
-          <section className=" pt-10">
-            <h1 className="py-5 text-xl font-bold">Similer Products</h1>
-            <div className="flex flex-wrap space-y-5">
-              {similarProducts.map((item) => (
-                <HomeProductCard product={item} />
-              ))}
-            </div>
-          </section>
+        <section className=" pt-10">
+          <h1 className="py-5 text-xl font-bold">Similer Products</h1>
+          <div className="flex flex-wrap space-y-5">
+            {similarProducts.map((item) => (
+              <HomeProductCard product={item} />
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   );
