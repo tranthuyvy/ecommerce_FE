@@ -20,9 +20,8 @@ export const filters = [
       { value: "blue", label: "Blue" },
       { value: "brown", label: "Brown" },
       { value: "green", label: "Green" },
-      { value: "purple", label: "Purple" },
-      { value: "yellow", label: "Yellow"}
-    
+      { value: "yellow", label: "Yellow"},
+      { value: "multi_color", label: "Multi_Color"}
     ],
   },
 
