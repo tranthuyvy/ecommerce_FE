@@ -18,16 +18,24 @@ const ProductCard = ({ product }) => {
     </div>
     <div className='textPart bg-white p-3 '>
         <div>
-        <p  className='font-bold'>{title}</p>
+        <p  className='text-purple-700 font-bold'>{title}</p>
             <p className='text-sm opacity-50'>{brand}</p>
         
         {/* <p className='font-semibold opacity-50'>{color}</p> */}
         </div>
         
         <div className='flex space-x-2 items-center'>
-            <p className='font-semibold'>${discountedPrice}</p>
-            <p className='opacity-50 line-through'>${price}</p>
-            <p className='text-green-600 font-semibold'>{discountPersent}% off</p>
+            <p className='text-red-600 font-bold'>${discountedPrice}</p>
+            {
+              discountedPrice !== price && (
+                <p className='opacity-50 line-through'>${price}</p>
+              )
+            }
+            {
+              discountPersent !== 0 && (
+                <p className='text-green-600 font-semibold'>{discountPersent}% off</p>
+              )
+            }
         </div>
         
     </div>
