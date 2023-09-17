@@ -18,12 +18,12 @@ const CartItem = ({ item,showButton }) => {
     // window.location.reload();
   };
   const handleUpdateCartItem=(num)=>{
-    const data={data:{quantity:item.quantity+num}, cartItemId:item?.id, jwt}
+    const data={data:{quantity:item.quantity + num}, cartItemId:item?.id, jwt}
     dispatch(updateCartItem(data));
     dispatch(updateTotal());
     // window.location.reload();
   };
-    // ai lo vé diu
+
   return (
     <div className="p-5 shadow-lg border rounded-md">
       <div className="flex items-center">

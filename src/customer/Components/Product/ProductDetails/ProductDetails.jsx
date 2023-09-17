@@ -92,6 +92,10 @@ export default function ProductDetails() {
 
     if (selectedSize) {
       const data = { productId, size: selectedSize.name };
+      if (!data || !data.productId || !data.size){
+        alert("Invalid data");
+        return;
+      }
       dispatch(addItemToCart({ data, jwt }));
       navigate("/cart");
     } else {
