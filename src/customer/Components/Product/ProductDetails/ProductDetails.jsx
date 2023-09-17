@@ -9,17 +9,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { findProductById } from "../../../../Redux/Customers/Product/Action";
 import { addItemToCart } from "../../../../Redux/Customers/Cart/Action";
 import { getAllReviews } from "../../../../Redux/Customers/Review/Action";
-import { jordan } from "../../../../Data/Men/nike/jordan";
 import axios from "axios";
 import api from "../../../../config/api";
 
 const product = {
-  name: "Nike",
+  name: "",
   price: "$",
   href: "#",
   breadcrumbs: [
     { id: 1, name: "Men", href: "#" },
-    { id: 2, name: "Clothing", href: "#" },
+    { id: 2, name: "Nike", href: "#" },
   ],
   images: [
     {
@@ -81,7 +80,7 @@ export default function ProductDetails() {
   const handleSetActiveImage = (image) => {
     setFixedImage(image.src);
 
-    setActiveImage(image);
+    setActiveImage(image.src);
   };
 
   const handleSubmit = () => {
@@ -121,7 +120,7 @@ export default function ProductDetails() {
           setLoading(false);
         }
       } catch (error) {
-        console.error("Lỗi khi gọi API:", error);
+        console.error("Call API Error:", error);
         setLoading(false);
       }
     };
@@ -132,6 +131,42 @@ export default function ProductDetails() {
   const similarProducts = productsFromAPI.filter(
     (item) => item.id !== customersProduct.product.id
   );
+
+  //total ratings
+  const totalRatings = (customersProduct.product?.reviews || []).reduce(
+    (total, review) => total + review.star, 0
+  );
+  const averageRating = totalRatings / customersProduct.product?.reviews.length;
+
+  //total ratings excellent
+  const excellentRatings = (customersProduct.product?.reviews || []).filter(
+    (review) => review.star === 4.5 || review.star === 5
+  );
+  const totalExcellentRatings = excellentRatings.length;
+  
+  //total ratings very good
+  const veryGoodRatings = (customersProduct.product?.reviews || []).filter(
+    (review) => review.star === 3.5 || review.star === 4
+  );
+  const totalVeryGoodRatings = veryGoodRatings.length;
+
+  //total ratings good
+  const goodRatings = (customersProduct.product?.reviews || []).filter(
+    (review) => review.star === 2.5 || review.star === 3
+  );
+  const totalGoodRatings = goodRatings.length;
+
+    //total ratings avarage
+    const averageRatings = (customersProduct.product?.reviews || []).filter(
+      (review) => review.star === 1.5 || review.star === 2
+    );
+    const totalAverageRatings = averageRatings.length;
+
+    //total ratings poor
+    const poorRatings = (customersProduct.product?.reviews || []).filter(
+      (review) => review.star === 0.5 || review.star === 1 || review.star === 0
+    );
+    const totalPoorRatings = poorRatings.length;
 
   return (
     <div className="bg-white lg:px-20">
@@ -242,14 +277,14 @@ export default function ProductDetails() {
                 <div className="flex items-center space-x-3">
                   <Rating
                     name="read-only"
-                    value={4.6}
+                    value={averageRating}
                     precision={0.5}
                     readOnly
                   />
 
-                  <p className="opacity-60 text-sm">42807 Ratings</p>
+                  <p className="opacity-60 text-sm">{customersProduct.product?.reviews.length} Ratings</p>
                   <p className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">
-                    {reviews.totalCount} reviews
+                  {customersProduct.product?.reviews.length} reviews
                   </p>
                 </div>
               </div>
@@ -341,16 +376,6 @@ export default function ProductDetails() {
             </div>
 
             <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
-              {/* Description and details
-              <div>
-                <h3 className="sr-only">Description</h3>
-
-                <div className="space-y-6">
-                  <p className="text-base text-gray-900">
-                    {customersProduct.product?.description}
-                  </p>
-                </div>
-              </div> */}
 
               <div className="mt-10">
                 <h3 className="text-sm font-medium text-gray-900">
@@ -402,12 +427,12 @@ export default function ProductDetails() {
                 <div className="flex items-center space-x-3 pb-10">
                   <Rating
                     name="read-only"
-                    value={4.6}
+                    value={averageRating}
                     precision={0.5}
                     readOnly
                   />
 
-                  <p className="opacity-60">42807 Ratings</p>
+                  <p className="opacity-60">{customersProduct.product?.reviews.length} Ratings</p>
                 </div>
                 <Box>
                   <Grid
@@ -424,12 +449,12 @@ export default function ProductDetails() {
                         className=""
                         sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }}
                         variant="determinate"
-                        value={40}
+                        value={(totalExcellentRatings / customersProduct.product?.reviews.length) * 100}
                         color="success"
                       />
                     </Grid>
                     <Grid xs={2}>
-                      <p className="opacity-50 p-2">19259</p>
+                      <p className="opacity-50 p-2">{totalExcellentRatings} Ratings</p>
                     </Grid>
                   </Grid>
                 </Box>
@@ -448,12 +473,12 @@ export default function ProductDetails() {
                         className=""
                         sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }}
                         variant="determinate"
-                        value={30}
+                        value={(totalVeryGoodRatings / customersProduct.product?.reviews.length) * 100}
                         color="success"
                       />
                     </Grid>
                     <Grid xs={2}>
-                      <p className="opacity-50 p-2">19259</p>
+                      <p className="opacity-50 p-2">{totalVeryGoodRatings} Ratings</p>
                     </Grid>
                   </Grid>
                 </Box>
@@ -472,12 +497,12 @@ export default function ProductDetails() {
                         className="bg-[#885c0a]"
                         sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }}
                         variant="determinate"
-                        value={25}
+                        value={(totalGoodRatings / customersProduct.product?.reviews.length) * 100}
                         color="orange"
                       />
                     </Grid>
                     <Grid xs={2}>
-                      <p className="opacity-50 p-2">19259</p>
+                      <p className="opacity-50 p-2">{totalGoodRatings} Ratings</p>
                     </Grid>
                   </Grid>
                 </Box>
@@ -503,12 +528,12 @@ export default function ProductDetails() {
                           },
                         }}
                         variant="determinate"
-                        value={21}
+                        value={(totalAverageRatings / customersProduct.product?.reviews.length) * 100}
                         color="success"
                       />
                     </Grid>
                     <Grid xs={2}>
-                      <p className="opacity-50 p-2">19259</p>
+                      <p className="opacity-50 p-2">{totalAverageRatings} Ratings</p>
                     </Grid>
                   </Grid>
                 </Box>
@@ -527,12 +552,12 @@ export default function ProductDetails() {
                         className=""
                         sx={{ bgcolor: "#d0d0d0", borderRadius: 4, height: 7 }}
                         variant="determinate"
-                        value={10}
+                        value={(totalPoorRatings / customersProduct.product?.reviews.length) * 100}
                         color="error"
                       />
                     </Grid>
                     <Grid xs={2}>
-                      <p className="opacity-50 p-2">19259</p>
+                      <p className="opacity-50 p-2">{totalPoorRatings} Ratings</p>
                     </Grid>
                   </Grid>
                 </Box>
