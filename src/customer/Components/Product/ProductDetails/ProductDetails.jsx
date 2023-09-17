@@ -499,7 +499,7 @@ export default function ProductDetails() {
                           borderRadius: 4,
                           height: 7,
                           "& .MuiLinearProgress-bar": {
-                            bgcolor: "#885c0a", // stroke color
+                            bgcolor: "#885c0a", 
                           },
                         }}
                         variant="determinate"
@@ -546,7 +546,7 @@ export default function ProductDetails() {
         <section className=" pt-10">
           <h1 className="py-5 text-xl font-bold">Similer Products</h1>
           <div className="flex flex-wrap space-y-5">
-            {similarProducts.map((item) => (
+            {similarProducts.slice(0,20).map((item) => (
               <HomeProductCard product={item} />
             ))}
           </div>
