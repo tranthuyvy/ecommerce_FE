@@ -213,14 +213,14 @@ const UpdateProductForm = () => {
                 onChange={handleChange}
                 label="Second Level Category"
               >
-                <MenuItem value="clothing">Adidas</MenuItem>
-                <MenuItem value="accessories">Converse</MenuItem>
-                <MenuItem value="brands">Nike</MenuItem>
+                <MenuItem value="adidas">Adidas</MenuItem>
+                <MenuItem value="converse">Converse</MenuItem>
+                <MenuItem value="nike">Nike</MenuItem>
               </Select>
             </FormControl>
           </Grid>
           <Grid item xs={6} sm={4}>
-            <FormControl fullWidth>
+          <FormControl fullWidth>
               <InputLabel>Third Level Category</InputLabel>
               <Select
                 name="thirdLavelCategory"
@@ -228,11 +228,54 @@ const UpdateProductForm = () => {
                 onChange={handleChange}
                 label="Third Level Category"
               >
-                <MenuItem value="gym">Gym</MenuItem>
-                <MenuItem value="running">Running</MenuItem>
-                <MenuItem value="air_force_1">Air Force 1</MenuItem>
-                <MenuItem value="chuck_70">Chuck 70</MenuItem>
-                <MenuItem value="hiking">Hiking</MenuItem>
+                {productData.secondLavelCategory === "nike" && (
+                  <MenuItem value="air_force_1">Air Force 1</MenuItem>
+                )}
+
+                {productData.secondLavelCategory === "nike" && (
+                  <MenuItem value="air_max">Air Max</MenuItem>
+                )}
+
+                {productData.secondLavelCategory === "nike" && (
+                  <MenuItem value="basketball">Basketball</MenuItem>
+                )}
+
+                {productData.secondLavelCategory === "converse" && (
+                  <MenuItem value="chuck_70">Chuck 70</MenuItem>
+                )}
+
+                {productData.secondLavelCategory === "converse" && (
+                  <MenuItem value="classic_chuck">Classic Chuck</MenuItem>
+                )}
+
+                {productData.secondLavelCategory === "nike" && (
+                  <MenuItem value="jordan">Jordan</MenuItem>
+                )}
+                
+                {productData.secondLavelCategory === "nike" && (
+                  <MenuItem value="life_style">Lifestyle</MenuItem>
+                )}
+                
+                {productData.secondLavelCategory === "adidas" && (
+                  <MenuItem value="hiking">Hiking</MenuItem>
+                )}
+
+                {productData.secondLavelCategory === "adidas" && (
+                  <MenuItem value="golf">Golf</MenuItem>
+                )}
+
+                {productData.secondLavelCategory === "adidas" && (
+                  <MenuItem value="gym">Gym</MenuItem>
+                )}
+
+                {productData.secondLavelCategory === "adidas" && (
+                  <MenuItem value="running">Running</MenuItem>
+                )}
+
+                {productData.secondLavelCategory === "adidas" && (
+                  <MenuItem value="soccer">Soccer</MenuItem>
+                )}
+
               </Select>
             </FormControl>
           </Grid>
