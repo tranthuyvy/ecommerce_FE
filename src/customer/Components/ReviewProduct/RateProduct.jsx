@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createReview } from "../../../Redux/Customers/Review/Action";
 import { useNavigate, useParams } from "react-router-dom";
 import { findProductById } from "../../../Redux/Customers/Product/Action";
-import CustomerRoutes from "../../../Routers/CustomerRoutes";
+import { format } from "date-fns";
 
 const RateProduct = () => {
   const [formData, setFormData] = useState({ title: "", description: "" });
@@ -40,7 +40,6 @@ const RateProduct = () => {
     event.preventDefault();
 
     console.log(formData);
-    // You can customize this handler to handle the form data as needed
 
     dispatch(createReview({review:formData.title,productId}))
     setFormData({title:"",description:""})
@@ -50,6 +49,13 @@ const RateProduct = () => {
   useEffect(() => {
     dispatch(findProductById({ productId }));
   }, []);
+
+  //total ratings
+  const totalRatings = (customersProduct.product?.reviews || []).reduce(
+    (total, review) => total + review.star, 0
+  );
+  const averageRating = totalRatings / customersProduct.product?.reviews.length;
+
   return (
     <div className="px-5 lg:px-20">
       <h1 className="text-xl p-5 shadow-lg mb-8 font-bold">
@@ -70,19 +76,35 @@ const RateProduct = () => {
             />
           </div>
           <div className="ml-3 lg:ml-5 space-y-2 lg:space-y-4">
-            <p className="lg:text-lg">{customersProduct.product?.title}</p>
-            <p className="opacity-50 font-semibold">
+            <p className="lg:text-lg font-bold">{customersProduct.product?.title}</p>
+            <p className="opacity-50 font-semibold text-xs">
               {customersProduct.product?.brand}
             </p>
-            <p>₹{customersProduct.product?.price}</p>
-            <p>Size: Free</p>
-           {customersProduct.product?.color && <p>Color: {customersProduct.product?.color}</p>}
-            <div className="flex items-center space-x-3">
-              <Rating name="read-only" value={4.6} precision={0.5} readOnly />
 
-              <p className="opacity-60 text-sm">42807 Ratings</p>
+            <div className='flex space-x-2 items-center'>
+            <p className="text-red-600 font-bold">${customersProduct.product?.discountedPrice}</p>
+            {
+              customersProduct.product?.discountedPrice !== customersProduct.product?.price && customersProduct.product?.price !== 0 && (
+                <p className='opacity-50 line-through'>${customersProduct.product?.price}</p>
+              )
+            }
+            {
+              customersProduct.product?.discountPersent !== 0 && (
+                <p className='text-green-600 font-semibold'>{customersProduct.product?.discountPersent}% off</p>
+              )
+            }
+        </div>
+            
+           {customersProduct.product?.color && <p className="font-semibold text-sm">Color: {customersProduct.product?.color}</p>}
+            <div className="flex items-center space-x-3">
+              <Rating name="read-only" 
+                value={averageRating} 
+                precision={0.5} 
+                readOnly />
+
+              <p className="opacity-60 text-sm">{customersProduct.product?.reviews.length} Ratings</p>
               <p className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">
-                {3789} reviews
+              {customersProduct.product?.reviews.length} reviews
               </p>
             </div>
             <div>
@@ -91,7 +113,7 @@ const RateProduct = () => {
                   sx={{ width: "15px", height: "15px" }}
                   className="text-green-600  mr-2"
                 />
-                <span>Delivered On Mar 03</span>{" "}
+                <span>Delivered On: {format(new Date(customersProduct.product?.createdAt), "dd/MM/yyyy")}</span>{" "}
               </p>
               <p className="text-xs">Your Item Has Been Delivered</p>
             </div>
