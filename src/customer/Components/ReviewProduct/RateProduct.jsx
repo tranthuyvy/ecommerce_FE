@@ -41,7 +41,13 @@ const RateProduct = () => {
 
     console.log(formData);
 
-    dispatch(createReview({review:formData.title,productId}))
+    const reviewData = {
+      review: formData.title,
+      productId,
+      
+    };
+
+    dispatch(createReview(reviewData))
     setFormData({title:"",description:""})
     navigate(`/product/${productId}`)
 
@@ -94,7 +100,7 @@ const RateProduct = () => {
               )
             }
         </div>
-            
+            <p className="font-semibold text-sm">Size: {customersProduct.product?.sizes[0].name}</p>
            {customersProduct.product?.color && <p className="font-semibold text-sm">Color: {customersProduct.product?.color}</p>}
             <div className="flex items-center space-x-3">
               <Rating name="read-only" 
@@ -113,9 +119,9 @@ const RateProduct = () => {
                   sx={{ width: "15px", height: "15px" }}
                   className="text-green-600  mr-2"
                 />
-                <span>Delivered On: {format(new Date(customersProduct.product?.createdAt), "dd/MM/yyyy")}</span>{" "}
+                <span className="text-xs">Your Item Has Been Delivered</span>
               </p>
-              <p className="text-xs">Your Item Has Been Delivered</p>
+              
             </div>
           </div>
         </Grid>
