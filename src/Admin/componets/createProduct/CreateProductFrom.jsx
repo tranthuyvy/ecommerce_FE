@@ -16,7 +16,6 @@ import { useDispatch } from "react-redux";
 import { createProduct } from "../../../Redux/Customers/Product/Action";
 import { useNavigate } from "react-router-dom";
 
-
 const initialSizes = [
   { name: "6", quantity: 0 },
   { name: "7", quantity: 0 },
@@ -27,7 +26,6 @@ const initialSizes = [
 ];
 
 const CreateProductForm = () => {
-  
   const [productData, setProductData] = useState({
     imageUrl: "",
     brand: "",
@@ -43,9 +41,9 @@ const CreateProductForm = () => {
     thirdLavelCategory: "",
     description: "",
   });
-const dispatch=useDispatch();
-const jwt=localStorage.getItem("jwt")
-const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const jwt = localStorage.getItem("jwt");
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -57,7 +55,7 @@ const navigate = useNavigate();
 
   const handleSizeChange = (e, index) => {
     let { name, value } = e.target;
-    name==="size_quantity"?name="quantity":name=e.target.name;
+    name === "size_quantity" ? (name = "quantity") : (name = e.target.name);
 
     const sizes = [...productData.size];
     sizes[index][name] = value;
@@ -67,14 +65,14 @@ const navigate = useNavigate();
     }));
   };
 
-  const handleAddSize = () => {
-    const sizes = [...productData.size];
-    sizes.push({ name: "", quantity: "" });
-    setProductData((prevState) => ({
-      ...prevState,
-      size: sizes,
-    }));
-  };
+  // const handleAddSize = () => {
+  //   const sizes = [...productData.size];
+  //   sizes.push({ name: "", quantity: "" });
+  //   setProductData((prevState) => ({
+  //     ...prevState,
+  //     size: sizes,
+  //   }));
+  // };
 
   // const handleRemoveSize = (index) => {
   //   const sizes = [...productData.size];
@@ -87,7 +85,7 @@ const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createProduct({data:productData,jwt}))
+    dispatch(createProduct({ data: productData, jwt }));
     navigate("/admin/products");
     console.log(productData);
   };
@@ -134,7 +132,7 @@ const navigate = useNavigate();
               onChange={handleChange}
             />
           </Grid>
-        
+
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
@@ -183,7 +181,7 @@ const navigate = useNavigate();
               type="number"
             />
           </Grid>
-          
+
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
@@ -217,9 +215,9 @@ const navigate = useNavigate();
                 onChange={handleChange}
                 label="Second Level Category"
               >
-                <MenuItem value="clothing">Adidas</MenuItem>
-                <MenuItem value="accessories">Converse</MenuItem>
-                <MenuItem value="brands">Nike</MenuItem>
+                <MenuItem value="adidas">Adidas</MenuItem>
+                <MenuItem value="converse">Converse</MenuItem>
+                <MenuItem value="nike">Nike</MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -232,11 +230,54 @@ const navigate = useNavigate();
                 onChange={handleChange}
                 label="Third Level Category"
               >
-                <MenuItem value="gym">Gym</MenuItem>
-                <MenuItem value="running">Running</MenuItem>
-                <MenuItem value="air_force_1">Air Force 1</MenuItem>
-                <MenuItem value="chuck_70">Chuck 70</MenuItem>
-                <MenuItem value="hiking">Hiking</MenuItem>
+                {productData.secondLavelCategory === "nike" && (
+                  <MenuItem value="air_force_1">Air Force 1</MenuItem>
+                )}
+
+                {productData.secondLavelCategory === "nike" && (
+                  <MenuItem value="air_max">Air Max</MenuItem>
+                )}
+
+                {productData.secondLavelCategory === "nike" && (
+                  <MenuItem value="basketball">Basketball</MenuItem>
+                )}
+
+                {productData.secondLavelCategory === "converse" && (
+                  <MenuItem value="chuck_70">Chuck 70</MenuItem>
+                )}
+
+                {productData.secondLavelCategory === "converse" && (
+                  <MenuItem value="classic_chuck">Classic Chuck</MenuItem>
+                )}
+
+                {productData.secondLavelCategory === "nike" && (
+                  <MenuItem value="jordan">Jordan</MenuItem>
+                )}
+                
+                {productData.secondLavelCategory === "nike" && (
+                  <MenuItem value="life_style">Lifestyle</MenuItem>
+                )}
+                
+                {productData.secondLavelCategory === "adidas" && (
+                  <MenuItem value="hiking">Hiking</MenuItem>
+                )}
+
+                {productData.secondLavelCategory === "adidas" && (
+                  <MenuItem value="golf">Golf</MenuItem>
+                )}
+
+                {productData.secondLavelCategory === "adidas" && (
+                  <MenuItem value="gym">Gym</MenuItem>
+                )}
+
+                {productData.secondLavelCategory === "adidas" && (
+                  <MenuItem value="running">Running</MenuItem>
+                )}
+
+                {productData.secondLavelCategory === "adidas" && (
+                  <MenuItem value="soccer">Soccer</MenuItem>
+                )}
+
               </Select>
             </FormControl>
           </Grid>
@@ -253,7 +294,7 @@ const navigate = useNavigate();
             />
           </Grid>
           {productData.size.map((size, index) => (
-            <Grid container item spacing={3} >
+            <Grid container item spacing={3}>
               <Grid item xs={12} sm={6}>
                 <TextField
                   label="Size Name"
@@ -273,10 +314,10 @@ const navigate = useNavigate();
                   required
                   fullWidth
                 />
-              </Grid> </Grid>
-            
+              </Grid>{" "}
+            </Grid>
           ))}
-          <Grid item xs={12} >
+          <Grid item xs={12}>
             <Button
               variant="contained"
               sx={{ p: 1.8 }}
