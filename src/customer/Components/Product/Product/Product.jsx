@@ -113,7 +113,6 @@ export default function Product() {
       }
       console.log("includes");
     } else {
-      // Remove all values for the current section
       // searchParams.delete(sectionId);
       filterValues.push(value);
     }
