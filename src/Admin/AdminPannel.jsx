@@ -27,6 +27,8 @@ import ProductsTable from "./componets/Products/ProductsTable";
 import OrdersTable from "./componets/Orders/OrdersTable";
 import Customers from "./componets/customers/customers";
 import UpdateProductForm from "./componets/updateProduct/UpdateProduct";
+import { logout } from "../Redux/Auth/Action";
+import { useDispatch } from "react-redux";
 
 const drawerWidth = 240;
 
@@ -41,7 +43,13 @@ export default function AdminPannel() {
   const theme = useTheme();
   const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
   const [sideBarVisible, setSideBarVisible] = React.useState(false);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/");
+  };
 
   const drawer = (
     <Box
@@ -68,8 +76,8 @@ export default function AdminPannel() {
 
       <List sx={{ position: "absolute", bottom: 0, width: "100%" }}>
         <Divider />
-        {["Account", "Request"].map((text, index) => (
-          <ListItem key={text} disablePadding>
+        {["Account", "Logout"].map((text, index) => (
+          <ListItem key={text} disablePadding onClick={text === "Logout" ? handleLogout : null}>
             <ListItemButton>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
