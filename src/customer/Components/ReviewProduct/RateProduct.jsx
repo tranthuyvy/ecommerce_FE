@@ -44,7 +44,7 @@ const RateProduct = () => {
     const reviewData = {
       review: formData.title,
       productId,
-      
+      star: rating
     };
 
     dispatch(createReview(reviewData))
