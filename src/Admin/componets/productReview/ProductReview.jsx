@@ -70,7 +70,9 @@ const ProductReviews = () => {
     </div>
         ))}
       </ul>
-      <button onClick={() => navigate(`/admin/products`)}>Back to Product</button>
+      <button 
+        className="mt-10 w-[10rem] h-[5rem] bg-white text-indigo-600 text-lg font-bold border rounded-md" 
+        onClick={() => navigate(`/admin/products`)}>Back</button>
     </div>
   );
 };
