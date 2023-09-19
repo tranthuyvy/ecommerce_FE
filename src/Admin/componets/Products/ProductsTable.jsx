@@ -20,8 +20,8 @@ import {
 } from "@mui/material";
 
 import React from "react";
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -176,10 +176,13 @@ const ProductsTable = () => {
                 <TableCell>Title</TableCell>
                 <TableCell sx={{ textAlign: "center" }}>Category</TableCell>
                 <TableCell sx={{ textAlign: "center" }}>Price</TableCell>
-                <TableCell sx={{ textAlign: "center" }}>Discounted Price</TableCell>
+                <TableCell sx={{ textAlign: "center" }}>
+                  Discounted Price
+                </TableCell>
                 <TableCell sx={{ textAlign: "center" }}>Quantity</TableCell>
                 <TableCell sx={{ textAlign: "center" }}>Update</TableCell>
                 <TableCell sx={{ textAlign: "center" }}>Delete</TableCell>
+                <TableCell sx={{ textAlign: "center" }}>Reviews</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -229,7 +232,7 @@ const ProductsTable = () => {
                       variant="text"
                       color="warning"
                     >
-                      <EditIcon/>
+                      <EditIcon />
                     </Button>
                   </TableCell>
                   <TableCell sx={{ textAlign: "center" }}>
@@ -238,7 +241,16 @@ const ProductsTable = () => {
                       onClick={() => handleDeleteProduct(item.id)}
                       color="secondary"
                     >
-                      <DeleteIcon/>
+                      <DeleteIcon />
+                    </Button>
+                  </TableCell>
+                  <TableCell sx={{ textAlign: "center" }}>
+                    <Button
+                      onClick={() => navigate(`/admin/product/reviews/${item.id}`)}
+                      variant="text"
+                      color="success"
+                    >
+                      View Reviews
                     </Button>
                   </TableCell>
                 </TableRow>
