@@ -7,7 +7,7 @@ export const homeCarouselData = [
   {
     image:
       "http://giay2.mau.webngon.vn/wp-content/uploads/2019/02/home-banner.jpg",
-    path: "/women/nike/running",
+    path: "/women/nike/air_force_1",
   },
   {
     image:

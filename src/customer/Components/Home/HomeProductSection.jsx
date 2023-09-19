@@ -4,9 +4,15 @@ import "./HomeProductSection.css";
 import { Button } from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getProducts } from "../../../Redux/Admin/Product/Action";
 
-const HomeProductSection = ({ section, data }) => {
+const HomeProductSection = ({ section }) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const dispatch = useDispatch();
+  const jwt = localStorage.getItem("jwt");
+  const productListCategory = useSelector((store) => store.adminsProduct)
 
   const slidePrev = () => setActiveIndex(activeIndex - 1);
   const slideNext = () => setActiveIndex(activeIndex + 1);
@@ -26,16 +32,17 @@ const HomeProductSection = ({ section, data }) => {
       itemsFit: "contain",
     },
   };
-  const items = data?.slice(0, 10).map((item) => (
-    <div className="">
-      {" "}
-      <HomeProductCard product={item} />
-    </div>
-  ));
 
-  // const slideInFromRight = (t) => {
-  //   return `translateX(${100 - t * 100}%)`;
-  // };
+  useEffect(() => {
+    dispatch(getProducts());
+  },[jwt]);
+
+  const items = Array.isArray(productListCategory.products) ? productListCategory.products?.slice(0, 10).map((product) => (
+    <div key={product.id} className="">
+      {" "}
+      <HomeProductCard product={product} />
+    </div>
+  )):null ;
 
   return (
     <div className="relative px-4 sm:px-6 lg:px-8 ">

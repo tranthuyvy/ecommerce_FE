@@ -2,6 +2,9 @@ import {
   GET_PRODUCTS_REQUEST,
   GET_PRODUCTS_SUCCESS,
   GET_PRODUCTS_FAILURE,
+  GET_PRODUCTS_CATEGORY_REQUEST,
+  GET_PRODUCTS_CATEGORY_SUCCESS,
+  GET_PRODUCTS_CATEGORY_FAILURE,
   CREATE_PRODUCT_REQUEST,
   CREATE_PRODUCT_SUCCESS,
   CREATE_PRODUCT_FAILURE,
@@ -34,6 +37,24 @@ const productReducer = (state = initialState, action) => {
         products: action.payload,
       };
     case GET_PRODUCTS_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case GET_PRODUCTS_CATEGORY_REQUEST:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case GET_PRODUCTS_CATEGORY_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        products: action.payload,
+      };
+    case GET_PRODUCTS_CATEGORY_FAILURE:
       return {
         ...state,
         loading: false,
