@@ -61,12 +61,12 @@ const ProductReviews = () => {
             <p className="lg:text-lg font-bold">
               {customersProduct.product?.title}
             </p>
-            <p className="opacity-50 font-semibold text-xs">
+            <p className="opacity-50 font-semibold text-sm">
               {customersProduct.product?.brand}
             </p>
 
             <div className="flex space-x-2 items-center">
-              <p className="text-red-600 font-bold">
+              <p className="text-red-600 font-semibold text-lg">
                 ${customersProduct.product?.discountedPrice}
               </p>
               {customersProduct.product?.discountedPrice !==
@@ -98,10 +98,10 @@ const ProductReviews = () => {
                 readOnly
               />
 
-              <p className="opacity-60 text-sm">
+              <p className="opacity-60 text-sm hover:text-indigo-500">
                 {customersProduct.product?.reviews.length} Ratings
               </p>
-              <p className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">
+              <p className="ml-3 text-sm font-medium hover:text-indigo-500">
                 {customersProduct.product?.reviews.length} reviews
               </p>
             </div>
@@ -111,8 +111,8 @@ const ProductReviews = () => {
           <div className={`${!isLargeScreen ? "py-10" : ""} space-y-5`}>
             <div className="shadow-md border rounded-md p-5" style={{ maxHeight: '400px', overflowY: 'auto' }}>
               <Typography className="font-semibold" component="legend">
-                {customersProduct.product?.reviews &&
-                  customersProduct.product?.reviews.map((item) => (
+                {customersProduct.product?.reviews && customersProduct.product?.reviews.length > 0 ?
+                  (customersProduct.product?.reviews.map((item) => (
                     <div className="p-5">
                       <Grid container spacing={2} gap={4}>
                         <Grid item xs={1}>
@@ -155,17 +155,11 @@ const ProductReviews = () => {
                       </Grid>
                       <div className="col-span-1 flex"></div>
                     </div>
-                  ))}
+                  ))):(
+                    <p className="text-center font-semibold" style={{color:"yellow"}}>Product has not been reviewed</p>
+                  )}
               </Typography>
             </div>
-
-            {/* <Button
-              variant="contained"
-              color="primary"
-              onClick={() => navigate(`/admin/products`)}
-            >
-              Back
-            </Button> */}
           </div>
         </Grid>
       </Grid>
