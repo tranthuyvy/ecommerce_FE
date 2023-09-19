@@ -35,18 +35,25 @@ const CartItem = ({ item,showButton }) => {
           />
         </div>
         <div className="ml-5 space-y-1">
-          <p className="font-semibold">{item?.product?.title}</p>
-          <p className="opacity-70">Size: {item?.size}, White</p>
-          <p className="opacity-70 mt-2">Seller: {item?.product?.brand}</p>
+          <p className="font-bold text-lg">{item?.product?.title}</p>
+          <p className="opacity-70 text-sm mt-5">Size: {item?.size}, White</p>
+          <p className="opacity-70 mt-5 text-sm">Brand: {item?.product?.brand}</p>
           <div className="flex space-x-2 items-center pt-3">
-            <p className="opacity-50 line-through">${item?.product.price}</p>
-            <p className="font-semibold text-lg">
-              ${item?.product.discountedPrice}
-            </p>
-            
-            <p className="text-green-600 font-semibold">
-              {item?.product.discountPersent}% off
-            </p>
+
+          <p className='text-red-600 font-semibold text-lg'>${item?.product.discountedPrice}</p>
+
+            {
+              item?.product.discountedPrice !== item?.product.price && item?.product.price !== 0 && (
+                <p className="opacity-50 line-through text-lg">${item?.product.price}</p>
+              )
+            }
+
+            {
+              item?.product.discountPersent !== 0 && (
+                <p className='text-green-600 font-semibold text-lg'>{item?.product.discountPersent}% off</p>
+              )
+            }
+    
           </div>
         </div>
       </div>
