@@ -22,6 +22,7 @@ import {
 import React from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -250,7 +251,7 @@ const ProductsTable = () => {
                       variant="text"
                       color="success"
                     >
-                      View Reviews
+                      <VisibilityIcon/>
                     </Button>
                   </TableCell>
                 </TableRow>
