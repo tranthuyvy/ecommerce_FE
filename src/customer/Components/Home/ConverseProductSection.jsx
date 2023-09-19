@@ -7,7 +7,7 @@ const ConverseProductSection = () => {
     <div className="product-card">
       <div className="product-info-section">
         <div className="product-image ml-10">
-          <Link to="/product/103">
+          <Link to="/product/404">
             <img
                 className="p-8 ml-10"
               //   src="https://www.converse.com/dw/image/v2/BCZC_PRD/on/demandware.static/-/Sites-cnv-master-catalog/default/dw876310c5/images/h_08/A00915C_H_08X1.jpg?sw=406"

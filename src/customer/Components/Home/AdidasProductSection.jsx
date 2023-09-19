@@ -21,7 +21,7 @@ const AdidasProductSection = () => {
           </p>
         </div>
         <div className="product-image ml-10 -mr-10">
-          <Link to="/product/102">
+          <Link to="/product/403">
             <img
               src="https://2app.kicksonfire.com/kofapp/upload/events_images/ipad_adidas-wmns-ultra-boost-4-0-cloud-white-non-dyed-6.jpg"
               alt="Product"

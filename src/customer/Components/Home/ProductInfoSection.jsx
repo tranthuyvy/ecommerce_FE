@@ -7,7 +7,7 @@ const ProductInfoSection = () => {
     <div className="product-card">
       <div className="product-info-section">
         <div className="product-image ml-10">
-          <Link to="/product/52">
+          <Link to="/product/402">
             <img
               src="https://classic.cdn.media.amplience.net/i/hibbett/1985-Air%20Jordan%201.png"
               alt="Product"
