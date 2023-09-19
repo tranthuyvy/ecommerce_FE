@@ -59,7 +59,7 @@ const Topics = () => {
                 <div className="">
                     <div className="">
                         <div className="mt-10 mr-5">
-                            <Link to="/women/nike/running">
+                            <Link to="/women/nike/jordan">
                                 <img
                                     className=""
                                     src="https://i.pinimg.com/originals/bf/bd/c3/bfbdc3594a00c17d40043cf2b93e7a93.jpg"
@@ -72,7 +72,7 @@ const Topics = () => {
 
                 <div className="ml-5 mt-5">
                     <span className="">
-                        <strong className="">NIKE RUNNING</strong>
+                        <strong className="">NIKE JORDAN</strong>
                     </span>
                     
                     <p className="mt-2 justify-between" style={paragraphStyle}>
