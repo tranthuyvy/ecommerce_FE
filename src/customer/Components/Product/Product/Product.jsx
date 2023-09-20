@@ -18,7 +18,6 @@ import Pagination from "@mui/material/Pagination";
 import { filters, singleFilter, sortOptions } from "./FilterData";
 import ProductCard from "../ProductCard/ProductCard";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { productdata } from "../../../../data";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import {
