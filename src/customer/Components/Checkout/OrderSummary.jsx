@@ -4,9 +4,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import CartItem from "../Cart/CartItem";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrderById } from "../../../Redux/Customers/Order/Action";
+import { getOrderById, updatePaymentStatus } from "../../../Redux/Customers/Order/Action";
 import AddressCard from "../adreess/AdreessCard";
-import { createPayment } from "../../../Redux/Customers/Payment/Action";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import Modal from 'react-modal';
 
@@ -16,8 +15,8 @@ const OrderSummary = () => {
   const searchParams = new URLSearchParams(location.search);
   const orderId = searchParams.get("order_id");
   const dispatch=useDispatch();
-  const jwt=localStorage.getItem("jwt");
-  const {order}=useSelector(state=>state)
+  const jwt = localStorage.getItem("jwt");
+  const {order} = useSelector(state=>state)
 
   const [success, setSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState('')
@@ -34,12 +33,14 @@ const OrderSummary = () => {
   //   dispatch(createPayment(data))
   // };
 
-  const handlePaymentSuccess = (details) => {
-    const {payer} = details;
+  const handlePaymentSuccess = () => {
+    // const {payer} = details;
     setSuccess(true);
 
+    dispatch(updatePaymentStatus(order.order?.id));
+
     navigate("/account/order");
-  }
+  };
 
   const handlePaymentFailed = () => {
     setErrorMessage("Payment Failed");
@@ -112,7 +113,7 @@ const OrderSummary = () => {
                 }}
                 onApprove={(data, actions) => {
                   return actions.order.capture().then(function (details) {
-                    handlePaymentSuccess(details);
+                    handlePaymentSuccess();
                   });
                 }}
 

@@ -39,8 +39,6 @@ console.log("step",step)
     navigate(`/checkout?step=${step-1}`)
   };
 
-
-
   const handleReset = () => {
     setActiveStep(0);
   };

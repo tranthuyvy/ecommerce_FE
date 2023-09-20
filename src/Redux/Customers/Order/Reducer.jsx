@@ -11,6 +11,9 @@ import {
   GET_FILTERED_ORDERS_REQUEST,
   GET_FILTERED_ORDERS_SUCCESS,
   GET_FILTERED_ORDERS_FAILURE,
+  UPDATE_PAYMENT_STATUS_REQUEST,
+  UPDATE_PAYMENT_STATUS_SUCCESS,
+  UPDATE_PAYMENT_STATUS_FAILURE,
 } from "./ActionType";
 
 const initialState = {
@@ -18,6 +21,7 @@ const initialState = {
   order: null,
   error: null,
   loading: false,
+  paymentStatusUpdated: false,
 };
 
 export const orderReducer = (state = initialState, action) => {
@@ -79,6 +83,23 @@ export const orderReducer = (state = initialState, action) => {
         orders: action.payload,
       };
     case GET_FILTERED_ORDERS_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case UPDATE_PAYMENT_STATUS_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case UPDATE_PAYMENT_STATUS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        orders: action.payload,
+      };
+    case UPDATE_PAYMENT_STATUS_FAILURE:
       return {
         ...state,
         loading: false,

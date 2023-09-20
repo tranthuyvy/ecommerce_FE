@@ -12,6 +12,10 @@ import {
   GET_FILTERED_ORDERS_FAILURE,
   GET_FILTERED_ORDERS_REQUEST,
   GET_FILTERED_ORDERS_SUCCESS,
+  UPDATE_PAYMENT_STATUS_REQUEST,
+  UPDATE_PAYMENT_STATUS_SUCCESS,
+  UPDATE_PAYMENT_STATUS_FAILURE,
+
 } from "./ActionType";
 import api, { API_BASE_URL } from "../../../config/api";
 
@@ -70,6 +74,29 @@ export const getOrderById = (orderId) => async (dispatch) => {
     console.log("catch ",error)
     dispatch({
       type: GET_ORDER_BY_ID_FAILURE,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const updatePaymentStatus = (orderId) => async (dispatch) => {
+  try {
+    dispatch({ type: UPDATE_PAYMENT_STATUS_REQUEST });
+
+    const { data } = await api.put(
+      `${API_BASE_URL}/api/admin/orders/${orderId}/update-payment-status`,
+    );
+
+    dispatch({
+      type: UPDATE_PAYMENT_STATUS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: UPDATE_PAYMENT_STATUS_FAILURE,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
