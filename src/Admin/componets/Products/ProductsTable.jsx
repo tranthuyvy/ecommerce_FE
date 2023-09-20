@@ -109,14 +109,22 @@ const ProductsTable = () => {
                 onChange={(e) => handleFilterChange(e, "category")}
               >
                 <MenuItem value={""}>All</MenuItem>
+                <MenuItem value={"golf"}>Adidas Golf</MenuItem>
+                <MenuItem value={"gym"}>Adidas Gym</MenuItem>
+                <MenuItem value={"hiking"}>Adidas Hiking</MenuItem>
+                <MenuItem value={"running"}>Adidas Running</MenuItem>
+                <MenuItem value={"soccer"}>Adidas Soccer</MenuItem>
+                <MenuItem value={"chuck_70"}>Converse Chuck 70</MenuItem>
+                <MenuItem value={"classic_chuck"}>Converse Classic Chuck</MenuItem>
                 <MenuItem value={"air_force_1"}>Nike Air Force 1</MenuItem>
-                <MenuItem value={"jordan"}>Jordan</MenuItem>
-                <MenuItem value={"running"}>Running</MenuItem>
-                <MenuItem value={"gym"}>Gym</MenuItem>
+                <MenuItem value={"air_max"}>Nike Air Max</MenuItem>
+                <MenuItem value={"basketball"}>Nike Basketball</MenuItem>
+                <MenuItem value={"jordan"}>Nike Jordan</MenuItem>
+                <MenuItem value={"life_style"}>Nike Lifestyle</MenuItem>
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={4}>
+          {/* <Grid item xs={4}>
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">
                 Availability
@@ -133,7 +141,7 @@ const ProductsTable = () => {
                 <MenuItem value={"out_of_stock"}>Out Of Stock</MenuItem>
               </Select>
             </FormControl>
-          </Grid>
+          </Grid> */}
           <Grid item xs={4}>
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">
