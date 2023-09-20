@@ -37,7 +37,7 @@ const HomeProductSection = ({ section }) => {
     dispatch(getProducts());
   },[jwt]);
 
-  const items = Array.isArray(productListCategory.products) ? productListCategory.products?.slice(0, 10).map((product) => (
+  const items = Array.isArray(productListCategory.products) ? productListCategory.products?.filter((product) => product.status !== 1).slice(0, 10).map((product) => (
     <div key={product.id} className="">
       {" "}
       <HomeProductCard product={product} />
