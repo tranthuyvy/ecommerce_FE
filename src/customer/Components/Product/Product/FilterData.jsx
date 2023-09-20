@@ -65,15 +65,15 @@ export const singleFilter=[
       { value: "50", label: "50% And Above" },
     ],
   },
-  {
-    id: "stock",
-    name: "Availability",
-    options: [
-      { value: "in_stock", label: "In Stock" },
-      { value: "out_of_stock", label: "Out Of Stock" },
+  // {
+  //   id: "stock",
+  //   name: "Availability",
+  //   options: [
+  //     { value: "in_stock", label: "In Stock" },
+  //     { value: "out_of_stock", label: "Out Of Stock" },
       
-    ],
-  },
+  //   ],
+  // },
 ]
 
 export const sortOptions = [
