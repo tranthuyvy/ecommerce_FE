@@ -22,8 +22,8 @@ import {
 
 import React, { useEffect, useState } from "react";
 
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { useNavigate } from "react-router-dom";
 import { Grid, Select } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
@@ -157,9 +157,12 @@ const OrdersTable = () => {
                 <TableCell>Image</TableCell>
                 <TableCell>Title</TableCell>
 
-                <TableCell>Price</TableCell>
+                <TableCell sx={{ textAlign: "center" }}>Price</TableCell>
+                <TableCell sx={{ textAlign: "center" }}>Payment</TableCell>
                 <TableCell sx={{ textAlign: "center" }}>Status</TableCell>
-                <TableCell sx={{ textAlign: "center" }}>Update Status</TableCell>
+                <TableCell sx={{ textAlign: "center" }}>
+                  Update Status
+                </TableCell>
                 <TableCell sx={{ textAlign: "center" }}>Cancel</TableCell>
               </TableRow>
             </TableHead>
@@ -183,7 +186,7 @@ const OrdersTable = () => {
                   </TableCell>
 
                   <TableCell
-                  onClick={() => handleOrderClick(item.id)}
+                    onClick={() => handleOrderClick(item.id)}
                     sx={{ py: (theme) => `${theme.spacing(0.5)} !important` }}
                   >
                     <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -208,8 +211,22 @@ const OrdersTable = () => {
                     </Box>
                   </TableCell>
 
-                  <TableCell>{item.totalPrice}</TableCell>
-                  <TableCell className="text-white">
+                  <TableCell sx={{ textAlign: "center" }}>
+                    {item.totalPrice}
+                  </TableCell>
+                  <TableCell sx={{ textAlign: "center" }}>
+                    <span className="text-green-600 font-semibold text-md">
+                      {item.paymentStatus === 0
+                        ? "Cash On Delivery"
+                        : item.paymentStatus === 1
+                        ? "Payment via Paypal"
+                        : "Unknown Payment Method"}
+                    </span>
+                  </TableCell>
+                  <TableCell
+                    className="text-white"
+                    sx={{ textAlign: "center" }}
+                  >
                     <Chip
                       sx={{
                         color: "white !important",
@@ -243,7 +260,7 @@ const OrdersTable = () => {
                         aria-controls={`basic-menu-${item.id}`}
                         aria-haspopup="true"
                         aria-expanded={Boolean(anchorElArray[index])}
-                        disabled = {
+                        disabled={
                           item.orderStatus === "CANCELLED" ||
                           item.orderStatus === "DELIVERED"
                         }
@@ -251,7 +268,7 @@ const OrdersTable = () => {
                           handleUpdateStatusMenuClick(event, index)
                         }
                       >
-                        <EditIcon/>
+                        <EditIcon style={{color:"yellow"}}/>
                       </Button>
                       <Menu
                         id={`basic-menu-${item.id}`}
@@ -284,14 +301,15 @@ const OrdersTable = () => {
                         >
                           SHIPPED ORDER
                         </MenuItem>
-                        <MenuItem 
+                        <MenuItem
                           disabled={
                             item.orderStatus === "DELIVERED" ||
                             item.orderStatus === "CANCELLED" ||
                             item.orderStatus === "PLACED" ||
                             item.orderStatus === "CONFIRMED"
                           }
-                          onClick={() => handleDeliveredOrder(item.id)}>
+                          onClick={() => handleDeliveredOrder(item.id)}
+                        >
                           DELIVERED ORDER
                         </MenuItem>
                       </Menu>
@@ -302,7 +320,7 @@ const OrdersTable = () => {
                     className="text-white"
                   >
                     <Button
-                      disabled = {
+                      disabled={
                         item.orderStatus === "CANCELLED" ||
                         item.orderStatus === "CONFIRMED" ||
                         item.orderStatus === "SHIPPED" ||
@@ -311,7 +329,7 @@ const OrdersTable = () => {
                       onClick={() => handleDeleteOrder(item.id)}
                       variant="text"
                     >
-                      <DeleteIcon/>
+                      <DeleteIcon style={{color:"red"}}/>
                     </Button>
                   </TableCell>
                 </TableRow>
