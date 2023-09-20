@@ -126,64 +126,197 @@ const OrderDetails = () => {
 
       <div>
         <Grid container justifyContent="flex-end" className="font-semibold">
-
           <Grid container>
-          <Grid item xs={8} style={{ border: '1px solid #f2f2f2', borderRadius:"1px",display: 'flex', justifyContent: 'flex-end', padding:"10px"}}>
-            <div>
-              <span className="opacity-50">Total</span>
-            </div>
-          </Grid>
-          <Grid item xs={4} style={{ border: '1px solid #f2f2f2', display: 'flex', justifyContent: 'flex-end', padding:"10px" }}>
-            <div>
-              <span>${order.order?.totalPrice}</span>
-            </div>
-          </Grid>
+            <Grid
+              item
+              xs={8}
+              style={{
+                border: "1px solid #f2f2f2",
+                borderRadius: "1px",
+                display: "flex",
+                justifyContent: "flex-end",
+                padding: "10px",
+              }}
+            >
+              <div>
+                <span className="opacity-50">Total</span>
+              </div>
+            </Grid>
+            <Grid
+              item
+              xs={4}
+              style={{
+                border: "1px solid #f2f2f2",
+                display: "flex",
+                justifyContent: "flex-end",
+                padding: "10px",
+              }}
+            >
+              <div>
+                <span>${order.order?.totalPrice}</span>
+              </div>
+            </Grid>
 
-          <Grid item xs={8} style={{ border: '1px solid #f2f2f2', borderRadius:"1px",display: 'flex', justifyContent: 'flex-end', padding:"10px"}}>
-            <div>
-              <span className="opacity-50">Delivery Charges</span>
-            </div>
-          </Grid>
-          <Grid item xs={4} style={{ border: '1px solid #f2f2f2', display: 'flex', justifyContent: 'flex-end', padding:"10px" }}>
-            <div>
-              <span className="text-indigo-600" >Free</span>
-            </div>
-          </Grid>
+            <Grid
+              item
+              xs={8}
+              style={{
+                border: "1px solid #f2f2f2",
+                borderRadius: "1px",
+                display: "flex",
+                justifyContent: "flex-end",
+                padding: "10px",
+              }}
+            >
+              <div>
+                <span className="opacity-50">Delivery Charges</span>
+              </div>
+            </Grid>
+            <Grid
+              item
+              xs={4}
+              style={{
+                border: "1px solid #f2f2f2",
+                display: "flex",
+                justifyContent: "flex-end",
+                padding: "10px",
+              }}
+            >
+              <div>
+                <span className="text-indigo-600">Free</span>
+              </div>
+            </Grid>
 
-          <Grid item xs={8} style={{ border: '1px solid #f2f2f2', borderRadius:"1px",display: 'flex', justifyContent: 'flex-end', padding:"10px"}}>
-            <div>
-              <span className="opacity-50">Voucher</span>
-            </div>
-          </Grid>
-          <Grid item xs={4} style={{ border: '1px solid #f2f2f2', display: 'flex', justifyContent: 'flex-end', padding:"10px" }}>
-            <div>
-              <span>- 0$</span>
-            </div>
-          </Grid>
+            <Grid
+              item
+              xs={8}
+              style={{
+                border: "1px solid #f2f2f2",
+                borderRadius: "1px",
+                display: "flex",
+                justifyContent: "flex-end",
+                padding: "10px",
+              }}
+            >
+              <div>
+                <span className="opacity-50">Voucher</span>
+              </div>
+            </Grid>
+            <Grid
+              item
+              xs={4}
+              style={{
+                border: "1px solid #f2f2f2",
+                display: "flex",
+                justifyContent: "flex-end",
+                padding: "10px",
+              }}
+            >
+              <div>
+                <span>- 0$</span>
+              </div>
+            </Grid>
 
-          <Grid item xs={8} style={{ border: '1px solid #f2f2f2', borderRadius:"1px",display: 'flex', justifyContent: 'flex-end', padding:"10px"}}>
-            <div>
-              <span className="opacity-50">Discount</span>
-            </div>
-          </Grid>
-          <Grid item xs={4} style={{ border: '1px solid #f2f2f2', display: 'flex', justifyContent: 'flex-end', padding:"10px" }}>
-            <div>
-              <span>- ${order.order?.discounte}</span>
-            </div>
-          </Grid>
+            <Grid
+              item
+              xs={8}
+              style={{
+                border: "1px solid #f2f2f2",
+                borderRadius: "1px",
+                display: "flex",
+                justifyContent: "flex-end",
+                padding: "10px",
+              }}
+            >
+              <div>
+                <span className="opacity-50">Discount</span>
+              </div>
+            </Grid>
+            <Grid
+              item
+              xs={4}
+              style={{
+                border: "1px solid #f2f2f2",
+                display: "flex",
+                justifyContent: "flex-end",
+                padding: "10px",
+              }}
+            >
+              <div>
+                <span>- ${order.order?.discounte}</span>
+              </div>
+            </Grid>
 
-          <Grid item xs={8} style={{ border: '1px solid #f2f2f2', borderRadius:"1px",display: 'flex', justifyContent: 'flex-end', padding:"10px"}}>
-            <div>
-              <span className="opacity-50">Total Payment ({order.order?.totalItem})</span>
-            </div>
+            <Grid
+              item
+              xs={8}
+              style={{
+                border: "1px solid #f2f2f2",
+                borderRadius: "1px",
+                display: "flex",
+                justifyContent: "flex-end",
+                padding: "10px",
+              }}
+            >
+              <div>
+                <span className="opacity-50">
+                  Total Payment ({order.order?.totalItem})
+                </span>
+              </div>
+            </Grid>
+            <Grid
+              item
+              xs={4}
+              style={{
+                border: "1px solid #f2f2f2",
+                display: "flex",
+                justifyContent: "flex-end",
+                padding: "10px",
+              }}
+            >
+              <div>
+                <span className="text-red-600 font-semibold text-2xl">
+                  ${order.order?.totalDiscountedPrice}
+                </span>
+              </div>
+            </Grid>
+
+            <Grid
+              item
+              xs={8}
+              style={{
+                border: "1px solid #f2f2f2",
+                borderRadius: "1px",
+                display: "flex",
+                justifyContent: "flex-end",
+                padding: "10px",
+              }}
+            >
+              <div>
+                <span className="opacity-50">Payment</span>
+              </div>
+            </Grid>
+            <Grid
+              item
+              xs={4}
+              style={{
+                border: "1px solid #f2f2f2",
+                display: "flex",
+                justifyContent: "flex-end",
+                padding: "10px",
+              }}
+            >
+              <div>
+                <span className="text-green-600 font-semibold text-md">
+                  {order.order?.paymentStatus === 0
+                    ? "Cash On Delivery"
+                    : order.order?.paymentStatus === 1
+                    ? "Payment via Paypal"
+                    : "Unknown Payment Method"}
+                </span>
+              </div>
+            </Grid>
           </Grid>
-          <Grid item xs={4} style={{ border: '1px solid #f2f2f2', display: 'flex', justifyContent: 'flex-end', padding:"10px" }}>
-            <div>
-              <span className="text-red-600 font-semibold text-2xl">${order.order?.totalDiscountedPrice}</span>
-            </div>
-          </Grid>
-        </Grid>
-            
         </Grid>
       </div>
     </div>
