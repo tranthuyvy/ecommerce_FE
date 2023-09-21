@@ -73,7 +73,6 @@ const UserProfile = () => {
     if (editedUser.addresses && editedUser.addresses.length > 0) {
       editedUser.addresses[0] = updatedAddress;
     } else {
-      // Nếu người dùng chưa có địa chỉ, tạo một đối tượng địa chỉ mới
       editedUser.addresses = [updatedAddress];
     }
 
@@ -199,7 +198,7 @@ const UserProfile = () => {
               <>
                 <Button
                   variant="contained"
-                  sx={{ p: 1.8 }}
+                  sx={{ p: 1.8 }}                                                                                                  
                   className="py-20"
                   size="large"
                   onClick={handleSaveEdit}

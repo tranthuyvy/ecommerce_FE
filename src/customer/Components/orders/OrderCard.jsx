@@ -10,11 +10,13 @@ import { format } from "date-fns";
 import { useDispatch } from "react-redux";
 import { deleteOrder } from "../../../Redux/Admin/Orders/Action";
 import { useState } from "react";
+import axios from 'axios';
 
 const OrderCard = ({ item, order }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isOrderCancelled, setIsOrderCancelled] = useState(false);
+  const jwt = localStorage.getItem("jwt");
 
   const handleCancelOrder = (orderId) => {
     if (window.confirm("Bạn có chắc chắn muốn hủy đơn hàng?")) {
@@ -38,6 +40,30 @@ const OrderCard = ({ item, order }) => {
   });
 
   console.log("items ", item, order, order.orderStatus);
+
+  const calculatePoints = () => {
+    return Math.floor(totalPrice * 10 / 100);
+  };
+
+  const handleReceiveOrder = (orderId, totalPrice) => {
+    
+    const points = calculatePoints(totalPrice);
+
+    axios
+    .put("http://localhost:5454/api/users/profile", { points: points }, {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    })
+    .then((response) => {
+      
+      console.log("Update points successful", response.data);
+
+    })
+    .catch((error) => {
+      console.error("Error update points", error.response?.data || error.message);
+    });
+};
 
   return (
     <Box className="p-5 shadow-lg hover:shadow-2xl border ">
@@ -212,7 +238,7 @@ const OrderCard = ({ item, order }) => {
         </p>
 
         {order?.orderStatus === "DELIVERED" ? (
-          <button className="square-button btn-submit">ĐÃ NHẬN HÀNG</button>
+          <button className="square-button btn-submit" onClick={() => handleReceiveOrder(order?.id, totalPrice)}>ĐÃ NHẬN HÀNG</button>
         ) : (
           <button className="square-button-unsub">ĐÃ NHẬN HÀNG</button>
         )}
