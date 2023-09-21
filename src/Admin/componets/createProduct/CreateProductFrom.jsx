@@ -90,15 +90,16 @@ const CreateProductForm = () => {
     console.log(productData);
   };
 
-  // const handleAddProducts=(data)=>{
-  //   for(let item of data){
-  //     const productsData={
-  //       data:item,
-  //       jwt,
-  //     }
-  //     dispatch(createProduct(productsData))
-  //   }
-  // }
+  const [imageToShow, setImageToShow] = useState("");
+  const handleImageLinkChange = (e) => {
+    const imageUrl = e.target.value;
+    setProductData((prevState) => ({
+      ...prevState,
+      imageUrl: imageUrl,
+    }));
+
+    setImageToShow(imageUrl);
+  };
 
   return (
     <Fragment className="createProductContainer ">
@@ -120,9 +121,20 @@ const CreateProductForm = () => {
               label="Image URL"
               name="imageUrl"
               value={productData.imageUrl}
-              onChange={handleChange}
+              onChange={handleImageLinkChange}
             />
           </Grid>
+
+          {productData.imageUrl && (
+            <Grid item xs={12}>
+              <img
+                src={productData.imageUrl}
+                alt="Product"
+                style={{ maxWidth: "200px", height: "auto" }}
+              />
+            </Grid>
+          )}
+
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
@@ -253,11 +265,11 @@ const CreateProductForm = () => {
                 {productData.secondLavelCategory === "nike" && (
                   <MenuItem value="jordan">Jordan</MenuItem>
                 )}
-                
+
                 {productData.secondLavelCategory === "nike" && (
                   <MenuItem value="life_style">Lifestyle</MenuItem>
                 )}
-                
+
                 {productData.secondLavelCategory === "adidas" && (
                   <MenuItem value="hiking">Hiking</MenuItem>
                 )}
@@ -277,7 +289,6 @@ const CreateProductForm = () => {
                 {productData.secondLavelCategory === "adidas" && (
                   <MenuItem value="soccer">Soccer</MenuItem>
                 )}
-
               </Select>
             </FormControl>
           </Grid>
