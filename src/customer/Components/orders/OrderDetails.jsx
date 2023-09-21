@@ -88,17 +88,22 @@ const OrderDetails = () => {
                     <span>{item.size}</span>
                   </p>
                   <p> x{item.quantity}</p>
-                  <p
-                    className=""
-                    style={{
-                      color: "gray",
-                      textDecoration: "line-through",
-                      opacity: "60%",
-                    }}
-                  >
-                    {" "}
-                    ${item?.product.price}
-                  </p>
+
+                  {item.product?.discountedPrice !== item.product?.price &&
+                    item.product?.price !== 0 && (
+                      <p
+                        className=""
+                        style={{
+                          color: "gray",
+                          textDecoration: "line-through",
+                          opacity: "60%",
+                        }}
+                      >
+                        {" "}
+                        ${item?.product.price}
+                      </p>
+                    )}
+
                   <p className="text-red-600">
                     ${item?.product.discountedPrice}{" "}
                   </p>
