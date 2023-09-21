@@ -168,48 +168,6 @@ const UserProfile = () => {
               disabled={!isEditing}
             />
           </Grid>
-          {/* <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              label="Street"
-              name="street"
-              value={editedUser.street}
-              onChange={handleChange}
-              disabled={!isEditing}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              label="State"
-              name="state"
-              value={editedUser.state}
-              onChange={handleChange}
-              disabled={!isEditing}
-              
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <TextField
-              fullWidth
-              label="City"
-              name="city"
-              value={editedUser.city}
-              onChange={handleChange}
-              disabled={!isEditing}
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <TextField
-              fullWidth
-              label="Zip Code"
-              name="zipCode"
-              value={editedUser.zipCode}
-              onChange={handleChange}
-              type="number"
-              disabled={!isEditing}
-            />
-          </Grid> */}
 
           <Grid item xs={12} sm={4}>
             <TextField
@@ -220,6 +178,18 @@ const UserProfile = () => {
               onChange={handleChange}
               type="number"
               disabled={!isEditing}
+            />
+          </Grid>
+
+          <Grid item xs={6}>
+            <TextField
+              fullWidth
+              label="Points"
+              name="points"
+              value={editedUser.points}
+              //   onChange={handleChange}
+              disabled={true}
+              inputProps={{ readOnly: true }}
             />
           </Grid>
 
