@@ -7,7 +7,7 @@ import StarIcon from "@mui/icons-material/Star";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import "./OrderCard.css";
 import { format } from "date-fns";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteOrder } from "../../../Redux/Admin/Orders/Action";
 import { useState } from "react";
 import axios from 'axios';
@@ -17,9 +17,11 @@ const OrderCard = ({ item, order }) => {
   const dispatch = useDispatch();
   const [isOrderCancelled, setIsOrderCancelled] = useState(false);
   const jwt = localStorage.getItem("jwt");
+  const { auth } = useSelector((store) => store);
+  console.log("user", auth)
 
   const handleCancelOrder = (orderId) => {
-    if (window.confirm("Bạn có chắc chắn muốn hủy đơn hàng?")) {
+    if (window.confirm("Are you sure cancel order?")) {
       dispatch(deleteOrder(orderId))
         .then(() => {
           setIsOrderCancelled(true);
@@ -42,15 +44,19 @@ const OrderCard = ({ item, order }) => {
   console.log("items ", item, order, order.orderStatus);
 
   const calculatePoints = () => {
-    return Math.floor(totalPrice * 10 / 100);
+    return Math.floor(totalPrice * 0.1);
   };
 
-  const handleReceiveOrder = (orderId, totalPrice) => {
-    
+  const handleReceiveOrder = (orderId, totalPrice, user) => {
+    const pointsUser = auth.user.points || 0;
+    console.log("points user:" + pointsUser);
+
     const points = calculatePoints(totalPrice);
 
+    const totalPoints = pointsUser + points;
+
     axios
-    .put("http://localhost:5454/api/users/profile", { points: points }, {
+    .put("http://localhost:5454/api/users/profile", { points: totalPoints }, {
       headers: {
         Authorization: `Bearer ${jwt}`,
       },

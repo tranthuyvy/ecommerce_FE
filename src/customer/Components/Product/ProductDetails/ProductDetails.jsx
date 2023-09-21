@@ -63,6 +63,7 @@ export default function ProductDetails() {
   const { customersProduct } = useSelector((store) => store);
   const { productId } = useParams();
   const jwt = localStorage.getItem("jwt");
+  // console.log("customersProduct", customersProduct)
   // console.log("param",productId,customersProduct.product)
 
   const [productsFromAPI, setProductsFromAPI] = useState([]);
