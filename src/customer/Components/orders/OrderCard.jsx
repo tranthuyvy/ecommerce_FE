@@ -18,6 +18,8 @@ const OrderCard = ({ item, order }) => {
   const [isOrderCancelled, setIsOrderCancelled] = useState(false);
   const jwt = localStorage.getItem("jwt");
   const { auth } = useSelector((store) => store);
+  const [isReceived, setIsReceived] = useState(false);
+
   console.log("user", auth)
 
   const handleCancelOrder = (orderId) => {
@@ -44,16 +46,19 @@ const OrderCard = ({ item, order }) => {
   console.log("items ", item, order, order.orderStatus);
 
   const calculatePoints = () => {
-    return Math.floor(totalPrice * 0.1);
+    return Math.floor(order?.totalDiscountedPrice * 0.1);
   };
+  const totalPricePoint = order?.totalDiscountedPrice;
 
-  const handleReceiveOrder = (orderId, totalPrice, user) => {
-    const pointsUser = auth.user.points || 0;
+  const handleReceiveOrder = (orderId, totalPricePoint, user) => {
+    const pointsUser = auth.user.points;
     console.log("points user:" + pointsUser);
-
-    const points = calculatePoints(totalPrice);
+    
+    const points = calculatePoints(totalPricePoint);
+    console.log("points",points)
 
     const totalPoints = pointsUser + points;
+    console.log("totalPoint", totalPoints)
 
     axios
     .put("http://localhost:5454/api/users/profile", { points: totalPoints }, {
@@ -64,6 +69,7 @@ const OrderCard = ({ item, order }) => {
     .then((response) => {
       
       console.log("Update points successful", response.data);
+      setIsReceived(true);
 
     })
     .catch((error) => {
