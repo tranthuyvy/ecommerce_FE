@@ -192,6 +192,18 @@ const UserProfile = () => {
             />
           </Grid>
 
+          <Grid item xs={6}>
+            <TextField
+              fullWidth
+              label="Rank"
+              name="rank"
+              value={editedUser.rank}
+              //   onChange={handleChange}
+              disabled={true}
+              inputProps={{ readOnly: true }}
+            />
+          </Grid>
+
           <Grid item xs={12}>
             {isEditing ? (
               // Hiển thị nút chỉnh sửa và lưu khi trong trạng thái chỉnh sửa
