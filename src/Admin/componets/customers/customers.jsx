@@ -61,6 +61,8 @@ const Customers = () => {
                 <TableCell>LastName</TableCell>
                 <TableCell>Email</TableCell>
                 <TableCell>Mobile</TableCell>
+                <TableCell>Points</TableCell>
+                <TableCell>Rank</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -80,6 +82,8 @@ const Customers = () => {
                   <TableCell>{user.lastName}</TableCell>
                   <TableCell>{user.email}</TableCell>
                   <TableCell>{user.mobile}</TableCell>
+                  <TableCell>{user.points}</TableCell>
+                  <TableCell>{user.rank}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
