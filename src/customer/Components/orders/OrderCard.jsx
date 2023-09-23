@@ -8,7 +8,7 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import "./OrderCard.css";
 import { format } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteOrder } from "../../../Redux/Admin/Orders/Action";
+import { deleteOrder, successOrder } from "../../../Redux/Admin/Orders/Action";
 import { useState } from "react";
 import axios from 'axios';
 
@@ -16,6 +16,7 @@ const OrderCard = ({ item, order }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isOrderCancelled, setIsOrderCancelled] = useState(false);
+  const [isOrderSuccess, setIsOrderSuccess] = useState(false);
   const jwt = localStorage.getItem("jwt");
   const { auth } = useSelector((store) => store);
   const [isReceived, setIsReceived] = useState(false);
@@ -29,6 +30,21 @@ const OrderCard = ({ item, order }) => {
           setIsOrderCancelled(true);
           setTimeout(() => {
             setIsOrderCancelled(false);
+          }, 3000);
+        })
+        .catch((error) => {
+          console.error("Error", error);
+        });
+    }
+  };
+
+  const handleSuccessOrder = (orderId) => {
+    if (window.confirm("Are you sure you've received order?")) {
+      dispatch(successOrder(orderId))
+        .then(() => {
+          setIsOrderSuccess(true);
+          setTimeout(() => {
+            setIsOrderSuccess(false);
           }, 3000);
         })
         .catch((error) => {
@@ -52,29 +68,34 @@ const OrderCard = ({ item, order }) => {
 
   const handleReceiveOrder = (orderId, totalPricePoint, user) => {
     const pointsUser = auth.user.points;
-    console.log("points user:" + pointsUser);
     
     const points = calculatePoints(totalPricePoint);
-    console.log("points",points)
 
     const totalPoints = pointsUser + points;
-    console.log("totalPoint", totalPoints)
+    
+    const confirmed = window.confirm("Are you sure you've received order?");
 
-    axios
-    .put("http://localhost:5454/api/users/profile", { points: totalPoints }, {
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
-    })
-    .then((response) => {
-      
-      console.log("Update points successful", response.data);
-      setIsReceived(true);
+    if (confirmed) {
+      try {
+          
+          axios.put("http://localhost:5454/api/users/profile", { points: totalPoints }, {
+              headers: {
+                  Authorization: `Bearer ${jwt}`,
+              },
+          });
 
-    })
-    .catch((error) => {
-      console.error("Error update points", error.response?.data || error.message);
-    });
+          dispatch(successOrder(orderId))
+              .then(() => {
+                  console.log("SuccessOrder dispatched successfully");
+                  setIsReceived(true);
+              })
+              .catch((error) => {
+                  console.error("Error dispatching successOrder", error);
+              });
+      } catch (error) {
+          console.error("Error updating points", error.response?.data || error.message);
+      }
+  }
 };
 
   return (

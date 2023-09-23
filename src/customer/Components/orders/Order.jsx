@@ -14,8 +14,8 @@ const orderStatus = [
   { label: "CONFIRMED", value: "confirmed" },
   { label: "SHIPPED", value: "shipped" },
   { label: "DELIVERED", value: "delivered" },
-  { label: "CANCELLED", value: "cancelled" },
   { label: "SUCCESS", value: "success" },
+  { label: "CANCELLED", value: "cancelled" },
   { label: "RETURNED", value: "returned" },
 ];
 
