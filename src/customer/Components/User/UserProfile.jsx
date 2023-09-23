@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Typography } from "@mui/material";
+import { InputAdornment, Typography } from "@mui/material";
 import {
   Grid,
   TextField,
@@ -12,6 +12,7 @@ import {
 import { deepPurple } from "@mui/material/colors";
 import { Fragment } from "react";
 import "./UserProfile.css";
+import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
 
 const UserProfile = () => {
   const [user, setUser] = useState(null);
@@ -104,6 +105,18 @@ const UserProfile = () => {
     return <div>Loading ...</div>;
   }
 
+  let iconColor = 'yellow';
+
+  if (editedUser.rank === 'BRONZE') {
+    iconColor = 'brown';
+  } else if (editedUser.rank === 'SILVER') {
+    iconColor = 'silver';
+  } else if (editedUser.rank === 'GOLD') {
+    iconColor = 'gold';
+  } else if (editedUser.rank === 'DIAMOND') {
+    iconColor = 'lightblue';
+  }
+
   return (
     <Fragment className="updateProfileContainer ">
       <Typography
@@ -193,6 +206,7 @@ const UserProfile = () => {
           </Grid>
 
           <Grid item xs={6}>
+            
             <TextField
               fullWidth
               label="Rank"
@@ -201,12 +215,18 @@ const UserProfile = () => {
               //   onChange={handleChange}
               disabled={true}
               inputProps={{ readOnly: true }}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <MilitaryTechIcon style={{color: iconColor}}/>
+                  </InputAdornment>
+                ),
+              }}
             />
           </Grid>
 
           <Grid item xs={12}>
             {isEditing ? (
-              // Hiển thị nút chỉnh sửa và lưu khi trong trạng thái chỉnh sửa
               <>
                 <Button
                   variant="contained"
