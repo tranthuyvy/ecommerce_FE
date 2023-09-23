@@ -1,4 +1,4 @@
-import { Box, Grid, Typography, Avatar, AvatarGroup } from "@mui/material";
+import { Box, Grid, Avatar, AvatarGroup } from "@mui/material";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import AdjustIcon from "@mui/icons-material/Adjust";
 import React from "react";
@@ -10,7 +10,7 @@ import { format } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteOrder, successOrder } from "../../../Redux/Admin/Orders/Action";
 import { useState } from "react";
-import axios from 'axios';
+import axios from "axios";
 
 const OrderCard = ({ item, order }) => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const OrderCard = ({ item, order }) => {
   const { auth } = useSelector((store) => store);
   const [isReceived, setIsReceived] = useState(false);
 
-  console.log("user", auth)
+  console.log("user", auth);
 
   const handleCancelOrder = (orderId) => {
     if (window.confirm("Are you sure cancel order?")) {
@@ -38,20 +38,20 @@ const OrderCard = ({ item, order }) => {
     }
   };
 
-  const handleSuccessOrder = (orderId) => {
-    if (window.confirm("Are you sure you've received order?")) {
-      dispatch(successOrder(orderId))
-        .then(() => {
-          setIsOrderSuccess(true);
-          setTimeout(() => {
-            setIsOrderSuccess(false);
-          }, 3000);
-        })
-        .catch((error) => {
-          console.error("Error", error);
-        });
-    }
-  };
+  // const handleSuccessOrder = (orderId) => {
+  //   if (window.confirm("Are you sure you've received order?")) {
+  //     dispatch(successOrder(orderId))
+  //       .then(() => {
+  //         setIsOrderSuccess(true);
+  //         setTimeout(() => {
+  //           setIsOrderSuccess(false);
+  //         }, 3000);
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error", error);
+  //       });
+  //   }
+  // };
 
   let totalPrice = 0;
 
@@ -68,38 +68,44 @@ const OrderCard = ({ item, order }) => {
 
   const handleReceiveOrder = (orderId, totalPricePoint, user) => {
     const pointsUser = auth.user.points;
-    
+
     const points = calculatePoints(totalPricePoint);
 
     const totalPoints = pointsUser + points;
-    
+
     const confirmed = window.confirm("Are you sure you've received order?");
 
     if (confirmed) {
       try {
-          
-          axios.put("http://localhost:5454/api/users/profile", { points: totalPoints }, {
-              headers: {
-                  Authorization: `Bearer ${jwt}`,
-              },
-          });
+        axios.put(
+          "http://localhost:5454/api/users/profile",
+          { points: totalPoints },
+          {
+            headers: {
+              Authorization: `Bearer ${jwt}`,
+            },
+          }
+        );
 
-          dispatch(successOrder(orderId))
-              .then(() => {
-                  console.log("SuccessOrder dispatched successfully");
-                  setIsReceived(true);
-              })
-              .catch((error) => {
-                  console.error("Error dispatching successOrder", error);
-              });
+        dispatch(successOrder(orderId))
+          .then(() => {
+            console.log("SuccessOrder dispatched successfully");
+            setIsReceived(true);
+          })
+          .catch((error) => {
+            console.error("Error dispatching successOrder", error);
+          });
       } catch (error) {
-          console.error("Error updating points", error.response?.data || error.message);
+        console.error(
+          "Error updating points",
+          error.response?.data || error.message
+        );
       }
-  }
-};
+    }
+  };
 
   return (
-    <Box className="p-5 shadow-lg hover:shadow-2xl border ">
+    <Box className="p-5 shadow-lg hover:shadow-2xl border">
       <Grid
         item
         xs={12}
@@ -108,17 +114,16 @@ const OrderCard = ({ item, order }) => {
         justifyContent="flex-end"
       >
         <p className="opacity-50 mr-5 text-sm">
-          Create At: {format(new Date(order?.createdAt), "dd/MM/yyyy")}{" "}
+          Create At: {format(new Date(order?.createdAt), "dd/MM/yyyy")}
         </p>
         <p className="space-y-2 font-semibold">
           <div style={{ display: "flex", alignItems: "center" }}>
-            {order?.orderStatus === "DELIVERED" ? (
+            {order?.orderStatus === "DELIVERED" || order?.orderStatus === "SUCCESS" ? (
               <>
                 <FiberManualRecordIcon
                   sx={{ width: "15px", height: "15px" }}
                   className="text-green-600 p-0 mr-2 text-sm"
                 />
-                <span></span>
               </>
             ) : (
               <>
@@ -126,7 +131,6 @@ const OrderCard = ({ item, order }) => {
                   sx={{ width: "15px", height: "15px" }}
                   className="text-green-600 p-0 mr-2 text-sm"
                 />
-                <span></span>
               </>
             )}
             <p className="mr-2" style={{ color: "green" }}>
@@ -136,7 +140,7 @@ const OrderCard = ({ item, order }) => {
           </div>
         </p>
         <p className="text-xs"></p>
-        {item.orderStatus === "DELIVERED" && (
+        {item.orderStatus === "SUCCESS" && (
           <div
             onClick={() => navigate(`/account/rate/{id}`)}
             className="flex items-center text-blue-600 cursor-pointer"
@@ -208,13 +212,12 @@ const OrderCard = ({ item, order }) => {
         <Grid item xs={2} container alignItems="center">
           <p className="space-y-2 font-semibold">
             <div style={{ display: "flex", alignItems: "center" }}>
-              {order?.orderStatus === "DELIVERED" ? (
+              {order?.orderStatus === "DELIVERED" || order?.orderStatus === "SUCCESS" ? (
                 <>
                   <FiberManualRecordIcon
                     sx={{ width: "15px", height: "15px" }}
                     className="text-green-600 p-0 mr-2 text-sm"
                   />
-                  <span></span>
                 </>
               ) : (
                 <>
@@ -222,7 +225,6 @@ const OrderCard = ({ item, order }) => {
                     sx={{ width: "15px", height: "15px" }}
                     className="text-green-600 p-0 mr-2 text-sm"
                   />
-                  <span></span>
                 </>
               )}
               <p className="mr-2" style={{ color: "green" }}>
@@ -232,7 +234,7 @@ const OrderCard = ({ item, order }) => {
             </div>
           </p>
           <p className="text-xs"></p>
-          {item.orderStatus === "DELIVERED" && (
+          {item.orderStatus === "SUCCESS" && (
             <div
               onClick={() => navigate(`/account/rate/{id}`)}
               className="flex items-center text-blue-600 cursor-pointer"
@@ -269,27 +271,35 @@ const OrderCard = ({ item, order }) => {
           Vui lòng chỉ nhấn "Đã nhận được hàng" khi đơn hàng đã được giao đến
           bạn và sản phẩm nhận được không có vấn đề nào
         </p>
-
-        {order?.orderStatus === "DELIVERED" ? (
-          <button className="square-button btn-submit" onClick={() => handleReceiveOrder(order?.id, totalPrice)}>ĐÃ NHẬN HÀNG</button>
-        ) : (
-          <button className="square-button-unsub">ĐÃ NHẬN HÀNG</button>
+        {order?.orderStatus === "SUCCESS" ? null : (
+          <>
+            {order?.orderStatus === "DELIVERED" ? (
+              <button
+                className="square-button btn-submit"
+                onClick={() => handleReceiveOrder(order?.id, totalPrice)}
+              >
+                ĐÃ NHẬN HÀNG
+              </button>
+            ) : (
+              <button className="square-button-unsub">ĐÃ NHẬN HÀNG</button>
+            )}
+            <div>
+              {order?.orderStatus === "PLACED" ? (
+                <button
+                  className="square-button btn-submit"
+                  onClick={() => handleCancelOrder(order?.id)}
+                >
+                  HỦY ĐƠN HÀNG
+                </button>
+              ) : (
+                <button className="square-button-unsub">HỦY ĐƠN HÀNG</button>
+              )}
+              {isOrderCancelled && (
+                <div style={{ color: "green" }}>Successfully</div>
+              )}
+            </div>
+          </>
         )}
-        <div>
-          {order?.orderStatus === "PLACED" ? (
-            <button
-              className="square-button btn-submit"
-              onClick={() => handleCancelOrder(order?.id)}
-            >
-              HỦY ĐƠN HÀNG
-            </button>
-          ) : (
-            <button className="square-button-unsub">HỦY ĐƠN HÀNG</button>
-          )}
-          {isOrderCancelled && (
-            <div style={{ color: "green" }}>Successfully</div>
-          )}
-        </div>
       </div>
     </Box>
   );

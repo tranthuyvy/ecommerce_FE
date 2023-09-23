@@ -111,7 +111,7 @@ const OrderDetails = () => {
               </div>
             </Grid>
             <Grid item>
-              {order.order?.orderStatus === "DELIVERED" && (
+              {order.order?.orderStatus === "SUCCESS" && (
                 <Box
                   sx={{ color: deepPurple[500] }}
                   onClick={() => navigate(`/account/rate/${item.product.id}`)}
