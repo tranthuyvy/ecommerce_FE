@@ -32,6 +32,7 @@ import {
   findProducts,
 } from "../../../Redux/Customers/Product/Action";
 import QRCode from "react-qr-code";
+import Barcode from "react-barcode";
 
 const ProductsTable = () => {
   const location = useLocation();
@@ -184,17 +185,18 @@ const ProductsTable = () => {
           <Table sx={{ minWidth: 800 }} aria-label="table in dashboard">
             <TableHead>
               <TableRow>
-                <TableCell>QR</TableCell>
+                <TableCell>QR CODE</TableCell>
+                <TableCell>BAR CODE</TableCell>
                 <TableCell>Image</TableCell>
                 <TableCell>Title</TableCell>
-                <TableCell sx={{ textAlign: "center" }}>Category</TableCell>
+                {/* <TableCell sx={{ textAlign: "center" }}>Category</TableCell> */}
                 <TableCell sx={{ textAlign: "center" }}>Price</TableCell>
                 <TableCell sx={{ textAlign: "center" }}>
                   Discounted Price
                 </TableCell>
                 <TableCell sx={{ textAlign: "center" }}>Quantity</TableCell>
-                <TableCell sx={{ textAlign: "center" }}>Update</TableCell>
-                <TableCell sx={{ textAlign: "center" }}>Delete</TableCell>
+                <TableCell sx={{ textAlign: "center" }}>Action</TableCell>
+                {/* <TableCell sx={{ textAlign: "center" }}>Delete</TableCell> */}
                 <TableCell sx={{ textAlign: "center" }}>Reviews</TableCell>
               </TableRow>
             </TableHead>
@@ -208,7 +210,7 @@ const ProductsTable = () => {
                   <TableCell>
                     {item.id && (
                       <QRCode
-                        size={100}
+                        size={140}
                         bgColor="white"
                         fgColor="black"
                         // value={`http://localhost:3000/product/${item.id}`}
@@ -218,8 +220,19 @@ const ProductsTable = () => {
                   </TableCell>
 
                   <TableCell>
+                    <Barcode
+                      style={{ width: '50px', height: 'auto' }} 
+                      value={item.id} 
+                    />
+                  </TableCell>
+
+                  <TableCell>
                     {" "}
-                    <Avatar alt={item.title} src={item.imageUrl} />{" "}
+                    <Avatar 
+                      alt={item.title} 
+                      src={item.imageUrl} 
+                      style={{ width: '100px', height: '100px' }} 
+                      />{" "}
                   </TableCell>
 
                   <TableCell
@@ -237,9 +250,9 @@ const ProductsTable = () => {
                       <Typography variant="caption">{item.brand}</Typography>
                     </Box>
                   </TableCell>
-                  <TableCell sx={{ textAlign: "center" }}>
+                  {/* <TableCell sx={{ textAlign: "center" }}>
                     {item.category.name}
-                  </TableCell>
+                  </TableCell> */}
                   <TableCell sx={{ textAlign: "center" }}>
                     {item.price}
                   </TableCell>
@@ -249,7 +262,7 @@ const ProductsTable = () => {
                   <TableCell sx={{ textAlign: "center" }}>
                     {item.quantity}
                   </TableCell>
-                  <TableCell sx={{ textAlign: "center" }}>
+                  <TableCell style={{}} sx={{ textAlign: "center" }}>
                     <Button
                       onClick={() =>
                         navigate(`/admin/product/update/${item.id}`)
@@ -259,8 +272,7 @@ const ProductsTable = () => {
                     >
                       <EditIcon />
                     </Button>
-                  </TableCell>
-                  <TableCell sx={{ textAlign: "center" }}>
+
                     <Button
                       variant="text"
                       onClick={() => handleDeleteProduct(item.id)}
@@ -268,7 +280,17 @@ const ProductsTable = () => {
                     >
                       <DeleteIcon />
                     </Button>
+
                   </TableCell>
+                  {/* <TableCell sx={{ textAlign: "center" }}>
+                    <Button
+                      variant="text"
+                      onClick={() => handleDeleteProduct(item.id)}
+                      color="secondary"
+                    >
+                      <DeleteIcon />
+                    </Button>
+                  </TableCell> */}
                   <TableCell sx={{ textAlign: "center" }}>
                     <Button
                       onClick={() =>
