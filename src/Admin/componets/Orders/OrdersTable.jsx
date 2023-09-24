@@ -244,6 +244,8 @@ const OrdersTable = () => {
                           ? "info"
                           : item.orderStatus === "SHIPPED"
                           ? "primary"
+                          : item.orderStatus === "SUCCESS"
+                          ? "success"
                           : "secondary"
                       }
                       className="text-white"
@@ -261,6 +263,7 @@ const OrdersTable = () => {
                         aria-haspopup="true"
                         aria-expanded={Boolean(anchorElArray[index])}
                         disabled={
+                          item.orderStatus === "SUCCESS" ||
                           item.orderStatus === "CANCELLED" ||
                           item.orderStatus === "DELIVERED"
                         }
@@ -321,6 +324,7 @@ const OrdersTable = () => {
                   >
                     <Button
                       disabled={
+                        item.orderStatus === "SUCCESS" ||
                         item.orderStatus === "CANCELLED" ||
                         item.orderStatus === "CONFIRMED" ||
                         item.orderStatus === "SHIPPED" ||
