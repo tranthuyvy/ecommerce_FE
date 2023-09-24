@@ -22,7 +22,7 @@ import {
 import React from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -31,6 +31,7 @@ import {
   deleteProduct,
   findProducts,
 } from "../../../Redux/Customers/Product/Action";
+import QRCode from "react-qr-code";
 
 const ProductsTable = () => {
   const location = useLocation();
@@ -115,7 +116,9 @@ const ProductsTable = () => {
                 <MenuItem value={"running"}>Adidas Running</MenuItem>
                 <MenuItem value={"soccer"}>Adidas Soccer</MenuItem>
                 <MenuItem value={"chuck_70"}>Converse Chuck 70</MenuItem>
-                <MenuItem value={"classic_chuck"}>Converse Classic Chuck</MenuItem>
+                <MenuItem value={"classic_chuck"}>
+                  Converse Classic Chuck
+                </MenuItem>
                 <MenuItem value={"air_force_1"}>Nike Air Force 1</MenuItem>
                 <MenuItem value={"air_max"}>Nike Air Max</MenuItem>
                 <MenuItem value={"basketball"}>Nike Basketball</MenuItem>
@@ -181,6 +184,7 @@ const ProductsTable = () => {
           <Table sx={{ minWidth: 800 }} aria-label="table in dashboard">
             <TableHead>
               <TableRow>
+                <TableCell>QR</TableCell>
                 <TableCell>Image</TableCell>
                 <TableCell>Title</TableCell>
                 <TableCell sx={{ textAlign: "center" }}>Category</TableCell>
@@ -202,8 +206,20 @@ const ProductsTable = () => {
                   sx={{ "&:last-of-type td, &:last-of-type th": { border: 0 } }}
                 >
                   <TableCell>
+                    {item.id && (
+                      <QRCode
+                        size={100}
+                        bgColor="white"
+                        fgColor="black"
+                        // value={`http://localhost:3000/product/${item.id}`}
+                        value={`https://www.nike.com/t/air-jordan-xxxvii-low-basketball-shoes-00ZHpg/DQ4122-007`}
+                      />
+                    )}
+                  </TableCell>
+
+                  <TableCell>
                     {" "}
-                    <Avatar alt={item.titel} src={item.imageUrl} />{" "}
+                    <Avatar alt={item.title} src={item.imageUrl} />{" "}
                   </TableCell>
 
                   <TableCell
@@ -255,11 +271,13 @@ const ProductsTable = () => {
                   </TableCell>
                   <TableCell sx={{ textAlign: "center" }}>
                     <Button
-                      onClick={() => navigate(`/admin/product/reviews/${item.id}`)}
+                      onClick={() =>
+                        navigate(`/admin/product/reviews/${item.id}`)
+                      }
                       variant="text"
                       color="success"
                     >
-                      <VisibilityIcon/>
+                      <VisibilityIcon />
                     </Button>
                   </TableCell>
                 </TableRow>
