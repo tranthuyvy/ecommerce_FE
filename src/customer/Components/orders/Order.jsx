@@ -64,13 +64,33 @@ const Order = () => {
             </div>
           </div>
         </Grid>
-        <Grid item xs={9}>
+        {/* <Grid item xs={9}>
           <Box className="space-y-5">
             {order.orders?.length > 0 &&
               order.orders?.map((order) => {
                 return order?.orderItems?.map((item, index) => (
                   <OrderCard item={item} order={order} />
                 ));
+              })}
+          </Box>
+        </Grid> */}
+
+        <Grid item xs={9}>
+          <Box className="space-y-5">
+            {order.orders?.length > 0 &&
+              order.orders?.map((order) => {
+                const displayedOrderIds = [];
+
+                return order?.orderItems?.map((item, index) => {
+                  if (!displayedOrderIds.includes(order.id)) {
+                    displayedOrderIds.push(order.id);
+                    return (
+                      <OrderCard item={item} order={order} key={order.id} />
+                    );
+                  }
+
+                  return null;
+                });
               })}
           </Box>
         </Grid>
