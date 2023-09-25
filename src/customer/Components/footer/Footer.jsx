@@ -79,9 +79,9 @@ const Footer = () => {
         <Typography>
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.1058740550257!2d106.7178476758412!3d10.803202589347196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528a6df0cb50d%3A0xfae2c84e2e1a4119!2zMTY0IE5ndXnhu4VuIFbEg24gVGjGsMahbmcsIFBoxrDhu51uZyAyNSwgQsOsbmggVGjhuqFuaCwgVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5oIDcwMDAwMCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1695575568267!5m2!1svi!2s"
-            width="300px"
-            height="200px"
-            style={{ border: "0" }}
+            width="320px"
+            height="150px"
+            style={{ border: "0", marginLeft:"30px"}}
             allowFullScreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
