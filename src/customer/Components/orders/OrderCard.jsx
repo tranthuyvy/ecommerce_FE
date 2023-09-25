@@ -271,7 +271,7 @@ const OrderCard = ({ item, order }) => {
           Vui lòng chỉ nhấn "Đã nhận được hàng" khi đơn hàng đã được giao đến
           bạn và sản phẩm nhận được không có vấn đề nào
         </p>
-        {order?.orderStatus === "SUCCESS" ? null : (
+        {order?.orderStatus === "SUCCESS" || order?.orderStatus === "CONFIRMED" || order?.orderStatus === "SHIPPED" || order?.orderStatus === "CANCELLED" ? null : (
           <>
             {order?.orderStatus === "DELIVERED" ? (
               <button
@@ -280,9 +280,7 @@ const OrderCard = ({ item, order }) => {
               >
                 ĐÃ NHẬN HÀNG
               </button>
-            ) : (
-              <button className="square-button-unsub">ĐÃ NHẬN HÀNG</button>
-            )}
+            ) : null}
             <div>
               {order?.orderStatus === "PLACED" ? (
                 <button
@@ -291,9 +289,7 @@ const OrderCard = ({ item, order }) => {
                 >
                   HỦY ĐƠN HÀNG
                 </button>
-              ) : (
-                <button className="square-button-unsub">HỦY ĐƠN HÀNG</button>
-              )}
+              ) : null}
               {isOrderCancelled && (
                 <div style={{ color: "green" }}>Successfully</div>
               )}
