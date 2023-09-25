@@ -85,6 +85,7 @@ const Footer = () => {
             allowFullScreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
+            title="Google Maps"
           ></iframe>
         </Typography>
       </Grid>
