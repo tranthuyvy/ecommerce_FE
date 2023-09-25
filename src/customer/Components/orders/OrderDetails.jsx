@@ -30,7 +30,7 @@ const OrderDetails = () => {
           container
           sx={{ justifyContent: "space-between", alignItems: "center" }}
         >
-          <Grid item xs={9}>
+          <Grid item xs={12}>
             <OrderTraker
               activeStep={
                 order.order?.orderStatus === "PLACED"
@@ -43,7 +43,7 @@ const OrderDetails = () => {
               }
             />
           </Grid>
-          <Grid item justifyContent="center">
+          {/* <Grid item justifyContent="center">
             {order.order?.orderStatus === "DELIVERED" && (
               <Button sx={{ color: "" }} color="error" variant="text"></Button>
             )}
@@ -51,15 +51,15 @@ const OrderDetails = () => {
             {order.order?.orderStatus !== "DELIVERED" && (
               <Button sx={{ color: deepPurple[500] }} variant="text"></Button>
             )}
-          </Grid>
+          </Grid> */}
         </Grid>
       </Box>
 
       <Grid container className="p-5 shadow-lg">
-        <Grid xs={12}>
+        <Grid xs={12} style={{marginLeft: "10px"}}>
           <p className="font-bold text-lg py-2">Delivery Address</p>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={6} style={{marginLeft: "10px"}}>
           <AddressCard address={order.order?.shippingAddress} />
         </Grid>
       </Grid>
