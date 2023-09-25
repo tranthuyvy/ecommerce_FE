@@ -114,7 +114,7 @@ const OrderCard = ({ item, order }) => {
         justifyContent="flex-end"
       >
         <p className="opacity-50 mr-5 text-sm">
-          Create At: {format(new Date(order?.createdAt), "dd/MM/yyyy")}
+          OD: {format(new Date(order?.createdAt), "dd/MM/yyyy")}
         </p>
         <p className="space-y-2 font-semibold">
           <div style={{ display: "flex", alignItems: "center" }}>
