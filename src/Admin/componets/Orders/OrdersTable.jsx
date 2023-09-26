@@ -107,7 +107,7 @@ const OrdersTable = () => {
   };
 
   const handleOrderClick = (orderId) => {
-    navigate(`/account/order/${orderId}`);
+    navigate(`/admin/orders/${orderId}`);
   };
 
   return (
