@@ -394,7 +394,7 @@ const OrderDetails = () => {
       </div>
       <Snackbar
         open={snackbarOpen}
-        autoHideDuration={500}
+        autoHideDuration={900}
         onClose={() => setSnackbarOpen(false)}
       >
         <MuiAlert
